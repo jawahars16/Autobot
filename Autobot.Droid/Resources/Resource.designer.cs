@@ -63,11 +63,11 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f060002
 			public const int finishRule = 2131099650;
 			
-			// aapt resource value: 0x7f060008
-			public const int linearLayout1 = 2131099656;
+			// aapt resource value: 0x7f060009
+			public const int linearLayout1 = 2131099657;
 			
-			// aapt resource value: 0x7f060007
-			public const int newRule = 2131099655;
+			// aapt resource value: 0x7f060008
+			public const int newRule = 2131099656;
 			
 			// aapt resource value: 0x7f060005
 			public const int pager = 2131099653;
@@ -75,14 +75,17 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f060006
 			public const int promptList = 2131099654;
 			
+			// aapt resource value: 0x7f060007
+			public const int rulesList = 2131099655;
+			
 			// aapt resource value: 0x7f060000
 			public const int selectActionBtn = 2131099648;
 			
 			// aapt resource value: 0x7f060003
 			public const int selectConditionBtn = 2131099651;
 			
-			// aapt resource value: 0x7f060009
-			public const int selectTriggerBtn = 2131099657;
+			// aapt resource value: 0x7f06000a
+			public const int selectTriggerBtn = 2131099658;
 			
 			// aapt resource value: 0x7f060001
 			public const int selectedActionsList = 2131099649;
@@ -90,8 +93,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f060004
 			public const int selectedConditionsList = 2131099652;
 			
-			// aapt resource value: 0x7f06000a
-			public const int selectedTrigger = 2131099658;
+			// aapt resource value: 0x7f06000b
+			public const int selectedTrigger = 2131099659;
 			
 			static Id()
 			{

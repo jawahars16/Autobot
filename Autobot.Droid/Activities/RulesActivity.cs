@@ -3,9 +3,8 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
-using Autobot.Common;
-using Autobot.Droid.Platform;
-using Autobot.Platform;
+using Android.Widget;
+using Autobot.Droid.Presenter;
 using Com.Lilarcor.Cheeseknife;
 using System;
 
@@ -15,6 +14,10 @@ namespace Autobot.Droid.Activities
     public class RulesActivity : Activity
     {
         public static int NEW_RULE_REQUEST_CODE = 1000;
+        private RulesPresenter presenter;
+
+        [InjectView(Resource.Id.rulesList)]
+        private ListView rulesList;
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
@@ -27,12 +30,15 @@ namespace Autobot.Droid.Activities
             SetContentView(Resource.Layout.RulesActivity);
             Cheeseknife.Inject(this);
             Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
-            Container.Default.Register<IReflection>(typeof(Reflection));
+            presenter = new RulesPresenter();
         }
 
-        protected override void OnResume()
+        protected async override void OnResume()
         {
             base.OnResume();
+            var rules = await presenter.GetRules();
+            var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, rules);
+            rulesList.Adapter = adapter;
         }
 
         [InjectOnClick(Resource.Id.newRule)]

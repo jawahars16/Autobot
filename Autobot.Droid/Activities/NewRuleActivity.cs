@@ -41,8 +41,9 @@ namespace Autobot.Droid.Activities
             viewPager.Adapter = adapter;
         }
 
-        private void OnFinishRule(object sender, EventArgs e)
+        private async void OnFinishRule(object sender, EventArgs e)
         {
+            await rule.SaveAsync();
             Intent intent = new Intent();
             SetResult(Result.Ok, intent);
             FinishActivity(RulesActivity.NEW_RULE_REQUEST_CODE);

@@ -1,12 +1,20 @@
 ﻿using Autobot.Common;
 using Autobot.Platform;
+using Newtonsoft.Json;
+using SQLite;
 using System;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Autobot.Infrastructure
 {
     public class Condition : ISelectable
     {
+        public Condition()
+        {
+            // Don't kill me. I serve purpose for SQLite.
+        }
+
         private Condition(string title, Type type, MethodInfo method, params object[] parameters)
         {
             Type = type;
@@ -15,10 +23,25 @@ namespace Autobot.Infrastructure
             Title = title;
         }
 
+        #region Serializable
+
+        public string Description { get; set; }
         public string Icon { get; set; }
-        public MethodInfo Method { get; set; }
-        public object[] Parameters { get; set; }
+        public string MethodName { get; set; }
+        public string ParameterList { get; set; }
+        public string Rule { get; set; }
         public string Title { get; set; }
+        public string TypeName { get; set; }
+
+        #endregion Serializable
+
+        [Ignore]
+        public MethodInfo Method { get; set; }
+
+        [Ignore]
+        public object[] Parameters { get; set; }
+
+        [Ignore]
         public Type Type { get; set; }
 
         public static Condition Create(string title, Type type, MethodInfo method, params object[] parameters)
@@ -35,6 +58,16 @@ namespace Autobot.Infrastructure
         {
             IReflection reflection = Container.Default.Resolve<IReflection>();
             return reflection.ExecutePredicate(Type.AssemblyQualifiedName, Method.Name, Parameters);
+        }
+
+        public async Task SaveAsync(Rule rule)
+        {
+            TypeName = Type.AssemblyQualifiedName;
+            MethodName = Method.Name;
+            ParameterList = JsonConvert.SerializeObject(Parameters);
+            Rule = rule.Id;
+
+            await Database.Default.SaveAsync(this);
         }
 
         public override string ToString()
