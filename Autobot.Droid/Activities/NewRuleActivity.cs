@@ -1,4 +1,5 @@
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
@@ -42,8 +43,9 @@ namespace Autobot.Droid.Activities
 
         private void OnFinishRule(object sender, EventArgs e)
         {
-            Main.CurrentContext = this;
-            rule.Run();
+            Intent intent = new Intent();
+            SetResult(Result.Ok, intent);
+            FinishActivity(RulesActivity.NEW_RULE_REQUEST_CODE);
         }
     }
 }

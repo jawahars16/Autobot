@@ -60,6 +60,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App.cs" />
     <Compile Include="Autobot.cs" />
     <Compile Include="Fragments\ActionPickerFragment.cs" />
     <Compile Include="Fragments\ConditionPickerFragment.cs" />
