@@ -26,10 +26,10 @@ namespace Autobot.Droid.Platform
             return prompt;
         }
 
-        public Task<ISelectable> ShowAsync()
+        public Task<ISelectable> ShowAsync(bool list = true)
         {
             var source = new TaskCompletionSource<ISelectable>();
-            var dialog = new PromptListDialogFragment();
+            var dialog = new PromptListDialogFragment(list);
             dialog.Source = items;
             dialog.Title = title;
             dialog.Click = (item) =>

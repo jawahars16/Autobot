@@ -11,8 +11,15 @@ namespace Autobot.Droid.Fragments
 {
     public class PromptListDialogFragment : DialogFragment
     {
+        private bool isList;
+
         [InjectView(Resource.Id.promptList)]
-        private ListView promptList;
+        private AbsListView promptList;
+
+        public PromptListDialogFragment(bool isList)
+        {
+            this.isList = isList;
+        }
 
         public Action<ISelectable> Click { get; set; }
         public IList<ISelectable> Source { get; set; }
@@ -20,7 +27,8 @@ namespace Autobot.Droid.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = inflater.Inflate(Resource.Layout.PromptListDialogFragment, container, false);
+            int layout = isList ? Resource.Layout.PromptListDialogFragment : Resource.Layout.PromptGridDialogFragment;
+            var view = inflater.Inflate(layout, container, false);
             Cheeseknife.Inject(this, view);
             var adapter = new ArrayAdapter<ISelectable>(Activity, Android.Resource.Layout.SimpleListItem1, Source);
             promptList.Adapter = adapter;
