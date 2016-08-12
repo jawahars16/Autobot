@@ -85,6 +85,7 @@
     <Compile Include="Infrastructure\Actions\NotificationAction.cs" />
     <Compile Include="Infrastructure\Conditions\BatteryCondition.cs" />
     <Compile Include="Infrastructure\Conditions\WifiCondition.cs" />
+    <Compile Include="Infrastructure\Receiver\BatteryReceiver.cs" />
     <Compile Include="Infrastructure\Repository\Repository.cs" />
     <Compile Include="Infrastructure\Service\ConnectivityService.cs" />
     <Compile Include="Infrastructure\Triggers\BatteryTrigger.cs" />

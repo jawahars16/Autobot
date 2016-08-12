@@ -1,5 +1,4 @@
 using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
@@ -44,9 +43,7 @@ namespace Autobot.Droid.Activities
         private async void OnFinishRule(object sender, EventArgs e)
         {
             await rule.SaveAsync();
-            Intent intent = new Intent();
-            SetResult(Result.Ok, intent);
-            FinishActivity(RulesActivity.NEW_RULE_REQUEST_CODE);
+            Finish();
         }
     }
 }

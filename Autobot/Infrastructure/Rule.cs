@@ -1,6 +1,5 @@
 ﻿using Autobot.Common;
 using SQLite;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,8 +32,18 @@ namespace Autobot.Infrastructure
 
         #endregion Serializable
 
-        public void Run()
+        public async Task Load()
         {
+            await Database.Default.LoadAsync(this);
+            foreach (var action in Actions)
+            {
+                action.Load();
+            }
+        }
+
+        public async Task Run()
+        {
+            await Load();
             if (Conditions.All(condition => condition.IsSatisfied()))
             {
                 foreach (var action in Actions)
@@ -46,7 +55,7 @@ namespace Autobot.Infrastructure
 
         public async Task SaveAsync()
         {
-            Id = Guid.NewGuid().ToString();
+            Id = Trigger.Id;
 
             if (Title == null)
             {

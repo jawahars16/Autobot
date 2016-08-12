@@ -3,6 +3,7 @@ using Autobot.Platform;
 using Newtonsoft.Json;
 using SQLite;
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -58,6 +59,12 @@ namespace Autobot.Infrastructure
         {
             IReflection reflection = Container.Default.Resolve<IReflection>();
             reflection.ExecuteAction(Type.AssemblyQualifiedName, Method.Name, Parameters);
+        }
+
+        public void Load()
+        {
+            Type = System.Type.GetType(TypeName);
+            Method = Type.GetRuntimeMethods().Where(method => method.Name == MethodName).FirstOrDefault();
         }
 
         public async Task SaveAsync(Rule rule)

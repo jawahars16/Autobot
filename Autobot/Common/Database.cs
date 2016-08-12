@@ -23,6 +23,11 @@ namespace Autobot.Common
             }
         }
 
+        public async Task<Rule> GetRuleAsync(string id)
+        {
+            return await connection.Table<Rule>().Where(rule => rule.Id == id).FirstOrDefaultAsync();
+        }
+
         public async Task<List<Rule>> GetRulesAsync()
         {
             return await connection.Table<Rule>().ToListAsync();
@@ -33,11 +38,22 @@ namespace Autobot.Common
             connection = new SQLiteAsyncConnection(dbPath);
 
             await Task.WhenAll(
-                connection.CreateTableAsync<Action>(),
+                connection.CreateTableAsync<Infrastructure.Action>(),
                 connection.CreateTableAsync<Condition>(),
                 connection.CreateTableAsync<Trigger>(),
                 connection.CreateTableAsync<Rule>()
             );
+        }
+
+        public async Task LoadAsync(Rule rule)
+        {
+            Trigger trigger = await connection.Table<Trigger>().Where(tri => tri.Rule == rule.Id).FirstOrDefaultAsync();
+            List<Condition> conditions = await connection.Table<Condition>().Where(condition => condition.Rule == rule.Id).ToListAsync();
+            List<Action> actions = await connection.Table<Action>().Where(action => action.Rule == rule.Id).ToListAsync();
+
+            rule.Trigger = trigger;
+            rule.Conditions = conditions;
+            rule.Actions = actions;
         }
 
         public async Task SaveAsync(object entity)

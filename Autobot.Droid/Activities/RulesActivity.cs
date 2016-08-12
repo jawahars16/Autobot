@@ -13,7 +13,6 @@ namespace Autobot.Droid.Activities
     [Activity(Label = "Rules", MainLauncher = true)]
     public class RulesActivity : Activity
     {
-        public static int NEW_RULE_REQUEST_CODE = 1000;
         private RulesPresenter presenter;
 
         [InjectView(Resource.Id.rulesList)]
@@ -44,7 +43,7 @@ namespace Autobot.Droid.Activities
         [InjectOnClick(Resource.Id.newRule)]
         private void OnNewRuleClick(object sender, EventArgs e)
         {
-            StartActivityForResult(typeof(NewRuleActivity), NEW_RULE_REQUEST_CODE);
+            StartActivity(typeof(NewRuleActivity));
         }
     }
 }
