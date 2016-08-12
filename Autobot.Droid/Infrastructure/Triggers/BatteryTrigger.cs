@@ -3,6 +3,7 @@ using Autobot.Attributes;
 
 namespace Autobot.Droid.Infrastructure.Triggers
 {
+    [Android.Runtime.Preserve(AllMembers = true)]
     [Trigger(Title = "Battery")]
     public class BatteryTrigger
     {

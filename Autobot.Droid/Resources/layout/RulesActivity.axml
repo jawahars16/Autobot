@@ -13,7 +13,7 @@
         android:id="@+id/rulesList"
         android:layout_weight="1" />
     <Button
-        android:text="Add New Rule"
+        android:text="@+string/add_new_rule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/newRule" />

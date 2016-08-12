@@ -5,6 +5,7 @@ using Autobot.Common;
 
 namespace Autobot.Droid.Infrastructure.Triggers
 {
+    [Android.Runtime.Preserve(AllMembers = true)]
     [Trigger(Title = "Wifi")]
     public class WifiTrigger
     {

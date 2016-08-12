@@ -3,6 +3,7 @@ using Autobot.Droid.Platform;
 
 namespace Autobot.Droid.Infrastructure.Conditions
 {
+    [Android.Runtime.Preserve(AllMembers = true)]
     [Condition(Title = "Battery")]
     public class BatteryCondition
     {
