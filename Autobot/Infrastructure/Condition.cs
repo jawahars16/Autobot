@@ -26,7 +26,7 @@ namespace Autobot.Infrastructure
         #region Serializable
 
         public string Description { get; set; }
-        public string Icon { get; set; }
+        public int Icon { get; set; }
         public string MethodName { get; set; }
         public string ParameterList { get; set; }
         public string Rule { get; set; }

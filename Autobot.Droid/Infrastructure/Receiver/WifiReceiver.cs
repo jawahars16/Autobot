@@ -4,6 +4,9 @@ using Android.Net.Wifi;
 using Autobot.Common;
 using Autobot.Droid.Infrastructure.Service;
 using Autobot.Infrastructure;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Autobot.Droid.Infrastructure.Receiver
 {
@@ -19,11 +22,8 @@ namespace Autobot.Droid.Infrastructure.Receiver
             string action = intent.Action;
             string state = service.GetWifiState().ToString();
 
-            Rule rule = await Database.Default.GetRuleAsync(intent.Action + Constants.TRIGGER_DELIMITER + state);
-            if (rule != null)
-            {
-                await rule.Run();
-            }
+            List<Rule> rules = await Database.Default.GetRulesAsync(intent.Action + Constants.TRIGGER_DELIMITER + state);
+            await Task.WhenAll(rules.Select(rule => rule.Run()));
         }
     }
 }

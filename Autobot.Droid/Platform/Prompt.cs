@@ -9,7 +9,7 @@ namespace Autobot.Droid.Platform
     public class Prompt
     {
         private Activity context;
-        private IList<ISelectable> items;
+        private IEnumerable<ISelectable> items;
         private string title;
 
         private Prompt()
@@ -17,12 +17,11 @@ namespace Autobot.Droid.Platform
             // Nobody creates me.
         }
 
-        public static Prompt Make(Activity context, string title, List<ISelectable> source)
+        public static Prompt Make(Activity context, IEnumerable<ISelectable> source)
         {
             var prompt = new Prompt();
             prompt.context = context;
             prompt.items = source;
-            prompt.title = title;
             return prompt;
         }
 

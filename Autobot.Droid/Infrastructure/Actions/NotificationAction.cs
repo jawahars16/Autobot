@@ -3,6 +3,7 @@ using Autobot.Attributes;
 
 namespace Autobot.Droid.Infrastructure.Actions
 {
+    [Android.Runtime.Preserve(AllMembers = true)]
     [Action(Title = "Notification")]
     public class NotificationAction
     {

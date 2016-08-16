@@ -2,7 +2,7 @@
 {
     public interface ISelectable
     {
-        string Icon { get; set; }
+        int Icon { get; set; }
         string Title { get; set; }
     }
 }

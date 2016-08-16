@@ -3,6 +3,7 @@ using Autobot.Droid.Infrastructure.Service;
 
 namespace Autobot.Droid.Infrastructure.Conditions
 {
+    [Android.Runtime.Preserve(AllMembers = true)]
     [Condition(Title = "Wifi")]
     public class WifiCondition
     {

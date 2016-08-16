@@ -13,6 +13,13 @@ namespace Autobot.Infrastructure
             // Don't kill me. I serve purpose for SQLite.
         }
 
+        private Trigger(string title, int icon, Type type)
+        {
+            Title = title;
+            Icon = icon;
+            Type = type;
+        }
+
         private Trigger(string id, string title)
         {
             Title = title;
@@ -28,7 +35,7 @@ namespace Autobot.Infrastructure
         #region Serializable
 
         public string Description { get; set; }
-        public string Icon { get; set; }
+        public int Icon { get; set; }
         public string Id { get; set; }
         public string Rule { get; set; }
         public string Title { get; set; }
@@ -43,9 +50,9 @@ namespace Autobot.Infrastructure
             return new Trigger(id, title);
         }
 
-        public static Trigger Create(string title, Type type)
+        public static Trigger Create(string title, int icon, Type type)
         {
-            return new Trigger(title, type);
+            return new Trigger(title, icon, type);
         }
 
         public async Task SaveAsync(Rule rule)

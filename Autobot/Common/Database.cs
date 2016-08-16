@@ -23,9 +23,9 @@ namespace Autobot.Common
             }
         }
 
-        public async Task<Rule> GetRuleAsync(string id)
+        public async Task<List<Rule>> GetRulesAsync(string id)
         {
-            return await connection.Table<Rule>().Where(rule => rule.Id == id).FirstOrDefaultAsync();
+            return await connection.Table<Rule>().Where(rule => rule.Id == id).ToListAsync();
         }
 
         public async Task<List<Rule>> GetRulesAsync()

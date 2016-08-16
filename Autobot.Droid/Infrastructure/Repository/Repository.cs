@@ -104,7 +104,7 @@ namespace Autobot.Droid.Infrastructure.Repository
                 return types.Select((type) =>
                 {
                     var triggerAttribute = type.GetCustomAttribute<TriggerAttribute>();
-                    return Trigger.Create(triggerAttribute.Title, type);
+                    return Trigger.Create(triggerAttribute.Title, triggerAttribute.Icon, type);
                 }).ToList();
             }
 

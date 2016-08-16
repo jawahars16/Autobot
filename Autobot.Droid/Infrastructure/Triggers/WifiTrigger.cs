@@ -5,7 +5,8 @@ using Autobot.Common;
 
 namespace Autobot.Droid.Infrastructure.Triggers
 {
-    [Trigger(Title = "Wifi")]
+    [Android.Runtime.Preserve(AllMembers = true)]
+    [Trigger(Title = "Wifi", Icon = Resource.Drawable.wifi)]
     public class WifiTrigger
     {
         [Trigger(Title = "On Wifi Disabled")]
