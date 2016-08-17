@@ -2,23 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:minWidth="25px"
-    android:minHeight="25px">
-    <LinearLayout
-        android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:id="@+id/linearLayout1"
+    android:layout_margin="10dp"
+    android:elevation="3dp"
+    android:background="#FFFFFF"
+    android:showDividers="middle"
+    android:dividerPadding="5dp">
+    <TextView
+        android:text="On Wifi disabled, send a push notification message."
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout1"
-        android:layout_margin="10dp"
-        android:elevation="3dp"
-        android:background="#FFFFFF">
+        android:id="@+id/textView1"
+        android:layout_margin="10dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C2C3C9"
+        android:id="@+id/view1"
+        android:layout_margin="10dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
-            android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="match_parent"
+            android:text="Last seen"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView1"
+            android:id="@+id/textView2"
+            android:layout_margin="10dp"
+            android:gravity="left"
+            android:textColor="#007ACC" />
+        <TextView
+            android:text="Today"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
             android:layout_margin="10dp" />
     </LinearLayout>
 </LinearLayout>
