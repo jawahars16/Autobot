@@ -1,4 +1,4 @@
-﻿using Autobot.Infrastructure;
+﻿using Autobot.Model;
 using Autobot.Services;
 using MvvmCross.Core.ViewModels;
 using System.Linq;
@@ -36,10 +36,10 @@ namespace Autobot.ViewModel
             var actions = autobotService.GetActions();
             var action = await presentationService.SelectFromGridAsync(actions);
 
-            actions = autobotService.GetActions((Infrastructure.Action)action);
+            actions = autobotService.GetActions((Model.Action)action);
             action = await presentationService.SelectFromListAsync(actions);
 
-            Rule.Actions.Add((Infrastructure.Action)action);
+            Rule.Actions.Add((Model.Action)action);
         }
 
         private async void OnAddCondition()

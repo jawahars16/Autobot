@@ -1,55 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:local="http://schemas.android.com/apk/res-auto">
   <Autobot.Droid.Widgets.PixelGridView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:alpha="0.3" />
-  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:alpha="0.3" />
+  <ScrollView android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_gravity="center"
       android:orientation="vertical"
       android:layout_margin="20dp">
-    <Autobot.Droid.Widgets.ThemeButton
+      <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:text="SET TRIGGER"
-        android:background="#FF9800"
-        android:elevation="3dp"
-        local:MvxBind="Click SetTriggerCommand"
-        android:id="@+id/selectTriggerBtn"
-        android:layout_margin="30dp" />
-    <Autobot.Droid.Widgets.ThemeButton
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="3dp"
+        android:orientation="vertical">
+        <MvxFrameControl
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          local:MvxTemplate="@layout/trigger_item"
+          local:MvxBind="DataContext Rule.Trigger"
+          android:elevation="3dp"
+          android:layout_margin="3dp" />
+        <Autobot.Droid.Widgets.ThemeButton
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:clickable="true"
+          android:text="SET TRIGGER"
+          android:background="@color/grey_700"
+          android:elevation="3dp"
+          local:MvxBind="Click SetTriggerCommand; Visible IsNull(Rule.Trigger)"
+          android:id="@+id/selectTriggerBtn"
+          android:layout_margin="3dp" />
+      </LinearLayout>
+      <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:src="@drawable/arrow"
+        android:layout_margin="10dp"
+        android:layout_gravity="center" />
+      <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:background="#853B7F"
-        android:elevation="3dp"
-        android:text="ADD CONDITION"
-        local:MvxBind="Click AddConditionCommand"
-        android:layout_margin="30dp" />
-    <Autobot.Droid.Widgets.ThemeButton
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:orientation="vertical">
+        <MvxListView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          local:MvxItemTemplate="@layout/condition_item"
+          local:MvxBind="ItemsSource Rule.Conditions"
+          android:id="@+id/conditionsListView"
+          android:layout_margin="3dp" />
+        <Autobot.Droid.Widgets.ThemeButton
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:clickable="true"
+          android:background="@color/grey_700"
+          android:elevation="3dp"
+          android:text="ADD CONDITION"
+          local:MvxBind="Click AddConditionCommand"
+          android:layout_margin="3dp" />
+      </LinearLayout>
+      <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:src="@drawable/arrow"
+        android:layout_margin="10dp"
+        android:layout_gravity="center" />
+      <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:elevation="3dp"
-        android:text="ADD ACTION"
-        android:background="#007ACC"
-        local:MvxBind="Click AddActionCommand"
-        android:layout_margin="30dp" />
-  </LinearLayout>
+        android:orientation="vertical"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+        <MvxListView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          local:MvxItemTemplate="@layout/action_item"
+          local:MvxBind="ItemsSource Rule.Actions"
+          android:id="@+id/actionsListView"
+          android:layout_margin="3dp" />
+        <Autobot.Droid.Widgets.ThemeButton
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:clickable="true"
+          android:elevation="3dp"
+          android:text="ADD ACTION"
+          android:background="@color/grey_700"
+          local:MvxBind="Click AddActionCommand"
+          android:layout_margin="3dp" />
+      </LinearLayout>
+    </LinearLayout>
+  </ScrollView>
   <com.refractored.fab.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_margin="16dp"
-        local:MvxBind="Click SaveCommand"
-            local:fab_colorNormal="#007ACC"
-            local:fab_colorPressed="#68217A"
-            local:fab_colorRipple="#CCCEDB" />
+    android:id="@+id/fab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|right"
+    android:layout_margin="16dp"
+    local:MvxBind="Click SaveCommand"
+    local:fab_colorNormal="#007ACC"
+    local:fab_colorPressed="#68217A"
+    local:fab_colorRipple="#CCCEDB" />
 </FrameLayout>

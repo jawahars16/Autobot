@@ -1,24 +1,26 @@
 ﻿using Autobot.Common;
+using PropertyChanged;
 using SQLite;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Autobot.Infrastructure
+namespace Autobot.Model
 {
+    [ImplementPropertyChanged]
     public class Rule
     {
         public Rule()
         {
-            Conditions = new List<Condition>();
-            Actions = new List<Action>();
+            Conditions = new ObservableCollection<Condition>();
+            Actions = new ObservableCollection<Action>();
         }
 
         [Ignore]
-        public List<Action> Actions { get; set; }
+        public ObservableCollection<Action> Actions { get; set; }
 
         [Ignore]
-        public List<Condition> Conditions { get; set; }
+        public ObservableCollection<Condition> Conditions { get; set; }
 
         [Ignore]
         public Trigger Trigger { get; set; }

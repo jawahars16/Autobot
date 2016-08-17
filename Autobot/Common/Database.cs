@@ -1,6 +1,7 @@
-﻿using Autobot.Infrastructure;
+﻿using Autobot.Model;
 using SQLite;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace Autobot.Common
@@ -38,7 +39,7 @@ namespace Autobot.Common
             connection = new SQLiteAsyncConnection(dbPath);
 
             await Task.WhenAll(
-                connection.CreateTableAsync<Infrastructure.Action>(),
+                connection.CreateTableAsync<Model.Action>(),
                 connection.CreateTableAsync<Condition>(),
                 connection.CreateTableAsync<Trigger>(),
                 connection.CreateTableAsync<Rule>()
@@ -52,8 +53,8 @@ namespace Autobot.Common
             List<Action> actions = await connection.Table<Action>().Where(action => action.Rule == rule.Id).ToListAsync();
 
             rule.Trigger = trigger;
-            rule.Conditions = conditions;
-            rule.Actions = actions;
+            rule.Conditions = new ObservableCollection<Condition>(conditions);
+            rule.Actions = new ObservableCollection<Action>(actions);
         }
 
         public async Task SaveAsync(object entity)

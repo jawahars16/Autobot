@@ -146,7 +146,6 @@
     <Compile Include="Infrastructure\Conditions\BatteryCondition.cs" />
     <Compile Include="Infrastructure\Conditions\WifiCondition.cs" />
     <Compile Include="Infrastructure\Receiver\BatteryReceiver.cs" />
-    <Compile Include="Infrastructure\Repository\Repository.cs" />
     <Compile Include="Infrastructure\Service\ConnectivityService.cs" />
     <Compile Include="Infrastructure\Triggers\BatteryTrigger.cs" />
     <Compile Include="Infrastructure\Triggers\BluetoothTrigger.cs" />
@@ -164,6 +163,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\HomeView.cs" />
     <Compile Include="Views\RuleDetailView.cs" />
+    <Compile Include="Widgets\FlatListView.cs" />
     <Compile Include="Widgets\ThemeButton.cs" />
     <Compile Include="Widgets\PixelGridView.cs" />
   </ItemGroup>
@@ -191,6 +191,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\rule_item.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\trigger_item.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -264,6 +267,21 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\attrs.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\circle.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\colors.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\condition_item.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\action_item.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
 </Project>

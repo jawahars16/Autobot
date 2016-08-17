@@ -1,5 +1,5 @@
 ﻿using Autobot.Common;
-using Autobot.Infrastructure;
+using Autobot.Model;
 using Autobot.ViewModel;
 using MvvmCross.Core.ViewModels;
 using System.Collections.ObjectModel;

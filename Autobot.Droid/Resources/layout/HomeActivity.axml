@@ -6,24 +6,25 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px">
-  <MvxListView
-      android:minWidth="25px"
-      android:minHeight="25px"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:dividerHeight="0dp"
-      android:divider="@null"
-      local:MvxBind="ItemsSource Rules"
-      local:MvxItemTemplate="@layout/rule_item"
-      android:layout_weight="1" />
-  <com.refractored.fab.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_margin="16dp"
-            local:MvxBind="Click NewRuleCommand"
-            local:fab_colorNormal="#007ACC"
-            local:fab_colorPressed="#68217A"
-            local:fab_colorRipple="#CCCEDB" />
+    <MvxListView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="0dp"
+        android:divider="@null"
+        android:listSelector="@android:color/transparent"
+        local:MvxBind="ItemsSource Rules"
+        local:MvxItemTemplate="@layout/rule_item"
+        android:layout_weight="1" />
+    <com.refractored.fab.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        local:MvxBind="Click NewRuleCommand"
+        local:fab_colorNormal="#007ACC"
+        local:fab_colorPressed="#68217A"
+        local:fab_colorRipple="#CCCEDB" />
 </LinearLayout>

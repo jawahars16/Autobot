@@ -3,7 +3,7 @@ using Android.Content;
 using Android.Net.Wifi;
 using Autobot.Common;
 using Autobot.Droid.Infrastructure.Service;
-using Autobot.Infrastructure;
+using Autobot.Model;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

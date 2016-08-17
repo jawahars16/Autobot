@@ -3,25 +3,24 @@ using Autobot.Platform;
 using Newtonsoft.Json;
 using SQLite;
 using System;
-using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace Autobot.Infrastructure
+namespace Autobot.Model
 {
-    public class Action : ISelectable
+    public class Condition : ISelectable
     {
-        public Action()
+        public Condition()
         {
             // Don't kill me. I serve purpose for SQLite.
         }
 
-        private Action(string title, Type type, MethodInfo method, params object[] parameters)
+        private Condition(string title, Type type, MethodInfo method, params object[] parameters)
         {
-            Title = title;
             Type = type;
             Method = method;
             Parameters = parameters;
+            Title = title;
         }
 
         #region Serializable
@@ -45,34 +44,28 @@ namespace Autobot.Infrastructure
         [Ignore]
         public Type Type { get; set; }
 
-        public static Action Create(string title, Type type, MethodInfo method, params object[] parameters)
+        public static Condition Create(string title, Type type, MethodInfo method, params object[] parameters)
         {
-            return new Action(title, type, method, parameters);
+            return new Condition(title, type, method, parameters);
         }
 
-        public static Action Create(string title, Type type)
+        public static Condition Create(string title, Type type)
         {
-            return new Action(title, type, null, null);
+            return new Condition(title, type, null, null);
         }
 
-        public void Fire()
+        public bool IsSatisfied()
         {
             IReflection reflection = Container.Default.Resolve<IReflection>();
-            reflection.ExecuteAction(Type.AssemblyQualifiedName, Method.Name, Parameters);
-        }
-
-        public void Load()
-        {
-            Type = System.Type.GetType(TypeName);
-            Method = Type.GetRuntimeMethods().Where(method => method.Name == MethodName).FirstOrDefault();
+            return reflection.ExecutePredicate(Type.AssemblyQualifiedName, Method.Name, Parameters);
         }
 
         public async Task SaveAsync(Rule rule)
         {
-            Rule = rule.Id;
-            MethodName = Method.Name;
             TypeName = Type.AssemblyQualifiedName;
+            MethodName = Method.Name;
             ParameterList = JsonConvert.SerializeObject(Parameters);
+            Rule = rule.Id;
 
             await Database.Default.SaveAsync(this);
         }

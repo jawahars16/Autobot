@@ -4,13 +4,20 @@ using SQLite;
 using System;
 using System.Threading.Tasks;
 
-namespace Autobot.Infrastructure
+namespace Autobot.Model
 {
     public class Trigger : ISelectable
     {
         public Trigger()
         {
             // Don't kill me. I serve purpose for SQLite.
+        }
+
+        public Trigger(string id, string title, int icon)
+        {
+            Id = id;
+            Title = title;
+            Icon = icon;
         }
 
         private Trigger(string title, int icon, Type type)
@@ -45,9 +52,9 @@ namespace Autobot.Infrastructure
         [Ignore]
         public Type Type { get; set; }
 
-        public static Trigger Create(string id, string title)
+        public static Trigger Create(string id, string title, int icon)
         {
-            return new Trigger(id, title);
+            return new Trigger(id, title, icon);
         }
 
         public static Trigger Create(string title, int icon, Type type)

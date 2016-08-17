@@ -1,4 +1,4 @@
-﻿using Autobot.Infrastructure;
+﻿using Autobot.Model;
 using System.Collections.Generic;
 
 namespace Autobot.Services

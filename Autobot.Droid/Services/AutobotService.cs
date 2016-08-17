@@ -1,6 +1,6 @@
 using Autobot.Attributes;
 using Autobot.Common;
-using Autobot.Infrastructure;
+using Autobot.Model;
 using Autobot.Platform;
 using Autobot.Services;
 using System;
@@ -19,7 +19,7 @@ namespace Autobot.Droid.Services
             reflection = Container.Default.Resolve<IReflection>();
         }
 
-        public List<Autobot.Infrastructure.Action> GetActions()
+        public List<Autobot.Model.Action> GetActions()
         {
             var types = reflection.GetTypesWithAttribute<ActionAttribute>();
             if (types != null && types.Any())
@@ -27,14 +27,14 @@ namespace Autobot.Droid.Services
                 return types.Select((type) =>
                 {
                     var actionAttribute = type.GetCustomAttribute<ActionAttribute>();
-                    return Autobot.Infrastructure.Action.Create(actionAttribute.Title, type);
+                    return Model.Action.Create(actionAttribute.Title, type);
                 }).ToList();
             }
 
             return null;
         }
 
-        public List<Autobot.Infrastructure.Action> GetActions(Autobot.Infrastructure.Action action)
+        public List<Model.Action> GetActions(Model.Action action)
         {
             var actionObject = Activator.CreateInstance(action.Type);
             var methods = reflection.GetMethodsWithAttribute<ActionAttribute>(action.Type);
@@ -43,7 +43,7 @@ namespace Autobot.Droid.Services
                 return methods.Select((method) =>
                 {
                     var actionAttribute = method.GetCustomAttribute<ActionAttribute>();
-                    return Autobot.Infrastructure.Action.Create(actionAttribute.Title, action.Type, method, null);
+                    return Model.Action.Create(actionAttribute.Title, action.Type, method, null);
                 }).ToList();
             }
 
@@ -90,7 +90,7 @@ namespace Autobot.Droid.Services
                 return fields.Select((field) =>
                 {
                     var triggerAttribute = field.GetCustomAttribute<TriggerAttribute>();
-                    return Trigger.Create(field.GetValue(triggerObject).ToString(), triggerAttribute.Title);
+                    return Trigger.Create(field.GetValue(triggerObject).ToString(), triggerAttribute.Title, triggerAttribute.Icon);
                 }).ToList();
             }
 
