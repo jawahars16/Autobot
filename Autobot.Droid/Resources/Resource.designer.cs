@@ -289,20 +289,17 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f070001
 			public const int MvxBindingTagUnique = 2131165185;
 			
-			// aapt resource value: 0x7f07000c
-			public const int fab = 2131165196;
+			// aapt resource value: 0x7f070004
+			public const int fab = 2131165188;
 			
-			// aapt resource value: 0x7f07000d
-			public const int icon = 2131165197;
+			// aapt resource value: 0x7f07000c
+			public const int icon = 2131165196;
 			
 			// aapt resource value: 0x7f070006
 			public const int linearLayout1 = 2131165190;
 			
 			// aapt resource value: 0x7f070002
 			public const int mini = 2131165186;
-			
-			// aapt resource value: 0x7f070004
-			public const int newRule = 2131165188;
 			
 			// aapt resource value: 0x7f070003
 			public const int normal = 2131165187;
@@ -313,8 +310,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f07000b
 			public const int selectTriggerBtn = 2131165195;
 			
-			// aapt resource value: 0x7f07000f
-			public const int textView = 2131165199;
+			// aapt resource value: 0x7f07000e
+			public const int textView = 2131165198;
 			
 			// aapt resource value: 0x7f070007
 			public const int textView1 = 2131165191;
@@ -325,8 +322,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f07000a
 			public const int textView3 = 2131165194;
 			
-			// aapt resource value: 0x7f07000e
-			public const int title = 2131165198;
+			// aapt resource value: 0x7f07000d
+			public const int title = 2131165197;
 			
 			// aapt resource value: 0x7f070008
 			public const int view1 = 2131165192;
