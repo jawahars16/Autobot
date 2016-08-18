@@ -2,19 +2,26 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using Autobot.Model;
+using Autobot.ViewModel;
 using Com.Lilarcor.Cheeseknife;
+using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Views;
+using System.Collections.Specialized;
 
 namespace Autobot.Droid.Views
 {
     [Activity]
-    public class RuleDetailView : MvxActivity, View.IOnTouchListener
+    public class RuleDetailView : MvxActivity
     {
-        [InjectView(Resource.Id.actionsListView)]
-        private ListView actionsListView;
+        [InjectView(Resource.Id.actionsView)]
+        private LinearLayout actionsView;
 
         [InjectView(Resource.Id.conditionsListView)]
         private ListView conditionsListView;
+
+        private int itemHeight = 0;
+        private Rule rule;
 
         public void ExpandListView(ListView listView)
         {
@@ -32,17 +39,12 @@ namespace Autobot.Droid.Views
                     view.LayoutParameters = new ViewGroup.LayoutParams(desiredWidth, ActionBar.LayoutParams.WrapContent);
 
                 view.Measure(desiredWidth, (int)MeasureSpecMode.Unspecified);
-                totalHeight += view.MeasuredHeight;
+                itemHeight = view.MeasuredHeight;
+                totalHeight += (view.MeasuredHeight + itemHeight);
             }
             ViewGroup.LayoutParams _params = listView.LayoutParameters;
             _params.Height = totalHeight + (listView.DividerHeight * (listAdapter.Count - 1));
             listView.LayoutParameters = _params;
-        }
-
-        public bool OnTouch(View v, MotionEvent e)
-        {
-            v.Parent.RequestDisallowInterceptTouchEvent(true);
-            return false;
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -52,11 +54,28 @@ namespace Autobot.Droid.Views
             Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
             Cheeseknife.Inject(this);
 
-            actionsListView.SetOnTouchListener(this);
-            conditionsListView.SetOnTouchListener(this);
+            rule = ((RuleDetailViewModel)ViewModel)?.Rule;
+            rule.Actions.CollectionChanged += OnActionsCollectionChanged;
+            rule.Conditions.CollectionChanged += OnConditionsCollectionChanged;
+        }
 
-            ExpandListView(conditionsListView);
-            ExpandListView(actionsListView);
+        private void OnActionsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            var view = LayoutInflater.Inflate(Resource.Layout.action_item, null);
+
+            var binding = new MvxAndroidBindingContext(this, this);
+            binding.DataContext = rule;
+            actionsView.AddView(view);
+        }
+
+        private void OnChildViewAdded(object sender, ViewGroup.ChildViewAddedEventArgs e)
+        {
+            ListView listView = sender as ListView;
+            ExpandListView(listView);
+        }
+
+        private void OnConditionsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
         }
     }
 }

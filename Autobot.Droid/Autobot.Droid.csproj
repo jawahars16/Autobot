@@ -196,6 +196,9 @@
     <AndroidResource Include="Resources\layout\trigger_item.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\mvx_frame.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -261,7 +264,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\ThemeButton.xml">
+    <AndroidResource Include="Resources\layout\ThemeButton.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -278,10 +281,10 @@
     <AndroidResource Include="Resources\values\colors.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\condition_item.xml" />
+    <AndroidResource Include="Resources\layout\condition_item.axml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\action_item.xml" />
+    <AndroidResource Include="Resources\layout\action_item.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
 </Project>

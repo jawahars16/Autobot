@@ -53,9 +53,10 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:orientation="vertical">
-        <MvxListView
+        <FlatListView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:layout_weight="1"
           local:MvxItemTemplate="@layout/condition_item"
           local:MvxBind="ItemsSource Rule.Conditions"
           android:id="@+id/conditionsListView"
@@ -82,13 +83,18 @@
         android:orientation="vertical"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp">
-        <MvxListView
+        <!--<FlatListView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           local:MvxItemTemplate="@layout/action_item"
           local:MvxBind="ItemsSource Rule.Actions"
           android:id="@+id/actionsListView"
-          android:layout_margin="3dp" />
+          android:layout_weight="1"
+          android:layout_margin="3dp" />-->
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/actionsView" />
         <Autobot.Droid.Widgets.ThemeButton
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
