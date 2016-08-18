@@ -6,5 +6,6 @@ namespace Autobot.Attributes
     public class ConditionAttribute : Attribute
     {
         public string Title { get; set; }
+        public int Icon { get; set; }
     }
 }

@@ -23,6 +23,15 @@ namespace Autobot.Model
             Title = title;
         }
 
+        public Condition(string title, int icon, Type type, MethodInfo method, object[] parameters)
+        {
+            Title = title;
+            Icon = icon;
+            Type = type;
+            Method = method;
+            Parameters = parameters;
+        }
+
         #region Serializable
 
         public string Description { get; set; }
@@ -44,9 +53,9 @@ namespace Autobot.Model
         [Ignore]
         public Type Type { get; set; }
 
-        public static Condition Create(string title, Type type, MethodInfo method, params object[] parameters)
+        public static Condition Create(string title, int icon, Type type, MethodInfo method, params object[] parameters)
         {
-            return new Condition(title, type, method, parameters);
+            return new Condition(title, icon, type, method, parameters);
         }
 
         public static Condition Create(string title, Type type)

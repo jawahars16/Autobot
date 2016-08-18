@@ -7,14 +7,14 @@ namespace Autobot.Droid.Infrastructure.Conditions
     [Condition(Title = "Wifi")]
     public class WifiCondition
     {
-        [Condition(Title = "If Wifi Disabled")]
+        [Condition(Title = "If Wifi Disabled", Icon = Resource.Drawable.wifi_disabled)]
         public bool IsWifiOff()
         {
             ConnectivityService service = new ConnectivityService();
             return service.GetWifiState() != Android.Net.WifiState.Enabled;
         }
 
-        [Condition(Title = "If Wifi Enabled")]
+        [Condition(Title = "If Wifi Enabled", Icon = Resource.Drawable.wifi_enabled)]
         public bool IsWifiOn()
         {
             ConnectivityService service = new ConnectivityService();

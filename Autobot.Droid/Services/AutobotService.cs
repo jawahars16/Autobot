@@ -59,7 +59,7 @@ namespace Autobot.Droid.Services
                 return methods.Select((method) =>
                 {
                     var triggerAttribute = method.GetCustomAttribute<ConditionAttribute>();
-                    return Condition.Create(triggerAttribute.Title, condition.Type, method, null);
+                    return Condition.Create(triggerAttribute.Title, triggerAttribute.Icon, condition.Type, method, null);
                 }).ToList();
             }
 
