@@ -4,5 +4,14 @@
     <item name="android:colorPrimary">#fff44336</item>
     <item name="android:colorPrimaryDark">#ffd32f2f</item>
     <item name="android:colorAccent">#ff3f51b5</item>
+    <item name="android:actionBarStyle">@style/Theme.Autobot.ActionBarStyle</item>
+  </style>
+  <style name="Theme.Autobot.ActionBarStyle">
+    <item name="android:titleTextStyle">@style/Theme.Autobot.ActionBar.TitleTextStyle</item>
+    <item name="android:background">@color/red_A700</item>
+  </style>
+  <style name="Theme.Autobot.ActionBar.TitleTextStyle"
+         parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+    <item name="android:textColor">@color/white</item>
   </style>
 </resources>

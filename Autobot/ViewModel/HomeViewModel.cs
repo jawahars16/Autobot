@@ -12,10 +12,10 @@ namespace Autobot.Viewmodel
 
         public HomeViewModel()
         {
-            NewRuleCommand = new MvxCommand(OnNewRule);
+            RuleDetailCommand = new MvxCommand<Rule>(rule => OnRuleDetail(rule));
         }
 
-        public IMvxCommand NewRuleCommand { get; set; }
+        public IMvxCommand RuleDetailCommand { get; set; }
 
         public ObservableCollection<Rule> Rules
         {
@@ -23,9 +23,16 @@ namespace Autobot.Viewmodel
             set { _Rules = value; RaisePropertyChanged(() => Rules); }
         }
 
-        public void OnNewRule()
+        public void OnRuleDetail(Rule rule)
         {
-            ShowViewModel<RuleDetailViewModel>();
+            if (rule != null)
+            {
+                ShowViewModel<RuleDetailViewModel>(new { Id = rule?.Id });
+            }
+            else
+            {
+                ShowViewModel<RuleDetailViewModel>();
+            }
         }
 
         public async override void Start()

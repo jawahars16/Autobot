@@ -1,6 +1,7 @@
 ﻿using Autobot.Common;
 using PropertyChanged;
 using SQLite;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,7 +30,11 @@ namespace Autobot.Model
 
         public string Description { get; set; }
         public int Icon { get; set; }
+
+        [PrimaryKey]
         public string Id { get; set; }
+
+        public string RuleId { get; set; }
         public string Title { get; set; }
 
         #endregion Serializable
@@ -57,11 +62,12 @@ namespace Autobot.Model
 
         public async Task SaveAsync()
         {
-            Id = Trigger.Id;
+            Id = Guid.NewGuid().ToString();
+            RuleId = Trigger.Id;
 
             if (Title == null)
             {
-                Title = Trigger.Title;
+                Title = Trigger.Title + ", " + Actions?.FirstOrDefault().Title;
             }
 
             await Database.Default.SaveAsync(this);

@@ -1073,7 +1073,7 @@ namespace Autobot.Droid
 			public const int MvxBindingTagUnique = 2131165185;
 			
 			// aapt resource value: 0x7f07000e
-			public const int actionsView = 2131165198;
+			public const int actionsListView = 2131165198;
 			
 			// aapt resource value: 0x7f07000d
 			public const int conditionsListView = 2131165197;
@@ -1081,8 +1081,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f070005
 			public const int fab = 2131165189;
 			
-			// aapt resource value: 0x7f07000f
-			public const int icon = 2131165199;
+			// aapt resource value: 0x7f070010
+			public const int icon = 2131165200;
 			
 			// aapt resource value: 0x7f070007
 			public const int linearLayout1 = 2131165191;
@@ -1099,6 +1099,9 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f07000c
 			public const int selectTriggerBtn = 2131165196;
 			
+			// aapt resource value: 0x7f07000f
+			public const int space1 = 2131165199;
+			
 			// aapt resource value: 0x7f070004
 			public const int textView = 2131165188;
 			
@@ -1111,8 +1114,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f07000b
 			public const int textView3 = 2131165195;
 			
-			// aapt resource value: 0x7f070010
-			public const int title = 2131165200;
+			// aapt resource value: 0x7f070011
+			public const int title = 2131165201;
 			
 			// aapt resource value: 0x7f070009
 			public const int view1 = 2131165193;
@@ -1140,31 +1143,28 @@ namespace Autobot.Droid
 			public const int HomeActivity = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int mvx_frame = 2130903043;
+			public const int PromptGridDialogFragment = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int PromptGridDialogFragment = 2130903044;
+			public const int PromptListDialogFragment = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int PromptListDialogFragment = 2130903045;
+			public const int rule_item = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int rule_item = 2130903046;
+			public const int RuleDetailActivity = 2130903046;
 			
 			// aapt resource value: 0x7f030007
-			public const int RuleDetailActivity = 2130903047;
+			public const int SelectableGridItem = 2130903047;
 			
 			// aapt resource value: 0x7f030008
-			public const int SelectableGridItem = 2130903048;
+			public const int SelectableListItem = 2130903048;
 			
 			// aapt resource value: 0x7f030009
-			public const int SelectableListItem = 2130903049;
+			public const int ThemeButton = 2130903049;
 			
 			// aapt resource value: 0x7f03000a
-			public const int ThemeButton = 2130903050;
-			
-			// aapt resource value: 0x7f03000b
-			public const int trigger_item = 2130903051;
+			public const int trigger_item = 2130903050;
 			
 			static Layout()
 			{
@@ -1215,6 +1215,12 @@ namespace Autobot.Droid
 			
 			// aapt resource value: 0x7f040004
 			public const int Theme_Autobot = 2130968580;
+			
+			// aapt resource value: 0x7f040006
+			public const int Theme_Autobot_ActionBar_TitleTextStyle = 2130968582;
+			
+			// aapt resource value: 0x7f040005
+			public const int Theme_Autobot_ActionBarStyle = 2130968581;
 			
 			static Style()
 			{
