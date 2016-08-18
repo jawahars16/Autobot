@@ -7,10 +7,10 @@ namespace Autobot.Droid.Infrastructure.Triggers
     [Trigger(Title = "Battery", Icon = Resource.Drawable.battery)]
     public class BatteryTrigger
     {
-        [Trigger(Title = "On Battery Low", Icon = Resource.Drawable.battery)]
+        [Trigger(Title = "On Battery Low", Icon = Resource.Drawable.battery_low)]
         public string OnBatteryLow = Intent.ActionBatteryLow;
 
-        [Trigger(Title = "On Battery Okay")]
+        [Trigger(Title = "On Battery Okay", Icon = Resource.Drawable.battery_okay)]
         public string OnBatteryOkay = Intent.ActionBatteryOkay;
 
         [Trigger(Title = "On Charger connected")]

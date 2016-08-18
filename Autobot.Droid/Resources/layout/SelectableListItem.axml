@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <ImageView
-        android:src="@android:drawable/ic_menu_gallery"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:src="@drawable/place_holder"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/square"
         android:id="@+id/icon"
-        android:layout_margin="5dp" />
+        android:padding="10dp" />
     <TextView
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -17,5 +18,6 @@
         android:id="@+id/title"
         android:gravity="center_vertical"
         android:layout_weight="1"
-        android:layout_marginRight="5dp" />
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp" />
 </LinearLayout>

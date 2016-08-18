@@ -10,5 +10,8 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/promptList" />
+        android:id="@+id/promptList"
+        android:divider="#EEEEF2"
+        android:dividerHeight="1dp"
+        android:background="#FFFFFF" />
 </LinearLayout>

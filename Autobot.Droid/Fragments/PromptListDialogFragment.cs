@@ -158,6 +158,10 @@ namespace Autobot.Droid.Fragments
                 }
 
                 holder.Title.Text = item.Title;
+                if (item.Icon > 0)
+                {
+                    holder.Image.SetImageDrawable(context.GetDrawable(item.Icon));
+                }
 
                 return view;
             }

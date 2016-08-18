@@ -8,7 +8,8 @@ namespace Autobot.Droid.Widgets
 {
     public class FlatListView : MvxListView
     {
-        private const int ITEM_HEIGHT = 280;
+        private const int FOOTER_HEIGHT = 80;
+        private const int ITEM_HEIGHT = 200;
         private int mPosition;
 
         public FlatListView(Context context, IAttributeSet attrs) : base(context, attrs)
@@ -41,6 +42,13 @@ namespace Autobot.Droid.Widgets
             return base.DispatchTouchEvent(e);
         }
 
+        public void Expand(int count)
+        {
+            ViewGroup.LayoutParams _params = LayoutParameters;
+            _params.Height = (count * ITEM_HEIGHT) + ((count - 1) * FOOTER_HEIGHT);
+            LayoutParameters = _params;
+        }
+
         public void Initialize()
         {
             var source = Adapter.ItemsSource as INotifyCollectionChanged;
@@ -61,13 +69,6 @@ namespace Autobot.Droid.Widgets
                     source.CollectionChanged -= OnCollectionChanged;
                 }
             }
-        }
-
-        public void Expand(int count)
-        {
-            ViewGroup.LayoutParams _params = LayoutParameters;
-            _params.Height = count * ITEM_HEIGHT;
-            LayoutParameters = _params;
         }
 
         private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
