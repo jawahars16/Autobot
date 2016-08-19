@@ -1,4 +1,5 @@
 using Autobot.Attributes;
+using Autobot.Common;
 
 namespace Autobot.Droid.Infrastructure.Triggers
 {
@@ -6,5 +7,8 @@ namespace Autobot.Droid.Infrastructure.Triggers
     [Trigger(Title = "Manual", Icon = Resource.Drawable.manual)]
     public class ManualTrigger
     {
+        [Trigger(Title = "On Manual trigger")]
+        public string OnManual = "MANUAL" + Constants.TRIGGER_DELIMITER + "TRIGGER";
+
     }
 }

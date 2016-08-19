@@ -6,11 +6,13 @@ using Autobot.Droid.Widgets;
 using Autobot.ViewModel;
 using Com.Lilarcor.Cheeseknife;
 using MvvmCross.Droid.Views;
+using MvvmCross.Droid.Support.V4;
+using Android.Gms.Maps;
 
 namespace Autobot.Droid.Views
 {
     [Activity]
-    public class RuleDetailView : MvxActivity
+    public class RuleDetailView : MvxFragmentActivity
     {
         [InjectView(Resource.Id.actionsListView)]
         private FlatListView actionsListView;

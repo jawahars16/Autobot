@@ -5,6 +5,10 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Autobot.Common;
+using System;
+using MvvmCross.Droid.Support.V4;
+using MvvmCross.Core.ViewModels;
 
 namespace Autobot.Droid.Services
 {
@@ -20,6 +24,19 @@ namespace Autobot.Droid.Services
         {
             var activity = Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
             return await Prompt.Make(activity, source).ShowAsync(true);
+        }
+
+        public void ShowDialog<T>()
+        {
+            string viewModelName = typeof(T).AssemblyQualifiedName;
+            string viewName = typeof(T).FullName.RemoveFromEnd("Model").Replace("Autobot.ViewModel", "Autobot.Droid.Views");
+            
+            MvxViewModel viewModel = (MvxViewModel)Activator.CreateInstance(Type.GetType(viewModelName));
+            MvxDialogFragment dialogFragment = (MvxDialogFragment)Activator.CreateInstance(Type.GetType(viewName));
+            dialogFragment.ViewModel = viewModel;
+
+            var activity = Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity as MvxFragmentActivity;
+            dialogFragment.Show(activity.SupportFragmentManager, "");
         }
     }
 }

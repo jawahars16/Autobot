@@ -2,6 +2,7 @@
 using SQLite;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Autobot.Common
@@ -32,6 +33,11 @@ namespace Autobot.Common
         public async Task<List<Rule>> GetRulesAsync(string id)
         {
             return await connection.Table<Rule>().Where(rule => rule.RuleId == id).ToListAsync();
+        }
+
+        public async Task<List<Rule>> GetRulesAsync(params string[] ids)
+        {
+            return await connection.Table<Rule>().Where(rule => ids.Any(id => id == rule.Id)).ToListAsync();
         }
 
         public async Task<List<Rule>> GetRulesAsync()

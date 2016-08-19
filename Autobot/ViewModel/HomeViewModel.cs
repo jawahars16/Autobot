@@ -31,7 +31,8 @@ namespace Autobot.Viewmodel
             }
             else
             {
-                ShowViewModel<RuleDetailViewModel>();
+                //ShowViewModel<RuleDetailViewModel>();
+                ShowViewModel<GeofenceDetailViewModel>();
             }
         }
 

@@ -1,3 +1,4 @@
+using Android.Content;
 using Autobot.Attributes;
 
 namespace Autobot.Droid.Infrastructure.Triggers
@@ -6,5 +7,9 @@ namespace Autobot.Droid.Infrastructure.Triggers
     [Trigger(Title = "Time", Icon = Resource.Drawable.time)]
     public class TimeTrigger
     {
+        void f()
+        {
+            
+        }
     }
 }

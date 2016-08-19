@@ -13,10 +13,10 @@ namespace Autobot.Droid.Infrastructure.Triggers
         [Trigger(Title = "On Battery Okay", Icon = Resource.Drawable.battery_okay)]
         public string OnBatteryOkay = Intent.ActionBatteryOkay;
 
-        [Trigger(Title = "On Charger connected")]
+        [Trigger(Title = "On Charger connected", Icon = Resource.Drawable.power_connected)]
         public string OnPowerConnected = Intent.ActionPowerConnected;
 
-        [Trigger(Title = "On Charger disconnected")]
+        [Trigger(Title = "On Charger disconnected", Icon = Resource.Drawable.power_not_charging)]
         public string OnPowerDisconnected = Intent.ActionPowerDisconnected;
     }
 }

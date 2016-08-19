@@ -25,6 +25,7 @@ namespace Autobot.ViewModel
         }
 
         public event EventHandler Initialized;
+
         public IMvxCommand AddActionCommand { get; set; }
         public IMvxCommand AddConditionCommand { get; set; }
         public bool IsInEditMode { get; set; }
@@ -95,9 +96,16 @@ namespace Autobot.ViewModel
         {
             var triggers = autobotService.GetTriggers();
             var trigger = await presentationService.SelectFromGridAsync(triggers);
-
             triggers = autobotService.GetTriggers((Trigger)trigger);
-            trigger = await presentationService.SelectFromListAsync(triggers);
+
+            if (triggers.Count > 1)
+            {
+                trigger = await presentationService.SelectFromListAsync(triggers);
+            }
+            else
+            {
+                trigger = triggers.FirstOrDefault();
+            }
 
             Rule.Trigger = (Trigger)trigger;
         }

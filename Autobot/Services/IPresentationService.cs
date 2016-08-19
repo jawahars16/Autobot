@@ -9,5 +9,7 @@ namespace Autobot.Services
         Task<ISelectable> SelectFromGridAsync(IEnumerable<ISelectable> source);
 
         Task<ISelectable> SelectFromListAsync(IEnumerable<ISelectable> source);
+
+        void ShowDialog<T>();
     }
 }
