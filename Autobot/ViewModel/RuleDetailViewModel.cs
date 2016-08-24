@@ -107,6 +107,11 @@ namespace Autobot.ViewModel
                 trigger = triggers.FirstOrDefault();
             }
 
+            if (presentationService.IsTimeTrigger(trigger as Trigger))
+            {
+
+            }
+
             Rule.Trigger = (Trigger)trigger;
         }
     }

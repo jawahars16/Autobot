@@ -46,7 +46,6 @@ namespace Autobot.Model
         public string Id { get; set; }
         public string Rule { get; set; }
         public string Title { get; set; }
-
         #endregion Serializable
 
         [Ignore]

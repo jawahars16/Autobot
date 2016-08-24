@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <style name="Theme.Autobot" parent="@android:style/Theme.Material.Light.DarkActionBar">
-    <item name="android:colorPrimary">#fff44336</item>
-    <item name="android:colorPrimaryDark">#ffd32f2f</item>
-    <item name="android:colorAccent">#ff3f51b5</item>
-    <item name="android:actionBarStyle">@style/Theme.Autobot.ActionBarStyle</item>
+  <style name="Theme.Autobot" parent="Theme.AppCompat.Light">
+    <item name="colorPrimary">@color/primary</item>
+    <item name="colorPrimaryDark">@color/primaryDark</item>
+    <item name="colorAccent">@color/accent</item>
+    <item name="actionBarStyle">@style/Theme.Autobot.ActionBarStyle</item>
+  <item name="android:textColorPrimary">#ff263238</item>
+    <item name="android:textColorSecondary">#fffdfdfd</item>
+    <item name="colorControlNormal">@color/white</item>
   </style>
-  <style name="Theme.Autobot.ActionBarStyle">
-    <item name="android:titleTextStyle">@style/Theme.Autobot.ActionBar.TitleTextStyle</item>
-    <item name="android:background">@color/red_A700</item>
+  
+  <style name="Theme.Autobot.ActionBarStyle"
+         parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+    <item name="android:background">@color/primary</item>
+    <item name="background">@color/primary</item>
+    <item name="titleTextStyle">@style/Theme.Autobot.TitleStyle</item>
+    <item name="android:homeAsUpIndicator">@drawable/ic_arrow_back_white_24dp</item>
+    <item name="elevation">1dp</item>
   </style>
-  <style name="Theme.Autobot.ActionBar.TitleTextStyle"
-         parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+  
+  <style name="Theme.Autobot.TitleStyle"
+         parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
     <item name="android:textColor">@color/white</item>
+    <item name="colorControlNormal">@color/white</item>
+    <item name="android:colorControlNormal">@color/white</item>
   </style>
 </resources>

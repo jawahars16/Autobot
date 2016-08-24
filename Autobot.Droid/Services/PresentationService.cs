@@ -9,6 +9,9 @@ using Autobot.Common;
 using System;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Core.ViewModels;
+using Autobot.Model;
+using Autobot.Droid.Infrastructure.Triggers;
+using Android.Widget;
 
 namespace Autobot.Droid.Services
 {
@@ -24,6 +27,16 @@ namespace Autobot.Droid.Services
         {
             var activity = Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
             return await Prompt.Make(activity, source).ShowAsync(true);
+        }
+
+        public bool IsTimeTrigger(Trigger trigger)
+        {
+            return trigger.Type == typeof(TimeTrigger);
+        }
+
+        public void PromptTime()
+        {
+
         }
 
         public void ShowDialog<T>()
