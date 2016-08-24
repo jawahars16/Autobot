@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:elevation="3dp"
-        android:background="@color/light_blue_A700">
+        android:background="#2980B9">
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"

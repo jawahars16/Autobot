@@ -62,6 +62,7 @@
     <Compile Include="ViewModel\GeofenceDetailViewModel.cs" />
     <Compile Include="ViewModel\GeofenceListViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
+    <Compile Include="ViewModel\NewScheduleViewModel.cs" />
     <Compile Include="ViewModel\RuleDetailViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

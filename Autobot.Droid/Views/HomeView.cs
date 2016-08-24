@@ -6,7 +6,7 @@ using MvvmCross.Droid.Views;
 
 namespace Autobot.Droid.Views
 {
-    [Activity(Label = "Rules")]
+    [Activity(Label = "Rules", MainLauncher = true)]
     public class HomeView : MvxFragmentActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
