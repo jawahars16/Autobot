@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <style name="Theme.Autobot" parent="@android:style/Theme.Material.Light.DarkActionBar">
-    <item name="android:colorPrimary">#fff44336</item>
-    <item name="android:colorPrimaryDark">#ffd32f2f</item>
-    <item name="android:colorAccent">#ff3f51b5</item>
+    <item name="android:colorPrimary">#019ED1</item>
+    <item name="android:colorPrimaryDark">#0079A2</item>
+    <item name="android:colorAccent">#DA3F3A</item>
     <item name="android:actionBarStyle">@style/Theme.Autobot.ActionBarStyle</item>
   </style>
   <style name="Theme.Autobot.ActionBarStyle">

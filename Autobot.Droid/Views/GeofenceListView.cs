@@ -21,6 +21,7 @@ namespace Autobot.Droid.Views
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.geofence_list_activity);
+            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
         }
     }
 }

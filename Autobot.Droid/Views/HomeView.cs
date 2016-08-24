@@ -1,5 +1,6 @@
 using Android.App;
 using Android.OS;
+using Android.Views;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Views;
 
@@ -12,6 +13,7 @@ namespace Autobot.Droid.Views
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.HomeActivity);
+            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Autobot.ViewModel
 
         private void OnGeofenceDetail(Geofence geofence)
         {
-            presentationService.ShowDialog<GeofenceDetailViewModel>();
+            ShowViewModel<GeofenceDetailViewModel>();
         }
     }
 }
