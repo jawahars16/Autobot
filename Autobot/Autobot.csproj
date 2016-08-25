@@ -48,7 +48,10 @@
     <Compile Include="Converters\IsNotNullValueConverter.cs" />
     <Compile Include="Converters\IsNullValueConverter.cs" />
     <Compile Include="Model\Condition.cs" />
+    <Compile Include="Model\Date.cs" />
     <Compile Include="Model\Geofence.cs" />
+    <Compile Include="Model\Recurrence.cs" />
+    <Compile Include="Model\Time.cs" />
     <Compile Include="Services\IAutobotService.cs" />
     <Compile Include="Platform\IBattery.cs" />
     <Compile Include="Platform\IFileSystem.cs" />
