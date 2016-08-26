@@ -28,6 +28,7 @@ namespace Autobot.Model
         [Ignore]
         public ObservableCollection<Trigger> AllTriggers { get; set; }
 
+        [Ignore]
         public Trigger Trigger
         {
             get

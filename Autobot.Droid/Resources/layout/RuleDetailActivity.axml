@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             local:MvxItemTemplate="@layout/trigger_item"
             local:MvxBind="ItemsSource Rule.AllTriggers"
-            android:id="@+id/conditionsListView"
+            android:id="@+id/triggersListView"
             android:scrollbars="none"
             android:layout_margin="3dp" />
           <Autobot.Droid.Widgets.ThemeButton
@@ -58,7 +58,7 @@
             android:text="Set trigger"
             android:background="@color/grey_700"
             android:elevation="3dp"
-            local:MvxBind="Click SetTriggerCommand; Visible IsNull(Rule.Triggers)"
+            local:MvxBind="Click SetTriggerCommand"
             android:id="@+id/selectTriggerBtn"
             android:layout_margin="3dp" />
         </FrameLayout>

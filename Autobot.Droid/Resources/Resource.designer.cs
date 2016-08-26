@@ -2746,8 +2746,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b0034
 			public const int action_mode_close_button = 2131427380;
 			
-			// aapt resource value: 0x7f0b00d3
-			public const int actionsListView = 2131427539;
+			// aapt resource value: 0x7f0b00d4
+			public const int actionsListView = 2131427540;
 			
 			// aapt resource value: 0x7f0b0035
 			public const int activity_chooser_view_content = 2131427381;
@@ -2806,14 +2806,14 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b009b
 			public const int chronometer = 2131427483;
 			
-			// aapt resource value: 0x7f0b00e0
-			public const int clear_search = 2131427552;
+			// aapt resource value: 0x7f0b00e1
+			public const int clear_search = 2131427553;
 			
 			// aapt resource value: 0x7f0b002d
 			public const int collapseActionView = 2131427373;
 			
-			// aapt resource value: 0x7f0b00d1
-			public const int conditionsListView = 2131427537;
+			// aapt resource value: 0x7f0b00d3
+			public const int conditionsListView = 2131427539;
 			
 			// aapt resource value: 0x7f0b0042
 			public const int contentPanel = 2131427394;
@@ -2977,11 +2977,11 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b0086
 			public const int hours_ones = 2131427462;
 			
-			// aapt resource value: 0x7f0b00da
-			public const int hours_seperator = 2131427546;
+			// aapt resource value: 0x7f0b00db
+			public const int hours_seperator = 2131427547;
 			
-			// aapt resource value: 0x7f0b00d9
-			public const int hours_tens = 2131427545;
+			// aapt resource value: 0x7f0b00da
+			public const int hours_tens = 2131427546;
 			
 			// aapt resource value: 0x7f0b000e
 			public const int hybrid = 2131427342;
@@ -3013,14 +3013,14 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b00bf
 			public const int intervalPreText = 2131427519;
 			
-			// aapt resource value: 0x7f0b00d5
-			public const int key_left = 2131427541;
-			
 			// aapt resource value: 0x7f0b00d6
-			public const int key_middle = 2131427542;
+			public const int key_left = 2131427542;
 			
 			// aapt resource value: 0x7f0b00d7
-			public const int key_right = 2131427543;
+			public const int key_middle = 2131427543;
+			
+			// aapt resource value: 0x7f0b00d8
+			public const int key_right = 2131427544;
 			
 			// aapt resource value: 0x7f0b007c
 			public const int keyboard_indicator = 2131427452;
@@ -3055,8 +3055,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b0039
 			public const int list_item = 2131427385;
 			
-			// aapt resource value: 0x7f0b00de
-			public const int location = 2131427550;
+			// aapt resource value: 0x7f0b00df
+			public const int location = 2131427551;
 			
 			// aapt resource value: 0x7f0b0081
 			public const int map = 2131427457;
@@ -3169,8 +3169,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b0044
 			public const int scrollView = 2131427396;
 			
-			// aapt resource value: 0x7f0b00df
-			public const int searchBox = 2131427551;
+			// aapt resource value: 0x7f0b00e0
+			public const int searchBox = 2131427552;
 			
 			// aapt resource value: 0x7f0b0056
 			public const int search_badge = 2131427414;
@@ -3241,8 +3241,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b0021
 			public const int showTitle = 2131427361;
 			
-			// aapt resource value: 0x7f0b00d4
-			public const int space1 = 2131427540;
+			// aapt resource value: 0x7f0b00d5
+			public const int space1 = 2131427541;
 			
 			// aapt resource value: 0x7f0b003d
 			public const int spacer = 2131427389;
@@ -3313,8 +3313,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b00b7
 			public const int time_display_background = 2131427511;
 			
-			// aapt resource value: 0x7f0b00dd
-			public const int time_offset = 2131427549;
+			// aapt resource value: 0x7f0b00de
+			public const int time_offset = 2131427550;
 			
 			// aapt resource value: 0x7f0b00b8
 			public const int time_picker = 2131427512;
@@ -3322,14 +3322,14 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b00b6
 			public const int time_picker_dialog = 2131427510;
 			
-			// aapt resource value: 0x7f0b00dc
-			public const int time_zone = 2131427548;
+			// aapt resource value: 0x7f0b00dd
+			public const int time_zone = 2131427549;
 			
-			// aapt resource value: 0x7f0b00d8
-			public const int timer_time_text = 2131427544;
+			// aapt resource value: 0x7f0b00d9
+			public const int timer_time_text = 2131427545;
 			
-			// aapt resource value: 0x7f0b00e1
-			public const int timezonelist = 2131427553;
+			// aapt resource value: 0x7f0b00e2
+			public const int timezonelist = 2131427554;
 			
 			// aapt resource value: 0x7f0b003b
 			public const int title = 2131427387;
@@ -3343,14 +3343,17 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b003f
 			public const int topPanel = 2131427391;
 			
+			// aapt resource value: 0x7f0b00d1
+			public const int triggersListView = 2131427537;
+			
 			// aapt resource value: 0x7f0b0008
 			public const int up = 2131427336;
 			
 			// aapt resource value: 0x7f0b0022
 			public const int useLogo = 2131427362;
 			
-			// aapt resource value: 0x7f0b00db
-			public const int value = 2131427547;
+			// aapt resource value: 0x7f0b00dc
+			public const int value = 2131427548;
 			
 			// aapt resource value: 0x7f0b00ce
 			public const int view1 = 2131427534;

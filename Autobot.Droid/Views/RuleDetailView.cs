@@ -21,6 +21,9 @@ namespace Autobot.Droid.Views
         [InjectView(Resource.Id.toolbar)]
         private Toolbar toolbar;
 
+        [InjectView(Resource.Id.triggersListView)]
+        private FlatListView triggersListView;
+
         [InjectView(Resource.Id.actionsListView)]
         private FlatListView actionsListView;
 
@@ -41,6 +44,10 @@ namespace Autobot.Droid.Views
         protected override void OnStart()
         {
             base.OnStart();
+
+            triggersListView.Initialize();
+            triggersListView.Expand(triggersListView.Adapter.Count);
+
             actionsListView.Initialize();
             actionsListView.Expand(actionsListView.Adapter.Count);
 
