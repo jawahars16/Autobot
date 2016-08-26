@@ -14,5 +14,15 @@
         android:divider="#EEEEF2"
         android:dividerHeight="1dp"
         android:background="#FFFFFF"
-        android:padding="5dp" />
+        android:padding="5dp"
+        android:choiceMode="singleChoice"
+        android:layout_weight="1" />
+    <Button
+        android:text="Done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
+        android:id="@+id/done"
+        android:visibility="gone"
+        android:layout_margin="5dp" />
 </LinearLayout>

@@ -184,6 +184,7 @@
   <ItemGroup>
     <Compile Include="Fragments\BindableFragment.cs" />
     <Compile Include="Infrastructure\Receiver\BluetoothReceiver.cs" />
+    <Compile Include="Infrastructure\Triggers\DroidTimeTrigger.cs" />
     <Compile Include="Platform\NetworkManager.cs" />
     <Compile Include="Platform\PhoneCallReceiver.cs" />
     <Compile Include="Services\AutobotService.cs" />
@@ -200,7 +201,6 @@
     <Compile Include="Infrastructure\Triggers\BluetoothTrigger.cs" />
     <Compile Include="Infrastructure\Triggers\DisplayTrigger.cs" />
     <Compile Include="Infrastructure\Triggers\ManualTrigger.cs" />
-    <Compile Include="Infrastructure\Triggers\TimeTrigger.cs" />
     <Compile Include="Infrastructure\Triggers\WifiTrigger.cs" />
     <Compile Include="Platform\Battery.cs" />
     <Compile Include="Platform\FileSystem.cs" />
@@ -255,6 +255,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_NewSchedule.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\li_MultiSelctableItem.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -456,7 +459,7 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_repeat_black_24dp.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\menu\schedule.xml" />
+    <AndroidResource Include="Resources\menu\common_action_bar_menu.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ic_arrow_back_white_24dp.png" />
@@ -472,6 +475,14 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_arrow_back_white_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\multi_selectable_checkbox.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\check.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets')" />

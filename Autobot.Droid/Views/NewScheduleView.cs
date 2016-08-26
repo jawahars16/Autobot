@@ -37,25 +37,5 @@ namespace Autobot.Droid.Views
                 return ViewModel as NewScheduleViewModel;
             }
         }
-
-        public override bool OnCreateOptionsMenu(IMenu menu)
-        {
-            MenuInflater.Inflate(Resource.Menu.schedule, menu);
-            return true;
-        }
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            switch (item.ItemId)
-            {
-                case Resource.Id.done:
-                    PresentationService s = new PresentationService();
-                    s.PromptRecurrence();
-                    //ThisViewModel.DoneCommand.Execute();
-                    break;
-            }
-
-            return base.OnOptionsItemSelected(item);
-        }
     }
 }

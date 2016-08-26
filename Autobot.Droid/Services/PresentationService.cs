@@ -16,6 +16,7 @@ using Android.Support.V4.App;
 using Android.App;
 using BetterPickers.RecurrencePickers;
 using Android.OS;
+using System.Linq;
 
 namespace Autobot.Droid.Services
 {
@@ -31,11 +32,6 @@ namespace Autobot.Droid.Services
         {
             var activity = Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
             return await Prompt.Make(activity, source).ShowAsync(true);
-        }
-
-        public bool IsTimeTrigger(Trigger trigger)
-        {
-            return trigger.Type == typeof(TimeTrigger);
         }
 
         public Date GetDefaultDate()
@@ -135,10 +131,33 @@ namespace Autobot.Droid.Services
                 {
                     taskCompletionSource.SetResult(time);
                 }
-
+                
             }
 
             return await taskCompletionSource.Task;
+        }
+
+        public async Task<IEnumerable<WeekDay>> PromptWeekDays()
+        {
+            IEnumerable<ISelectable> options = new List<ISelectable>
+            {
+               WeekDay.Sunday,
+               WeekDay.Monday,
+               WeekDay.Tuesday,
+               WeekDay.Wednesday,
+               WeekDay.Thursday,
+               WeekDay.Friday,
+               WeekDay.Saturday
+            };
+
+            var activity = Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
+            if (activity != null)
+            {
+                List<ISelectable> selectedOptions = await Prompt.Make(activity, options).ShowMultipleAsync();
+                return selectedOptions.Cast<WeekDay>();
+            }
+
+            return null;
         }
 
         public Task<Recurrence> PromptRecurrence(string rule = "FREQ=DAILY;WKST=SU")

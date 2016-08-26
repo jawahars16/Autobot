@@ -31,8 +31,7 @@ namespace Autobot.Viewmodel
             }
             else
             {
-                //ShowViewModel<RuleDetailViewModel>();
-                ShowViewModel<NewScheduleViewModel>();
+                ShowViewModel<RuleDetailViewModel>();
             }
         }
 
