@@ -9,6 +9,15 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:layout_weight="1"
         android:id="@+id/promptList"
         android:numColumns="3" />
+    <Button
+        android:text="Done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
+        android:id="@+id/done"
+        android:visibility="gone"
+        android:layout_margin="5dp" />
 </LinearLayout>

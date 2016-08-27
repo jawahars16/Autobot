@@ -61,6 +61,12 @@
     <DebugSymbols>False</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AndroidSwitchBackport">
+      <HintPath>..\Components\betterpickers-1.6.0.1\lib\android\AndroidSwitchBackport.dll</HintPath>
+    </Reference>
+    <Reference Include="BetterPickers">
+      <HintPath>..\Components\betterpickers-1.6.0.1\lib\android\BetterPickers.dll</HintPath>
+    </Reference>
     <Reference Include="Cheeseknife">
       <HintPath>..\Components\cheeseknife-1.0\lib\android\Cheeseknife.dll</HintPath>
     </Reference>
@@ -257,6 +263,18 @@
     <AndroidResource Include="Resources\layout\li_multiselctableitem.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\geofence_detail_fragment.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\geofence_list_activity.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_NewSchedule.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\li_MultiSelctableItem.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -270,6 +288,10 @@
     <AndroidResource Include="Resources\values\style.xml" />
   </ItemGroup>
   <ItemGroup>
+    <XamarinComponentReference Include="betterpickers">
+      <Visible>False</Visible>
+      <Version>1.6.0.1</Version>
+    </XamarinComponentReference>
     <XamarinComponentReference Include="cheeseknife">
       <Visible>False</Visible>
       <Version>1.0</Version>
@@ -277,6 +299,10 @@
     <XamarinComponentReference Include="fab">
       <Visible>False</Visible>
       <Version>1.3.0</Version>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="googleplayservices-maps">
+      <Visible>False</Visible>
+      <Version>29.0.0.2</Version>
     </XamarinComponentReference>
     <XamarinComponentReference Include="xamandroidsupportv7cardview">
       <Visible>False</Visible>
