@@ -13,16 +13,22 @@ namespace Autobot.Droid.Fragments
     public class PromptListDialogFragment : DialogFragment
     {
         private bool isList;
+        private ChoiceMode mode;
 
         [InjectView(Resource.Id.promptList)]
         private AbsListView promptList;
 
-        public PromptListDialogFragment(bool isList)
+        [InjectView(Resource.Id.done)]
+        private Button doneBtn;
+
+        public PromptListDialogFragment(bool isList, ChoiceMode mode)
         {
             this.isList = isList;
+            this.mode = mode;
         }
 
         public Action<ISelectable> Click { get; set; }
+        public Action Done { get; set; }
         public IEnumerable<ISelectable> Source { get; set; }
         public string Title { get; set; }
 
@@ -35,21 +41,53 @@ namespace Autobot.Droid.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            int layout = isList ? Resource.Layout.PromptListDialogFragment : Resource.Layout.PromptGridDialogFragment;
+            int layout = isList ? Resource.Layout.fragment_PromptListDialog : Resource.Layout.fragment_PromptGridDialog;
             var view = inflater.Inflate(layout, container, false);
             Cheeseknife.Inject(this, view);
+
             BaseAdapter<ISelectable> adapter = isList ? (BaseAdapter<ISelectable>)new ListViewAdapter(Activity, Source.ToList()) : new GridViewAdapter(Activity, Source.ToList());
             promptList.Adapter = adapter;
+            promptList.ChoiceMode = mode;
+            
+            if(mode == ChoiceMode.Multiple)
+            {
+                doneBtn.Visibility = ViewStates.Visible;
+                promptList.Adapter = new ListViewAdapter(Activity, Source.ToList(), mode);
+            }
+
             return view;
         }
 
         [InjectOnItemClick(Resource.Id.promptList)]
         private void OnItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            Dismiss();
+            if (mode == ChoiceMode.Single)
+            {
+                Dismiss();
+            }
+            else
+            {
+                var holder = new ListViewAdapter.ViewHolder(e.View);
+                if(holder != null)
+                {
+                    var checkedView = (CheckedTextView)holder.Title;
+                    checkedView.Checked = !checkedView.Checked;
+                }
+            }
+
             if (Click != null)
             {
                 Click.Invoke(Source.ToList()[e.Position]);
+            }
+        }
+
+        [InjectOnClick(Resource.Id.done)]
+        private void OnDoneClick(object sender, EventArgs e)
+        {
+            Dismiss();
+            if (Done != null)
+            {
+                Done.Invoke();
             }
         }
 
@@ -89,13 +127,13 @@ namespace Autobot.Droid.Fragments
 
                 if (holder == null)
                 {
-                    view = context.LayoutInflater.Inflate(Resource.Layout.SelectableGridItem, null);
+                    view = context.LayoutInflater.Inflate(Resource.Layout.li_selectablegriditem, null);
                     holder = new ViewHolder(view);
                     view.Tag = holder;
                 }
 
                 holder.Title.Text = item.Title;
-                int icon = item.Icon > 0 ? item.Icon : Resource.Drawable.trigger;
+                int icon = item.Icon > 0 ? item.Icon : Resource.Drawable.manual;
                 holder.Image.SetImageResource(icon);
 
                 return view;
@@ -120,11 +158,13 @@ namespace Autobot.Droid.Fragments
         {
             private Activity context;
             private List<ISelectable> items;
+            private ChoiceMode mode;
 
-            public ListViewAdapter(Activity context, List<ISelectable> items) : base()
+            public ListViewAdapter(Activity context, List<ISelectable> items, ChoiceMode mode = ChoiceMode.Single) : base()
             {
                 this.items = items;
                 this.context = context;
+                this.mode = mode;
             }
 
             public override int Count
@@ -152,13 +192,14 @@ namespace Autobot.Droid.Fragments
 
                 if (holder == null)
                 {
-                    view = context.LayoutInflater.Inflate(Resource.Layout.SelectableListItem, null);
+                    int layout = mode == ChoiceMode.Single ? Resource.Layout.li_selectablelistitem : Resource.Layout.li_multiselctableitem;
+                    view = context.LayoutInflater.Inflate(layout, null);
                     holder = new ViewHolder(view);
                     view.Tag = holder;
                 }
 
                 holder.Title.Text = item.Title;
-                if (item.Icon > 0)
+                if (item.Icon > 0 && mode == ChoiceMode.Single)
                 {
                     holder.Image.SetImageDrawable(context.GetDrawable(item.Icon));
                 }

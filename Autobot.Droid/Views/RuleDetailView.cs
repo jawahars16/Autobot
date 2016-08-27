@@ -8,12 +8,22 @@ using Com.Lilarcor.Cheeseknife;
 using MvvmCross.Droid.Views;
 using MvvmCross.Droid.Support.V4;
 using Android.Gms.Maps;
+using Android.Support.V7.Widget;
+using MvvmCross.Droid.Support.V7.AppCompat;
 
 namespace Autobot.Droid.Views
 {
     [Activity]
-    public class RuleDetailView : MvxFragmentActivity
+    public class RuleDetailView : MvxAppCompatActivity
     {
+        private IMenu menu;
+
+        [InjectView(Resource.Id.toolbar)]
+        private Toolbar toolbar;
+
+        [InjectView(Resource.Id.triggersListView)]
+        private FlatListView triggersListView;
+
         [InjectView(Resource.Id.actionsListView)]
         private FlatListView actionsListView;
 
@@ -23,20 +33,59 @@ namespace Autobot.Droid.Views
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.RuleDetailActivity);
+            SetContentView(Resource.Layout.activity_RuleDetail);
             Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
             Cheeseknife.Inject(this);
-
-            ((RuleDetailViewModel)ViewModel).Initialized += OnInitialized;
+            SetSupportActionBar(toolbar);
+            
+            ThisViewModel.SaveCommand.CanExecuteChanged += OnCanExecuteChanged;
         }
 
-        private void OnInitialized(object sender, EventArgs e)
+        protected override void OnStart()
         {
+            base.OnStart();
+
+            //triggersListView.Initialize();
+            //triggersListView.Expand(triggersListView.Adapter.Count);
+
             actionsListView.Initialize();
             actionsListView.Expand(actionsListView.Adapter.Count);
 
             conditionsListView.Initialize();
             conditionsListView.Expand(conditionsListView.Adapter.Count);
+        }
+
+        private void OnCanExecuteChanged(object sender, EventArgs e)
+        {
+            menu.GetItem(0).SetEnabled(ThisViewModel.SaveCommand.CanExecute());
+        }
+
+        public RuleDetailViewModel ThisViewModel
+        {
+            get
+            {
+                return ViewModel as RuleDetailViewModel;
+            }
+        }
+
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            this.menu = menu;
+            MenuInflater.Inflate(Resource.Menu.common_action_bar_menu, menu);
+            return true;
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.done:
+                    ThisViewModel.SaveCommand.Execute();
+                    break;
+            }
+
+            return base.OnOptionsItemSelected(item);
         }
     }
 }

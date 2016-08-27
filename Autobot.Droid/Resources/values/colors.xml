@@ -19,4 +19,9 @@
   <color name="primary">#1ABC9C</color>
   <color name="primaryDark">#16A085</color>
   <color name="accent">#E74C3C</color>
+  <color name="window_background">#F5F5F5</color>
+
+  <color name="action">#2980B9</color>
+  <color name="trigger">#16A085</color>
+  <color name="condition">#E74C3C</color>
 </resources>

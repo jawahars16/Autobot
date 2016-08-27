@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:minWidth="25px"
-    android:minHeight="25px">
+    android:minHeight="25px"
+    tools:menu="schedule">
     <TextView
         android:text="TITLE"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -48,27 +50,23 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="15dp">
         <Button
-            android:text="Today"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button1"
+            local:MvxBind="Click DatePickerCommand; Text Date.Title"
             style="@android:style/Widget.DeviceDefault.Button.Borderless"
             android:drawableLeft="@drawable/ic_date_range_black_24dp"
             android:gravity="center_vertical"
-            android:drawablePadding="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp" />
+            android:drawablePadding="10dp" />
         <Button
-            android:text="Morning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            local:MvxBind="Click TimePickerCommand; Text Time.Title"
             style="@android:style/Widget.DeviceDefault.Button.Borderless"
             android:drawableLeft="@drawable/ic_timer_black_24dp"
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
-            android:id="@+id/button2"
-            android:layout_margin="5dp" />
+            android:id="@+id/button2" />
     </LinearLayout>
     <TextView
         android:text="Repeat"
@@ -93,7 +91,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="15dp">
         <Button
-            android:text="Does not repeat"
+            local:MvxBind="Click RecurrencePickerCommand; Text Recurrence.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button3"

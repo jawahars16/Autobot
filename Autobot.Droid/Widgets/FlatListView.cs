@@ -9,7 +9,7 @@ namespace Autobot.Droid.Widgets
     public class FlatListView : MvxListView
     {
         private const int FOOTER_HEIGHT = 80;
-        private const int ITEM_HEIGHT = 200;
+        private const int ITEM_HEIGHT = 300;
         private int mPosition;
 
         public FlatListView(Context context, IAttributeSet attrs) : base(context, attrs)
@@ -44,9 +44,21 @@ namespace Autobot.Droid.Widgets
 
         public void Expand(int count)
         {
-            ViewGroup.LayoutParams _params = LayoutParameters;
-            _params.Height = (count * ITEM_HEIGHT) + ((count - 1) * FOOTER_HEIGHT);
-            LayoutParameters = _params;
+            int desiredWidth = MeasureSpec.MakeMeasureSpec(Width, MeasureSpecMode.Unspecified);
+            int totalHeight = 0;
+
+            View view = null;
+            for (int i = 0; i < Adapter.Count; i++)
+            {
+                view = Adapter.GetView(i, view, this);
+                if (i == 0)
+                    view.LayoutParameters = new ViewGroup.LayoutParams(desiredWidth, LayoutParams.WrapContent);
+
+                view.Measure(desiredWidth, (int)MeasureSpecMode.Unspecified);
+                totalHeight += view.MeasuredHeight;
+            }
+
+            LayoutParameters.Height = totalHeight + (DividerHeight * (Adapter.Count - 1));
         }
 
         public void Initialize()

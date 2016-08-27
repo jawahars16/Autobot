@@ -90,7 +90,7 @@ namespace Autobot.Droid.Services
                 return fields.Select((field) =>
                 {
                     var triggerAttribute = field.GetCustomAttribute<TriggerAttribute>();
-                    return Trigger.Create(field.GetValue(triggerObject).ToString(), triggerAttribute.Title, triggerAttribute.Icon);
+                    return Trigger.Create(field.GetValue(triggerObject).ToString(), triggerAttribute.Title, triggerAttribute.Icon, trigger.Type);
                 }).ToList();
             }
 

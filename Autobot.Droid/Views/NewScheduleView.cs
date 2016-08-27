@@ -14,10 +14,12 @@ using MvvmCross.Droid.Support.V4;
 using Com.Lilarcor.Cheeseknife;
 using Android.Support.V7.App;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using Autobot.ViewModel;
+using Autobot.Droid.Services;
 
 namespace Autobot.Droid.Views
 {
-    [Activity(Label = "New Schedule", ParentActivity = typeof(HomeView))]
+    [Activity(Label = "Schedule", ParentActivity = typeof(HomeView))]
     public class NewScheduleView : MvxAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -25,7 +27,15 @@ namespace Autobot.Droid.Views
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_NewSchedule);
             Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
-            
+
+        }
+
+        public NewScheduleViewModel ThisViewModel
+        {
+            get
+            {
+                return ViewModel as NewScheduleViewModel;
+            }
         }
     }
 }

@@ -31,14 +31,12 @@ namespace Autobot.Viewmodel
             }
             else
             {
-                //ShowViewModel<RuleDetailViewModel>();
-                ShowViewModel<NewScheduleViewModel>();
+                ShowViewModel<RuleDetailViewModel>();
             }
         }
 
-        public async override void Start()
+        public async void Resume()
         {
-            base.Start();
             var rules = await Database.Default.GetRulesAsync();
             Rules = new ObservableCollection<Rule>(rules);
         }

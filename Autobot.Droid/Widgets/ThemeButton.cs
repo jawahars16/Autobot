@@ -14,7 +14,7 @@ namespace Autobot.Droid.Widgets
 
         public ThemeButton(Context context, IAttributeSet attr) : base(context, attr)
         {
-            Inflate(context, Resource.Layout.ThemeButton, this);
+            Inflate(context, Resource.Layout.cc_ThemeButton, this);
             Cheeseknife.Inject(this, this);
             string text = attr.GetAttributeValue(NAMESPACE, "text");
             textView.Text = text;

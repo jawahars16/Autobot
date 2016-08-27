@@ -13,11 +13,12 @@ namespace Autobot.Model
             // Don't kill me. I serve purpose for SQLite.
         }
 
-        public Trigger(string id, string title, int icon)
+        public Trigger(string id, string title, int icon, Type type)
         {
             Id = id;
             Title = title;
             Icon = icon;
+            Type = type;
         }
 
         private Trigger(string title, int icon, Type type)
@@ -51,9 +52,9 @@ namespace Autobot.Model
         [Ignore]
         public Type Type { get; set; }
 
-        public static Trigger Create(string id, string title, int icon)
+        public static Trigger Create(string id, string title, int icon, Type type)
         {
-            return new Trigger(id, title, icon);
+            return new Trigger(id, title, icon, type);
         }
 
         public static Trigger Create(string title, int icon, Type type)

@@ -17,21 +17,21 @@ namespace Autobot.Droid.Infrastructure.Receiver
     {
         public async override void OnReceive(Context context, Intent intent)
         {
-            Main.CurrentContext = context;
+            //Main.CurrentContext = context;
 
-            NetworkManager manager = new NetworkManager(context);
-            string action = intent.Action;
-            string state = manager.GetWifiState().ToString();
-            string apState = manager.GetHotspotState().ToString();
+            //NetworkManager manager = new NetworkManager(context);
+            //string action = intent.Action;
+            //string state = manager.GetWifiState().ToString();
+            //string apState = "";// manager.GetHotspotState().ToString();
 
-            List<Rule> rules = await Database.Default.GetRulesAsync(
-                intent.Action + Constants.TRIGGER_DELIMITER + state,
-                intent.Action + Constants.TRIGGER_DELIMITER + apState);
+            //List<Rule> rules = await Database.Default.GetRulesAsync(
+            //    intent.Action + Constants.TRIGGER_DELIMITER + state,
+            //    intent.Action + Constants.TRIGGER_DELIMITER + apState);
 
-            if (rules.Any())
-            {
-                await Task.WhenAll(rules.Select(rule => rule.Run()));
-            }
+            //if (rules.Any())
+            //{
+            //    await Task.WhenAll(rules.Select(rule => rule.Run()));
+            //}
         }
     }
 }

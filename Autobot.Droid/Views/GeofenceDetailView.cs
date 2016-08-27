@@ -14,39 +14,25 @@ using Autobot.ViewModel;
 using Android.Gms.Maps;
 using Autobot.Common;
 using Android.Gms.Common;
-using MvvmCross.Droid.Views;
-using Com.Lilarcor.Cheeseknife;
 
 namespace Autobot.Droid.Views
 {
-    [Activity]
-    public class GeofenceDetailView : MvxActivity
+    public class GeofenceDetailView : MvxDialogFragment<GeofenceDetailViewModel>
     {
-        [InjectView(Resource.Id.map)]
-        private MapView mapView;
+        //public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        //{
+        //    var view = inflater.Inflate(Resource.Layout.geofence_detail_fragment, container, false);
+        //    try {
+        //        MapsInitializer.Initialize(Activity);
+        //    }
+        //    catch(Exception e)
+        //    {
+        //        e.PrintStackTrace();
+        //    }
 
-        protected override void OnCreate(Bundle bundle)
-        {
-            base.OnCreate(bundle);
-            SetContentView(Resource.Layout.geofence_detail_activity);
-            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
-            Cheeseknife.Inject(this);
+        //    int availability = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(Activity);
             
-            try
-            {
-                MapsInitializer.Initialize(this);
-            }
-            catch (Exception e)
-            {
-                e.PrintStackTrace();
-            }
-
-            int availability = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
-
-            if(availability == ConnectionResult.Success)
-            {
-                mapView.OnCreate(bundle);
-            }
-        }
+        //    return view;
+        //}
     }
 }

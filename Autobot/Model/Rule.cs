@@ -2,6 +2,7 @@
 using PropertyChanged;
 using SQLite;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace Autobot.Model
         {
             Conditions = new ObservableCollection<Condition>();
             Actions = new ObservableCollection<Action>();
+            AllTriggers = new ObservableCollection<Trigger>();
         }
 
         [Ignore]
@@ -24,7 +26,22 @@ namespace Autobot.Model
         public ObservableCollection<Condition> Conditions { get; set; }
 
         [Ignore]
-        public Trigger Trigger { get; set; }
+        public ObservableCollection<Trigger> AllTriggers { get; set; }
+
+        [Ignore]
+        public Trigger Trigger
+        {
+            get
+            {
+                return AllTriggers.FirstOrDefault();
+            }
+
+            set
+            {
+                AllTriggers.Clear();
+                AllTriggers.Add(value);
+            }
+        }
 
         #region Serializable
 

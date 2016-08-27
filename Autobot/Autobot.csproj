@@ -45,10 +45,17 @@
     <Compile Include="Common\Container.cs" />
     <Compile Include="Common\Database.cs" />
     <Compile Include="Common\Extensions.cs" />
+    <Compile Include="Converters\IsEmptyValueConverter.cs" />
     <Compile Include="Converters\IsNotNullValueConverter.cs" />
     <Compile Include="Converters\IsNullValueConverter.cs" />
+    <Compile Include="Infrastructure\Triggers\TimeTrigger.cs" />
     <Compile Include="Model\Condition.cs" />
+    <Compile Include="Model\CustomTime.cs" />
+    <Compile Include="Model\Date.cs" />
     <Compile Include="Model\Geofence.cs" />
+    <Compile Include="Model\Recurrence.cs" />
+    <Compile Include="Model\Time.cs" />
+    <Compile Include="Model\WeekDay.cs" />
     <Compile Include="Services\IAutobotService.cs" />
     <Compile Include="Platform\IBattery.cs" />
     <Compile Include="Platform\IFileSystem.cs" />
