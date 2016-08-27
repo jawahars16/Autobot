@@ -26,8 +26,6 @@ namespace Autobot.Droid.Infrastructure.Receiver
     {
         public async override void OnReceive(Context context, Intent intent)
         {
-            Main.CurrentContext = context;
-            
             string action = intent.Action;
             string state =  ((State)intent.GetIntExtra(BluetoothAdapter.ExtraState, -1)).ToString();
 

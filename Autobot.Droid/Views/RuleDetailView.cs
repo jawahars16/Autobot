@@ -83,6 +83,9 @@ namespace Autobot.Droid.Views
                 case Resource.Id.done:
                     ThisViewModel.SaveCommand.Execute();
                     break;
+                case Resource.Id.delete:
+                    ThisViewModel.DeleteCommand.Execute();
+                    break;
             }
 
             return base.OnOptionsItemSelected(item);

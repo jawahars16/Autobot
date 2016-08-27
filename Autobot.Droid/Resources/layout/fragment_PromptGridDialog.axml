@@ -8,14 +8,15 @@
         android:minHeight="25px"
         android:layout_width="wrap_content"
         android:gravity="center"
-        android:layout_margin="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:id="@+id/promptList"
         android:numColumns="3"
-        android:horizontalSpacing="10dp"
-        android:verticalSpacing="10dp"
+        android:horizontalSpacing="5dp"
+        android:verticalSpacing="15dp"
         android:stretchMode="columnWidth" />
     <Button
         android:text="Done"

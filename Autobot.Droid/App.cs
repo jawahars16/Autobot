@@ -2,7 +2,9 @@ using Android.App;
 using Android.Runtime;
 using Autobot.Common;
 using Autobot.Droid.Platform;
+using Autobot.Droid.Services;
 using Autobot.Platform;
+using Autobot.Services;
 using System;
 using System.IO;
 
@@ -20,6 +22,7 @@ namespace Autobot.Droid
             base.OnCreate();
 
             Container.Default.Register<IReflection>(typeof(Reflection));
+            Container.Default.Register<ISchedulerService>(typeof(SchedulerService));
 
             var filename = "Autobot.sqlite";
             var documentspath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);

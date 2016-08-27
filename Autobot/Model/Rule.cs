@@ -45,12 +45,11 @@ namespace Autobot.Model
 
         #region Serializable
 
+        [PrimaryKey]
+        public string PrimaryKey { get; set; }
         public string Description { get; set; }
         public int Icon { get; set; }
-
-        [PrimaryKey]
-        public string Id { get; set; }
-
+        public bool IsEnabled { get; set; }
         public string RuleId { get; set; }
         public string Title { get; set; }
 
@@ -79,8 +78,8 @@ namespace Autobot.Model
 
         public async Task SaveAsync()
         {
-            Id = Guid.NewGuid().ToString();
             RuleId = Trigger.Id;
+            IsEnabled = true;
 
             if (Title == null)
             {
@@ -88,10 +87,17 @@ namespace Autobot.Model
             }
 
             await Database.Default.SaveAsync(this);
-
             await Trigger.SaveAsync(this);
             await Task.WhenAll(Conditions.Select(condition => condition.SaveAsync(this)));
             await Task.WhenAll(Actions.Select(action => action.SaveAsync(this)));
+        }
+
+        public async Task Delete()
+        {
+            await Database.Default.DeleteAsync(this);
+            await Database.Default.DeleteAsync(Trigger);
+            await Task.WhenAll(Conditions.Select(condition => Database.Default.DeleteAsync(condition)));
+            await Task.WhenAll(Actions.Select(action => Database.Default.DeleteAsync(action)));
         }
 
         public override string ToString()

@@ -183,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fragments\BindableFragment.cs" />
+    <Compile Include="Infrastructure\Receiver\AlarmReceiver.cs" />
     <Compile Include="Infrastructure\Receiver\BluetoothReceiver.cs" />
     <Compile Include="Infrastructure\Triggers\DroidTimeTrigger.cs" />
     <Compile Include="Infrastructure\Triggers\LocationTrigger.cs" />
@@ -191,9 +192,9 @@
     <Compile Include="Platform\NetworkManager.cs" />
     <Compile Include="Platform\PhoneCallReceiver.cs" />
     <Compile Include="Services\AutobotService.cs" />
+    <Compile Include="Services\SchedulerService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="App.cs" />
-    <Compile Include="Autobot.cs" />
     <Compile Include="Fragments\PromptListDialogFragment.cs" />
     <Compile Include="Infrastructure\Actions\NotificationAction.cs" />
     <Compile Include="Infrastructure\Conditions\BatteryCondition.cs" />
@@ -255,9 +256,6 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_GeofenceList.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\activity_NewSchedule.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\li_multiselctableitem.axml">

@@ -17,15 +17,31 @@ namespace Autobot.ViewModel
     {
         private readonly IAutobotService autobotService;
         private readonly IPresentationService presentationService;
+        private readonly ISchedulerService schedulerService;
 
-        public RuleDetailViewModel(IAutobotService autobotService, IPresentationService presentationService)
+        public RuleDetailViewModel(
+            IAutobotService autobotService, 
+            IPresentationService presentationService,
+            ISchedulerService schedulerService)
         {
             this.autobotService = autobotService;
             this.presentationService = presentationService;
+            this.schedulerService = schedulerService;
             SetTriggerCommand = new MvxCommand(OnSetTrigger);
             AddConditionCommand = new MvxCommand(OnAddCondition);
             AddActionCommand = new MvxCommand(OnAddAction);
             SaveCommand = new MvxCommand(OnSaveRule, CanSaveRule);
+            DeleteCommand = new MvxCommand(OnDelete);
+        }
+
+        private async void OnDelete()
+        {
+            await Rule.Delete();
+            if (Rule.Trigger.IsTimeTrigger)
+            {
+                schedulerService.Cancel(Rule);
+            }
+            Close(this);
         }
 
         private bool CanSaveRule()
@@ -40,20 +56,17 @@ namespace Autobot.ViewModel
         public bool IsInEditMode { get; set; }
         public Rule Rule { get; set; }
         public IMvxCommand SaveCommand { get; set; }
+        public IMvxCommand DeleteCommand { get; set; }
         public IMvxCommand SetTriggerCommand { get; set; }
         public bool ShowConditionsArrow { get; set; }
 
         public async Task HandleTimeTrigger(Trigger trigger)
         {
-            if (trigger.Type == typeof(TimeTrigger))
-            {
-                return;
-            }
-
             if (TimeTrigger.Default.EveryDay == trigger.Id)
             {
                 Time time = await presentationService.PromptTime();
-                trigger.Title += " " + time.Title;
+                trigger.Title = $"Every {time.Title}";
+                trigger.Id = $"{Constants.TIME_TRIGGER}{time.Value.ToString()}";
             }
             else if (TimeTrigger.Default.EveryWeek == trigger.Id)
             {
@@ -72,7 +85,7 @@ namespace Autobot.ViewModel
                 }
                 else if (days.Count() == 7)
                 {
-                    trigger.Title = $"Every day {time.Title}";
+                    trigger.Title = $"Every {time.Title}";
                 }
                 else
                 {
@@ -87,8 +100,9 @@ namespace Autobot.ViewModel
                         trigger.Title += $" {time.Title}";
                     }
                 }
+                trigger.Id = $"{Constants.TIME_TRIGGER}{time.Value.ToString()}";
             }
-            else
+            else if (TimeTrigger.Default.Custom == trigger.Id)
             {
                 IEnumerable<CustomTime> timeList = new List<CustomTime>
                 {
@@ -101,8 +115,9 @@ namespace Autobot.ViewModel
                     CustomTime.EVERY_20_DAYS
                 };
 
-                ISelectable time = await presentationService.SelectFromListAsync(timeList);
+                CustomTime time = (CustomTime)await presentationService.SelectFromListAsync(timeList);
                 trigger.Title = time.Title;
+                trigger.Id = $"{Constants.TIME_TRIGGER}{time.Value.ToString()}";
             }
         }
 
@@ -126,11 +141,6 @@ namespace Autobot.ViewModel
             }
 
             Initialized?.Invoke(this, null);
-        }
-
-        public override void Start()
-        {
-            base.Start();
         }
 
         private async void OnAddAction()
@@ -162,6 +172,13 @@ namespace Autobot.ViewModel
                 return;
             }
 
+            Rule.PrimaryKey = Guid.NewGuid().ToString();
+
+            if (Rule.Trigger.IsTimeTrigger)
+            {
+                schedulerService.Schedule(Rule);
+            }
+
             await Rule.SaveAsync();
             Close(this);
         }
@@ -170,15 +187,18 @@ namespace Autobot.ViewModel
         {
             var triggers = autobotService.GetTriggers();
             Trigger trigger = (Trigger)await presentationService.SelectFromGridAsync(triggers);
-            triggers = autobotService.GetTriggers((Trigger)trigger);
+            triggers = autobotService.GetTriggers(trigger);
 
-            if (triggers.Count > 1)
+            if (triggers != null)
             {
-                trigger = (Trigger)await presentationService.SelectFromListAsync(triggers);
-            }
-            else
-            {
-                trigger = triggers.FirstOrDefault();
+                if (triggers.Count > 1)
+                {
+                    trigger = (Trigger)await presentationService.SelectFromListAsync(triggers);
+                }
+                else
+                {
+                    trigger = triggers.FirstOrDefault();
+                }
             }
 
             await HandleTimeTrigger(trigger);

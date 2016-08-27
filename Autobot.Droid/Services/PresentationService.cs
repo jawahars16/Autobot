@@ -64,37 +64,6 @@ namespace Autobot.Droid.Services
         {
             var taskCompletionSource = new TaskCompletionSource<Date>();
 
-        public Date GetDefaultDate()
-        {
-            return Date.Today;
-        }
-
-        public Time GetDefaultTime()
-        {
-            DateTime now = DateTime.Now;
-
-            if (now.TimeOfDay < TimeSpan.FromHours(8))
-            {
-                return Time.Morning;
-            }
-            else if (now.TimeOfDay < TimeSpan.FromHours(13))
-            {
-                return Time.Noon;
-            }
-            else if (now.TimeOfDay < TimeSpan.FromHours(18))
-            {
-                return Time.Evening;
-            }
-            else
-            {
-                return Time.Custom;
-            }
-        }
-
-        public async Task<Date> PromptDate()
-        {
-            var taskCompletionSource = new TaskCompletionSource<Date>();
-
             IEnumerable<ISelectable> options = new List<ISelectable>
             {
                Date.Today,

@@ -66,6 +66,7 @@
     <Compile Include="Platform\IReflection.cs" />
     <Compile Include="Platform\ISelectable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ISchedulerService.cs" />
     <Compile Include="ViewModel\GeofenceDetailViewModel.cs" />
     <Compile Include="ViewModel\GeofenceListViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />

@@ -8,6 +8,9 @@ namespace Autobot.Model
 {
     public class Trigger : ISelectable
     {
+        [PrimaryKey]
+        public string PrimaryKey { get; set; }
+
         public Trigger()
         {
             // Don't kill me. I serve purpose for SQLite.
@@ -50,6 +53,15 @@ namespace Autobot.Model
         #endregion Serializable
 
         [Ignore]
+        public bool IsTimeTrigger
+        {
+            get
+            {
+                return Id != null && Id.StartsWith(Constants.TIME_TRIGGER);
+            }
+        }
+
+        [Ignore]
         public Type Type { get; set; }
 
         public static Trigger Create(string id, string title, int icon, Type type)
@@ -64,7 +76,8 @@ namespace Autobot.Model
 
         public async Task SaveAsync(Rule rule)
         {
-            Rule = rule.Id;
+            PrimaryKey = Guid.NewGuid().ToString();
+            Rule = rule.PrimaryKey;
 
             await Database.Default.SaveAsync(this);
         }

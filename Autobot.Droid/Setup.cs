@@ -17,6 +17,7 @@ namespace Autobot.Droid
         {
             base.Initialize();
             Mvx.RegisterSingleton<IAutobotService>(new AutobotService());
+            Mvx.RegisterSingleton<ISchedulerService>(new SchedulerService());
             Mvx.RegisterSingleton<IPresentationService>(new PresentationService());
         }
 

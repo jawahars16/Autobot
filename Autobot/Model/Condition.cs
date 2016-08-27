@@ -74,7 +74,7 @@ namespace Autobot.Model
             TypeName = Type.AssemblyQualifiedName;
             MethodName = Method.Name;
             ParameterList = JsonConvert.SerializeObject(Parameters);
-            Rule = rule.Id;
+            Rule = rule.PrimaryKey;
 
             await Database.Default.SaveAsync(this);
         }

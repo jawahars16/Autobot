@@ -34,29 +34,19 @@ namespace Autobot.Common
             }
         }
 
-        public static string ToReadableFormat(this DateTime date)
-        {
-            return string.Format("{0:MMMM d, yyyy}", date);
-        }
-
-        public static string ToReadableFormat(this TimeSpan time)
-        {
-            return $"{(time.Hours > 12 ? time.Hours - 12 : time.Hours)}:{time.Minutes} {(time.Hours > 12 ? "PM" : "AM")}";
-        }
-
         public static string ToHumanReadableString(this TimeSpan t)
         {
             if (t.TotalSeconds <= 1)
             {
                 return $@"{t:s\.ff} seconds";
             }
-            if (t.TotalMinutes <= 1)
+            if (t.TotalMinutes < 1)
             {
                 return $@"{t:%s} seconds";
             }
             if (t.TotalMinutes == 1)
             {
-                return $@"{t:%s} minute";
+                return "1 minute";
             }
             if (t.TotalHours <= 1)
             {
@@ -78,15 +68,6 @@ namespace Autobot.Common
         public static string ToReadableFormat(this TimeSpan time)
         {
             return $"{(time.Hours > 12 ? time.Hours - 12 : time.Hours)}:{time.Minutes} {(time.Hours > 12 ? "PM" : "AM")}";
-        }
-
-        public static void AddProperty(this ExpandoObject expando, string property, object value)
-        {
-            var expandoDict = expando as IDictionary<string, object>;
-            if (expandoDict.ContainsKey(property))
-                expandoDict[property.ToLower()] = value;
-            else
-                expandoDict.Add(property.ToLower(), value);
         }
     }
 }

@@ -5,133 +5,133 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-  <android.support.v7.widget.Toolbar
-      android:minHeight="?android:attr/actionBarSize"
-      android:background="?android:attr/colorPrimary"
-      android:minWidth="25px"
-      android:elevation="2dp"
-      android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-      local:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/toolbar" />
-  <FrameLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_weight="1">
-    <Autobot.Droid.Widgets.PixelGridView
+    <android.support.v7.widget.Toolbar
+        android:minHeight="?android:attr/actionBarSize"
+        android:background="?android:attr/colorPrimary"
+        android:minWidth="25px"
+        android:elevation="2dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        local:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.3" />
-    <ScrollView
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar" />
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:scrollbarStyle="outsideOverlay"
-        android:fillViewport="true">
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:gravity="center">
-        <Space
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <Autobot.Droid.Widgets.PixelGridView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/space1" />
-        <LinearLayout
+            android:layout_height="match_parent"
+            android:alpha="0.3" />
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-        android:orientation="vertical"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp">
-          <FlatListView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_weight="1"
-              local:MvxItemTemplate="@layout/li_trigger"
-              local:MvxBind="ItemsSource Rule.AllTriggers; ItemClick SetTriggerCommand"
-              android:id="@+id/triggersListView"
-              android:scrollbars="none"
-              android:layout_margin="3dp" />
-          <Autobot.Droid.Widgets.ThemeButton
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:clickable="true"
-              android:text="Set trigger"
-              android:background="@color/trigger"
-              android:elevation="3dp"
-              local:MvxBind="Click SetTriggerCommand; Visible IsInEditMode"
-              android:id="@+id/selectTriggerBtn"
-              android:layout_margin="3dp" />
-        </LinearLayout>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:src="@drawable/arrow"
-            android:layout_margin="10dp"
-            android:layout_gravity="center" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:orientation="vertical">
-          <FlatListView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              local:MvxItemTemplate="@layout/li_condition"
-              local:MvxBind="ItemsSource Rule.Conditions"
-              android:id="@+id/conditionsListView"
-              android:scrollbars="none"
-              android:layout_margin="3dp" />
-          <Autobot.Droid.Widgets.ThemeButton
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:clickable="true"
-              android:background="@color/condition"
-              android:elevation="3dp"
-              android:text="Add Condition"
-              local:MvxBind="Click AddConditionCommand; Visible IsInEditMode"
-              android:layout_margin="3dp" />
-        </LinearLayout>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:src="@drawable/arrow"
-            android:layout_margin="10dp"
-            android:layout_gravity="center"
-            local:MvxBind="Visible ShowConditionsArrow" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp">
-          <FlatListView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              local:MvxItemTemplate="@layout/li_action"
-              local:MvxBind="ItemsSource Rule.Actions"
-              android:id="@+id/actionsListView"
-              android:scrollbars="none"
-              android:layout_weight="1"
-              android:layout_margin="3dp" />
-          <Autobot.Droid.Widgets.ThemeButton
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:clickable="true"
-              android:elevation="3dp"
-              android:text="Add Action"
-              android:background="@color/action"
-              local:MvxBind="Click AddActionCommand; Visible IsInEditMode"
-              android:layout_margin="3dp" />
-        </LinearLayout>
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/space1" />
-      </LinearLayout>
-    </ScrollView>
-  </FrameLayout>
+            android:layout_height="match_parent"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:scrollbarStyle="outsideOverlay"
+            android:fillViewport="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/space1" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp">
+                    <FlatListView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        local:MvxItemTemplate="@layout/li_trigger"
+                        local:MvxBind="ItemsSource Rule.AllTriggers; ItemClick SetTriggerCommand"
+                        android:id="@+id/triggersListView"
+                        android:scrollbars="none"
+                        android:layout_margin="3dp" />
+                    <Autobot.Droid.Widgets.ThemeButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:text="Set trigger"
+                        android:background="@color/trigger"
+                        android:elevation="3dp"
+                        local:MvxBind="Click SetTriggerCommand; Visible IsInEditMode"
+                        android:id="@+id/selectTriggerBtn"
+                        android:layout_margin="3dp" />
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:src="@drawable/arrow"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:orientation="vertical">
+                    <FlatListView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        local:MvxItemTemplate="@layout/li_condition"
+                        local:MvxBind="ItemsSource Rule.Conditions"
+                        android:id="@+id/conditionsListView"
+                        android:scrollbars="none"
+                        android:layout_margin="3dp" />
+                    <Autobot.Droid.Widgets.ThemeButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:background="@color/condition"
+                        android:elevation="3dp"
+                        android:text="Add Condition"
+                        local:MvxBind="Click AddConditionCommand; Visible IsInEditMode"
+                        android:layout_margin="3dp" />
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:src="@drawable/arrow"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    local:MvxBind="Visible ShowConditionsArrow" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp">
+                    <FlatListView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        local:MvxItemTemplate="@layout/li_action"
+                        local:MvxBind="ItemsSource Rule.Actions"
+                        android:id="@+id/actionsListView"
+                        android:scrollbars="none"
+                        android:layout_weight="1"
+                        android:layout_margin="3dp" />
+                    <Autobot.Droid.Widgets.ThemeButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:elevation="3dp"
+                        android:text="Add Action"
+                        android:background="@color/action"
+                        local:MvxBind="Click AddActionCommand; Visible IsInEditMode"
+                        android:layout_margin="3dp" />
+                </LinearLayout>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/space1" />
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
 </LinearLayout>

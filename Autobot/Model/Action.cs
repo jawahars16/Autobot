@@ -11,6 +11,9 @@ namespace Autobot.Model
 {
     public class Action : ISelectable
     {
+        [PrimaryKey]
+        public string PrimaryKey { get; set; }
+
         public Action()
         {
             // Don't kill me. I serve purpose for SQLite.
@@ -69,7 +72,8 @@ namespace Autobot.Model
 
         public async Task SaveAsync(Rule rule)
         {
-            Rule = rule.Id;
+            PrimaryKey = Guid.NewGuid().ToString();
+            Rule = rule.PrimaryKey;
             MethodName = Method.Name;
             TypeName = Type.AssemblyQualifiedName;
             ParameterList = JsonConvert.SerializeObject(Parameters);

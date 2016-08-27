@@ -1,3 +1,4 @@
+using Android.App;
 using Android.Widget;
 using Autobot.Attributes;
 
@@ -10,13 +11,13 @@ namespace Autobot.Droid.Infrastructure.Actions
         [Action(Title = "Show push notification")]
         public void ShowPushNotification()
         {
-            Toast.MakeText(Main.CurrentContext, "Showing push notification", ToastLength.Long).Show();
+            Toast.MakeText(Application.Context, "Showing push notification", ToastLength.Long).Show();
         }
 
         [Action(Title = "Show toast message")]
         public void ShowToast()
         {
-            Toast.MakeText(Main.CurrentContext, "Toast message", ToastLength.Long).Show();
+            Toast.MakeText(Application.Context, "Toast message", ToastLength.Long).Show();
         }
     }
 }

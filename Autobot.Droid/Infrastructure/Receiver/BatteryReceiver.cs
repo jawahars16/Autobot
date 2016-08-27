@@ -14,8 +14,6 @@ namespace Autobot.Droid.Infrastructure.Receiver
     {
         public async override void OnReceive(Context context, Intent intent)
         {
-            Main.CurrentContext = context;
-
             List<Rule> rules = await Database.Default.GetRulesAsync(intent.Action);
             await Task.WhenAll(rules.Select(rule => rule.Run()));
         }
