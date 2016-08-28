@@ -11,17 +11,15 @@ namespace Autobot.Model
 {
     public class Action : ISelectable
     {
-        [PrimaryKey]
-        public string PrimaryKey { get; set; }
-
         public Action()
         {
             // Don't kill me. I serve purpose for SQLite.
         }
 
-        private Action(string title, Type type, MethodInfo method, params object[] parameters)
+        private Action(string title, int icon, Type type, MethodInfo method, params object[] parameters)
         {
             Title = title;
+            Icon = icon;
             Type = type;
             Method = method;
             Parameters = parameters;
@@ -29,13 +27,16 @@ namespace Autobot.Model
 
         #region Serializable
 
+        [PrimaryKey]
+        public string Id { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public int Icon { get; set; }
         public string MethodName { get; set; }
         public string ParameterList { get; set; }
         public string Rule { get; set; }
-        public string Title { get; set; }
         public string TypeName { get; set; }
+        public string Tag { get; set; }
 
         #endregion Serializable
 
@@ -48,14 +49,14 @@ namespace Autobot.Model
         [Ignore]
         public Type Type { get; set; }
 
-        public static Action Create(string title, Type type, MethodInfo method, params object[] parameters)
+        public static Action Create(string title,int icon, Type type, MethodInfo method, params object[] parameters)
         {
-            return new Action(title, type, method, parameters);
+            return new Action(title, icon, type, method, parameters);
         }
 
-        public static Action Create(string title, Type type)
+        public static Action Create(string title, int icon, Type type)
         {
-            return new Action(title, type, null, null);
+            return new Action(title, icon, type, null, null);
         }
 
         public void Fire()
@@ -72,8 +73,8 @@ namespace Autobot.Model
 
         public async Task SaveAsync(Rule rule)
         {
-            PrimaryKey = Guid.NewGuid().ToString();
-            Rule = rule.PrimaryKey;
+            Id = Guid.NewGuid().ToString();
+            Rule = rule.Id;
             MethodName = Method.Name;
             TypeName = Type.AssemblyQualifiedName;
             ParameterList = JsonConvert.SerializeObject(Parameters);

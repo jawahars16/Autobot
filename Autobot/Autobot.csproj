@@ -45,9 +45,6 @@
     <Compile Include="Common\Container.cs" />
     <Compile Include="Common\Database.cs" />
     <Compile Include="Common\Extensions.cs" />
-    <Compile Include="Converters\IsEmptyValueConverter.cs" />
-    <Compile Include="Converters\IsNotNullValueConverter.cs" />
-    <Compile Include="Converters\IsNullValueConverter.cs" />
     <Compile Include="Infrastructure\Triggers\TimeTrigger.cs" />
     <Compile Include="Model\Condition.cs" />
     <Compile Include="Model\CustomTime.cs" />

@@ -27,7 +27,7 @@ namespace Autobot.Droid.Services
                 return types.Select((type) =>
                 {
                     var actionAttribute = type.GetCustomAttribute<ActionAttribute>();
-                    return Model.Action.Create(actionAttribute.Title, type);
+                    return Model.Action.Create(actionAttribute.Title, actionAttribute.Icon, type);
                 }).ToList();
             }
 
@@ -43,7 +43,7 @@ namespace Autobot.Droid.Services
                 return methods.Select((method) =>
                 {
                     var actionAttribute = method.GetCustomAttribute<ActionAttribute>();
-                    return Model.Action.Create(actionAttribute.Title, action.Type, method, null);
+                    return Model.Action.Create(actionAttribute.Title, actionAttribute.Icon, action.Type, method, null);
                 }).ToList();
             }
 

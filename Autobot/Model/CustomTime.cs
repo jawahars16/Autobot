@@ -8,19 +8,15 @@ using System.Threading.Tasks;
 
 namespace Autobot.Model
 {
-    public class CustomTime : ISelectable
+    public class CustomTime : Time
     {
-        public int Icon { get; set; }
-        public string Title { get; set; }
-        public TimeSpan Value { get; set; }
-
         private CustomTime(TimeSpan value)
         {
-            this.Value = value;
+            Value = value;
             Title = $"Every {value.ToHumanReadableString()}";
         }
 
-        public static CustomTime EVERY_1_MINUTE = new CustomTime(TimeSpan.FromMinutes(1));
+        public static CustomTime EVERY_5_SECONDS = new CustomTime(TimeSpan.FromSeconds(5));
         public static CustomTime EVERY_30_MINUTES = new CustomTime(TimeSpan.FromMinutes(30));
         public static CustomTime EVERY_ONE_HOUR = new CustomTime(TimeSpan.FromHours(1));
         public static CustomTime EVERY_4_HOURS = new CustomTime(TimeSpan.FromHours(4));

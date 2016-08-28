@@ -1,24 +1,23 @@
 ﻿using Autobot.Common;
+using Autobot.Infrastructure.Triggers;
 using Autobot.Platform;
 using SQLite;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Autobot.Model
 {
     public class Trigger : ISelectable
     {
-        [PrimaryKey]
-        public string PrimaryKey { get; set; }
-
         public Trigger()
         {
             // Don't kill me. I serve purpose for SQLite.
         }
 
-        public Trigger(string id, string title, int icon, Type type)
+        public Trigger(string tag, string title, int icon, Type type)
         {
-            Id = id;
+            Tag = tag;
             Title = title;
             Icon = icon;
             Type = type;
@@ -31,10 +30,10 @@ namespace Autobot.Model
             Type = type;
         }
 
-        private Trigger(string id, string title)
+        private Trigger(string tag, string title)
         {
             Title = title;
-            Id = id;
+            Tag = tag;
         }
 
         private Trigger(string title, Type type)
@@ -45,11 +44,16 @@ namespace Autobot.Model
 
         #region Serializable
 
+        [PrimaryKey]
+        public string Id { get; set; }
+        public string Title { get; set; }
+        public string Tag { get; set; }
         public string Description { get; set; }
         public int Icon { get; set; }
-        public string Id { get; set; }
         public string Rule { get; set; }
-        public string Title { get; set; }
+        public long TriggerDelay { get; set; } = -1;
+        public long TriggerInterval { get; set; } = -1;
+
         #endregion Serializable
 
         [Ignore]
@@ -57,9 +61,12 @@ namespace Autobot.Model
         {
             get
             {
-                return Id != null && Id.StartsWith(Constants.TIME_TRIGGER);
+                return TriggerInterval > 0;
             }
         }
+
+        [Ignore]
+        public TimeSpan TriggerTime { get; set; }
 
         [Ignore]
         public Type Type { get; set; }
@@ -76,8 +83,23 @@ namespace Autobot.Model
 
         public async Task SaveAsync(Rule rule)
         {
-            PrimaryKey = Guid.NewGuid().ToString();
-            Rule = rule.PrimaryKey;
+            if (Tag == TimeTrigger.Default.Custom)
+            {
+                TriggerDelay = (long)TriggerTime.TotalMilliseconds;
+                TriggerInterval = (long)TriggerTime.TotalMilliseconds;
+            }
+            else if (Tag == TimeTrigger.Default.EveryWeek)
+            {
+
+            }
+            else if (Tag == TimeTrigger.Default.EveryDay)
+            {
+
+            }
+
+            Tag = $"{Constants.TIME_TRIGGER}_{Tag}_{TriggerTime.ToString()}";
+            Id = Guid.NewGuid().ToString();
+            Rule = rule.Id;
 
             await Database.Default.SaveAsync(this);
         }

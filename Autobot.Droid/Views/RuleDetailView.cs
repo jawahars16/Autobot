@@ -5,9 +5,6 @@ using Android.Views;
 using Autobot.Droid.Widgets;
 using Autobot.ViewModel;
 using Com.Lilarcor.Cheeseknife;
-using MvvmCross.Droid.Views;
-using MvvmCross.Droid.Support.V4;
-using Android.Gms.Maps;
 using Android.Support.V7.Widget;
 using MvvmCross.Droid.Support.V7.AppCompat;
 

@@ -9,7 +9,7 @@ namespace Autobot.Services
 {
     public interface ISchedulerService
     {
-        void Schedule(Rule rule);
-        void Cancel(Rule rule);
+        void Schedule(int code, string tag, long interval);
+        void Cancel(int code, string tag);
     }
 }

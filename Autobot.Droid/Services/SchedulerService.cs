@@ -21,7 +21,8 @@ namespace Autobot.Droid.Services
     public class SchedulerService : ISchedulerService
     {
         public const string SCHEDULE_TIME = "SCHEDULE_TIME";
-        public const string RULE_ID = "RULE_ID";
+        public const string RULE_TAG = "RULE_TAG";
+        public const string ALARM_TRIGGER = "ALARM_TRIGGER";
 
         private AlarmManager manager;
 
@@ -37,36 +38,35 @@ namespace Autobot.Droid.Services
             }
         }
 
-        public void Schedule(Rule rule)
+        public void Schedule(int code, string tag, long interval)
         {
-            string timeSpanStr = rule.Trigger.Id.Replace(Constants.TIME_TRIGGER,"");
-            TimeSpan time = TimeSpan.Parse(timeSpanStr);
+            Intent intent = new Intent(ALARM_TRIGGER);
+            intent.PutExtra(RULE_TAG, tag);
+
+            PendingIntent pendingIntent = PendingIntent.GetBroadcast(
+                Application.Context,
+                code,
+                intent,
+                PendingIntentFlags.UpdateCurrent);
 
             AlarmManager.Set(
                 AlarmType.ElapsedRealtimeWakeup,
-                (long)time.TotalMilliseconds, 
-                GetPendingIntent(time));
+                SystemClock.ElapsedRealtime() + interval,
+                pendingIntent);
         }
 
-        public void Cancel(Rule rule)
+        public void Cancel(int code, string tag)
         {
-            string timeSpanStr = rule.Trigger.Id.Replace(Constants.TIME_TRIGGER, "");
-            TimeSpan time = TimeSpan.Parse(timeSpanStr);
+            Intent intent = new Intent(ALARM_TRIGGER);
+            intent.PutExtra(RULE_TAG, tag);
 
-            AlarmManager.Cancel(GetPendingIntent(time));
-        }
-
-        private PendingIntent GetPendingIntent(TimeSpan timespan)
-        {
-            Intent intent = new Intent(Application.Context, typeof(AlarmReceiver));
-            intent.PutExtra(RULE_ID, $"{Constants.TIME_TRIGGER}{timespan.ToString()}");
-            intent.PutExtra(SCHEDULE_TIME, timespan.TotalMilliseconds);
             PendingIntent pendingIntent = PendingIntent.GetBroadcast(
-                Application.Context, 
-                timespan.ToString().GetHashCode(), 
-                intent, 
-                PendingIntentFlags.OneShot);
-            return pendingIntent;
+                Application.Context,
+                code,
+                intent,
+                PendingIntentFlags.NoCreate);
+
+            AlarmManager.Cancel(pendingIntent);
         }
     }
 }

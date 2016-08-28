@@ -27,7 +27,7 @@ namespace Autobot.Viewmodel
         {
             if (rule != null)
             {
-                ShowViewModel<RuleDetailViewModel>(new { Id = rule?.PrimaryKey });
+                ShowViewModel<RuleDetailViewModel>(new { Id = rule?.Id });
             }
             else
             {

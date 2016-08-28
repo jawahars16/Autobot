@@ -33,6 +33,11 @@ namespace Autobot.Model
             return new Time(time, title, -1);
         }
 
+        protected Time()
+        {
+
+        }
+
         public override int GetHashCode()
         {
             return Value.GetHashCode();

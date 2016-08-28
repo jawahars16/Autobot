@@ -6,5 +6,7 @@ namespace Autobot.Attributes
     public class ActionAttribute : Attribute
     {
         public string Title { get; set; }
+
+        public int Icon { get; set; }
     }
 }

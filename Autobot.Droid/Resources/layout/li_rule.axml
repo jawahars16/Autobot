@@ -10,6 +10,51 @@
     android:background="#FFFFFF"
     android:showDividers="middle"
     android:dividerPadding="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            local:MvxBind="DrawableId Image(TriggerIcon)"
+            android:tint="@color/trigger"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp" />
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/right_arrow"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/imageView1" />
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            local:MvxBind="DrawableId Image(ConditionIcon); Visibility NotNull(ConditionIcon)"
+            android:src="@drawable/place_holder"
+            android:tint="@color/condition"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/imageView2" />
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            local:MvxBind="Visibility NotNull(ConditionIcon)"
+            android:src="@drawable/right_arrow"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/imageView1" />
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/place_holder"
+            local:MvxBind="DrawableId Image(ActionIcon)"
+            android:tint="@color/action"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/imageView2" />
+    </LinearLayout>
     <TextView
         local:MvxBind="Text Title"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -43,6 +88,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView3"
-            android:layout_margin="10dp" />
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/space1"
+            android:layout_weight="1" />
+      <android.support.v7.widget.SwitchCompat
+          android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/toggleButton1"
+            local:MvxBind="Checked IsEnabled"
+            android:layout_gravity="right"
+          android:focusable="false"
+android:focusableInTouchMode="false"
+            android:layout_marginRight="5dp" />
     </LinearLayout>
 </LinearLayout>

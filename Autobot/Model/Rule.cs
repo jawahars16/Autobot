@@ -12,6 +12,8 @@ namespace Autobot.Model
     [ImplementPropertyChanged]
     public class Rule
     {
+        private bool isEnabled;
+
         public Rule()
         {
             Conditions = new ObservableCollection<Condition>();
@@ -46,12 +48,21 @@ namespace Autobot.Model
         #region Serializable
 
         [PrimaryKey]
-        public string PrimaryKey { get; set; }
+        public string Id { get; set; }
         public string Description { get; set; }
         public int Icon { get; set; }
-        public bool IsEnabled { get; set; }
-        public string RuleId { get; set; }
+
+        public bool IsEnabled
+        {
+            get { return isEnabled; }
+            set { isEnabled = value; Database.Default.UpdateAsync(this); }
+        }
+
+        public string Tag { get; set; }
         public string Title { get; set; }
+        public int TriggerIcon { get; set; }
+        public int ConditionIcon { get; set; }
+        public int ActionIcon { get; set; }
 
         #endregion Serializable
 
@@ -78,13 +89,17 @@ namespace Autobot.Model
 
         public async Task SaveAsync()
         {
-            RuleId = Trigger.Id;
+            Tag = Trigger.Tag;
             IsEnabled = true;
 
             if (Title == null)
             {
                 Title = Trigger.Title + ", " + Actions?.FirstOrDefault().Title;
             }
+
+            TriggerIcon = Trigger.Icon;
+            ConditionIcon = Conditions == null || !Conditions.Any()? -1: Conditions.FirstOrDefault().Icon;
+            ActionIcon = Actions == null || !Actions.Any() ? -1 : Actions.FirstOrDefault().Icon;
 
             await Database.Default.SaveAsync(this);
             await Trigger.SaveAsync(this);

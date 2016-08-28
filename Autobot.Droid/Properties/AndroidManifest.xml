@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="com.autobot" android:versionCode="1" android:versionName="1.0">
-	<uses-sdk android:minSdkVersion="10" android:targetSdkVersion="23" />
+	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="23" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 	<uses-permission android:name="android.permission.BLUETOOTH" />
@@ -8,6 +8,7 @@
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
 	<uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 	<application android:label="Autobot" android:icon="@drawable/Icon">
 		<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBHRb3lcQVEO-S8KHZM7a0nyddv6GQIZ3g" />
 		<uses-library android:name="com.google.android.maps" />

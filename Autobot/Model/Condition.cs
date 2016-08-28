@@ -34,13 +34,16 @@ namespace Autobot.Model
 
         #region Serializable
 
+        [PrimaryKey]
+        public string Id { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public int Icon { get; set; }
         public string MethodName { get; set; }
         public string ParameterList { get; set; }
         public string Rule { get; set; }
-        public string Title { get; set; }
         public string TypeName { get; set; }
+        public string Tag { get; set; }
 
         #endregion Serializable
 
@@ -71,10 +74,12 @@ namespace Autobot.Model
 
         public async Task SaveAsync(Rule rule)
         {
+            Id = Guid.NewGuid().ToString();
+
             TypeName = Type.AssemblyQualifiedName;
             MethodName = Method.Name;
             ParameterList = JsonConvert.SerializeObject(Parameters);
-            Rule = rule.PrimaryKey;
+            Rule = rule.Id;
 
             await Database.Default.SaveAsync(this);
         }

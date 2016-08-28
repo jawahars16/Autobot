@@ -61,12 +61,6 @@
     <DebugSymbols>False</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AndroidSwitchBackport">
-      <HintPath>..\Components\betterpickers-1.6.0.1\lib\android\AndroidSwitchBackport.dll</HintPath>
-    </Reference>
-    <Reference Include="BetterPickers">
-      <HintPath>..\Components\betterpickers-1.6.0.1\lib\android\BetterPickers.dll</HintPath>
-    </Reference>
     <Reference Include="Cheeseknife">
       <HintPath>..\Components\cheeseknife-1.0\lib\android\Cheeseknife.dll</HintPath>
     </Reference>
@@ -182,6 +176,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\ImageValueConverter.cs" />
+    <Compile Include="Converters\NotNullValueConverter.cs" />
     <Compile Include="Fragments\BindableFragment.cs" />
     <Compile Include="Infrastructure\Receiver\AlarmReceiver.cs" />
     <Compile Include="Infrastructure\Receiver\BluetoothReceiver.cs" />
@@ -286,10 +282,6 @@
     <AndroidResource Include="Resources\values\style.xml" />
   </ItemGroup>
   <ItemGroup>
-    <XamarinComponentReference Include="betterpickers">
-      <Visible>False</Visible>
-      <Version>1.6.0.1</Version>
-    </XamarinComponentReference>
     <XamarinComponentReference Include="cheeseknife">
       <Visible>False</Visible>
       <Version>1.0</Version>
@@ -297,10 +289,6 @@
     <XamarinComponentReference Include="fab">
       <Visible>False</Visible>
       <Version>1.3.0</Version>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="googleplayservices-maps">
-      <Visible>False</Visible>
-      <Version>29.0.0.2</Version>
     </XamarinComponentReference>
     <XamarinComponentReference Include="xamandroidsupportv7cardview">
       <Visible>False</Visible>
@@ -487,11 +475,6 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_arrow_back_white_24dp.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\multi_selectable_checkbox.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\check.png" />
   </ItemGroup>
   <ItemGroup>
@@ -502,6 +485,18 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\right_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\trigger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\notification.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\menu.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets')" />

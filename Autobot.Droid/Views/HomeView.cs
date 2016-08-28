@@ -27,7 +27,9 @@ namespace Autobot.Droid.Views
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_Home);
             Cheeseknife.Inject(this);
+            toolbar.SetNavigationIcon(Resource.Drawable.menu);
             SetSupportActionBar(toolbar);
+
         }
 
         protected override void OnResume()

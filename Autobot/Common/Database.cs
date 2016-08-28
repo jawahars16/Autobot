@@ -27,17 +27,17 @@ namespace Autobot.Common
 
         public async Task<Rule> GetRuleAsync(string id)
         {
-            return await connection.Table<Rule>().Where(rule => rule.PrimaryKey == id).FirstOrDefaultAsync();
+            return await connection.Table<Rule>().Where(rule => rule.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task<List<Rule>> GetRulesAsync(string id)
+        public async Task<List<Rule>> GetRulesAsync(string tag)
         {
-            return await connection.Table<Rule>().Where(rule => rule.RuleId == id).ToListAsync();
+            return await connection.Table<Rule>().Where(rule => rule.Tag == tag).ToListAsync();
         }
 
         public async Task<List<Rule>> GetRulesAsync(params string[] ids)
         {
-            return await connection.Table<Rule>().Where(rule => ids.Any(id => id == rule.PrimaryKey)).ToListAsync();
+            return await connection.Table<Rule>().Where(rule => ids.Any(id => id == rule.Id)).ToListAsync();
         }
 
         public async Task<List<Rule>> GetRulesAsync()
@@ -57,6 +57,11 @@ namespace Autobot.Common
             );
         }
 
+        public async Task UpdateAsync(object entity)
+        {
+            await connection.UpdateAsync(entity);
+        }
+
         public async Task DeleteAsync(object entity)
         {
             await connection.DeleteAsync(entity);
@@ -64,9 +69,9 @@ namespace Autobot.Common
 
         public async Task LoadAsync(Rule rule)
         {
-            Trigger trigger = await connection.Table<Trigger>().Where(tri => tri.Rule == rule.PrimaryKey).FirstOrDefaultAsync();
-            List<Condition> conditions = await connection.Table<Condition>().Where(condition => condition.Rule == rule.PrimaryKey).ToListAsync();
-            List<Action> actions = await connection.Table<Action>().Where(action => action.Rule == rule.PrimaryKey).ToListAsync();
+            Trigger trigger = await connection.Table<Trigger>().Where(tri => tri.Rule == rule.Id).FirstOrDefaultAsync();
+            List<Condition> conditions = await connection.Table<Condition>().Where(condition => condition.Rule == rule.Id).ToListAsync();
+            List<Action> actions = await connection.Table<Action>().Where(action => action.Rule == rule.Id).ToListAsync();
 
             rule.Trigger = trigger;
             rule.Conditions = new ObservableCollection<Condition>(conditions);

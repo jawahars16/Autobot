@@ -39,7 +39,7 @@ namespace Autobot.ViewModel
             await Rule.Delete();
             if (Rule.Trigger.IsTimeTrigger)
             {
-                schedulerService.Cancel(Rule);
+                schedulerService.Cancel(Rule.Id.GetHashCode(), Rule.Tag);
             }
             Close(this);
         }
@@ -62,16 +62,16 @@ namespace Autobot.ViewModel
 
         public async Task HandleTimeTrigger(Trigger trigger)
         {
-            if (TimeTrigger.Default.EveryDay == trigger.Id)
+            Time time = null;
+            if (TimeTrigger.Default.EveryDay == trigger.Tag)
             {
-                Time time = await presentationService.PromptTime();
+                time = await presentationService.PromptTime();
                 trigger.Title = $"Every {time.Title}";
-                trigger.Id = $"{Constants.TIME_TRIGGER}{time.Value.ToString()}";
             }
-            else if (TimeTrigger.Default.EveryWeek == trigger.Id)
+            else if (TimeTrigger.Default.EveryWeek == trigger.Tag)
             {
                 IEnumerable<WeekDay> days = await presentationService.PromptWeekDays();
-                Time time = await presentationService.PromptTime();
+                time = await presentationService.PromptTime();
 
                 if (days.Count() == 5 && !days.Contains(WeekDay.Saturday) && !days.Contains(WeekDay.Sunday))
                 {
@@ -100,13 +100,12 @@ namespace Autobot.ViewModel
                         trigger.Title += $" {time.Title}";
                     }
                 }
-                trigger.Id = $"{Constants.TIME_TRIGGER}{time.Value.ToString()}";
             }
-            else if (TimeTrigger.Default.Custom == trigger.Id)
+            else if (TimeTrigger.Default.Custom == trigger.Tag)
             {
                 IEnumerable<CustomTime> timeList = new List<CustomTime>
                 {
-                    CustomTime.EVERY_1_MINUTE,
+                    CustomTime.EVERY_5_SECONDS,
                     CustomTime.EVERY_30_MINUTES,
                     CustomTime.EVERY_4_HOURS,
                     CustomTime.EVERY_8_HOURS,
@@ -115,9 +114,13 @@ namespace Autobot.ViewModel
                     CustomTime.EVERY_20_DAYS
                 };
 
-                CustomTime time = (CustomTime)await presentationService.SelectFromListAsync(timeList);
+                time = (CustomTime)await presentationService.SelectFromListAsync(timeList);
                 trigger.Title = time.Title;
-                trigger.Id = $"{Constants.TIME_TRIGGER}{time.Value.ToString()}";
+            }
+
+            if (time != null)
+            {
+                trigger.TriggerTime = time.Value;
             }
         }
 
@@ -172,15 +175,15 @@ namespace Autobot.ViewModel
                 return;
             }
 
-            Rule.PrimaryKey = Guid.NewGuid().ToString();
-
-            if (Rule.Trigger.IsTimeTrigger)
-            {
-                schedulerService.Schedule(Rule);
-            }
+            Rule.Id = Guid.NewGuid().ToString();
 
             await Rule.SaveAsync();
             Close(this);
+
+            if (Rule.Trigger.IsTimeTrigger)
+            {
+                schedulerService.Schedule(Rule.Id.GetHashCode(), Rule.Tag, Rule.Trigger.TriggerDelay);
+            }
         }
 
         private async void OnSetTrigger()
