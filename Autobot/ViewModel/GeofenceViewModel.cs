@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Autobot.ViewModel
 {
-    public class GeofenceListViewModel : MvxViewModel
+    public class GeofenceViewModel : MvxViewModel
     {
         private readonly IPresentationService presentationService;
 
         public IMvxCommand GeofenceDetailCommand { get; set; }
 
-        public GeofenceListViewModel(IPresentationService presentationService)
+        public GeofenceViewModel(IPresentationService presentationService)
         {
             this.presentationService = presentationService;
             GeofenceDetailCommand = new MvxCommand<Geofence>(geo => OnGeofenceDetail(geo));
@@ -23,7 +23,7 @@ namespace Autobot.ViewModel
 
         private void OnGeofenceDetail(Geofence geofence)
         {
-            presentationService.ShowDialog<GeofenceDetailViewModel>();
+            ShowViewModel<GeofenceDetailViewModel>();
         }
     }
 }

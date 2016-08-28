@@ -1991,59 +1991,65 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f02008f
 			public const int notification = 2130837647;
 			
-			// aapt resource value: 0x7f0200a1
-			public const int notification_template_icon_bg = 2130837665;
+			// aapt resource value: 0x7f0200a3
+			public const int notification_template_icon_bg = 2130837667;
 			
 			// aapt resource value: 0x7f020090
 			public const int phone = 2130837648;
 			
 			// aapt resource value: 0x7f020091
-			public const int place_holder = 2130837649;
+			public const int pin = 2130837649;
 			
 			// aapt resource value: 0x7f020092
-			public const int power_connected = 2130837650;
+			public const int place_holder = 2130837650;
 			
 			// aapt resource value: 0x7f020093
-			public const int power_not_charging = 2130837651;
+			public const int power_connected = 2130837651;
 			
 			// aapt resource value: 0x7f020094
-			public const int power_usb = 2130837652;
+			public const int power_not_charging = 2130837652;
 			
 			// aapt resource value: 0x7f020095
-			public const int power_wireless = 2130837653;
+			public const int power_usb = 2130837653;
 			
 			// aapt resource value: 0x7f020096
-			public const int right_arrow = 2130837654;
+			public const int power_wireless = 2130837654;
 			
 			// aapt resource value: 0x7f020097
-			public const int screen_off = 2130837655;
+			public const int radio_button_selector = 2130837655;
 			
 			// aapt resource value: 0x7f020098
-			public const int screen_on = 2130837656;
+			public const int right_arrow = 2130837656;
 			
 			// aapt resource value: 0x7f020099
-			public const int square = 2130837657;
+			public const int screen_off = 2130837657;
 			
 			// aapt resource value: 0x7f02009a
-			public const int stitch = 2130837658;
+			public const int screen_on = 2130837658;
 			
 			// aapt resource value: 0x7f02009b
-			public const int system = 2130837659;
+			public const int square = 2130837659;
 			
 			// aapt resource value: 0x7f02009c
-			public const int time = 2130837660;
+			public const int stitch = 2130837660;
 			
 			// aapt resource value: 0x7f02009d
-			public const int trigger = 2130837661;
+			public const int system = 2130837661;
 			
 			// aapt resource value: 0x7f02009e
-			public const int wifi = 2130837662;
+			public const int time = 2130837662;
 			
 			// aapt resource value: 0x7f02009f
-			public const int wifi_disabled = 2130837663;
+			public const int trigger = 2130837663;
 			
 			// aapt resource value: 0x7f0200a0
-			public const int wifi_enabled = 2130837664;
+			public const int wifi = 2130837664;
+			
+			// aapt resource value: 0x7f0200a1
+			public const int wifi_disabled = 2130837665;
+			
+			// aapt resource value: 0x7f0200a2
+			public const int wifi_enabled = 2130837666;
 			
 			static Drawable()
 			{
@@ -2064,8 +2070,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b000a
 			public const int MvxBindingTagUnique = 2131427338;
 			
-			// aapt resource value: 0x7f0b0077
-			public const int action0 = 2131427447;
+			// aapt resource value: 0x7f0b007b
+			public const int action0 = 2131427451;
 			
 			// aapt resource value: 0x7f0b004f
 			public const int action_bar = 2131427407;
@@ -2091,8 +2097,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b0050
 			public const int action_context_bar = 2131427408;
 			
-			// aapt resource value: 0x7f0b007b
-			public const int action_divider = 2131427451;
+			// aapt resource value: 0x7f0b007f
+			public const int action_divider = 2131427455;
 			
 			// aapt resource value: 0x7f0b0002
 			public const int action_menu_divider = 2131427330;
@@ -2109,8 +2115,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b0031
 			public const int action_mode_close_button = 2131427377;
 			
-			// aapt resource value: 0x7f0b006c
-			public const int actionsListView = 2131427436;
+			// aapt resource value: 0x7f0b006f
+			public const int actionsListView = 2131427439;
 			
 			// aapt resource value: 0x7f0b0032
 			public const int activity_chooser_view_content = 2131427378;
@@ -2133,32 +2139,32 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b0026
 			public const int beginning = 2131427366;
 			
-			// aapt resource value: 0x7f0b0061
-			public const int button1 = 2131427425;
+			// aapt resource value: 0x7f0b0068
+			public const int button1 = 2131427432;
 			
-			// aapt resource value: 0x7f0b0066
-			public const int button2 = 2131427430;
+			// aapt resource value: 0x7f0b0069
+			public const int button2 = 2131427433;
 			
-			// aapt resource value: 0x7f0b0067
-			public const int button3 = 2131427431;
+			// aapt resource value: 0x7f0b006a
+			public const int button3 = 2131427434;
 			
 			// aapt resource value: 0x7f0b0039
 			public const int buttonPanel = 2131427385;
 			
-			// aapt resource value: 0x7f0b0078
-			public const int cancel_action = 2131427448;
+			// aapt resource value: 0x7f0b007c
+			public const int cancel_action = 2131427452;
 			
 			// aapt resource value: 0x7f0b0047
 			public const int checkbox = 2131427399;
 			
-			// aapt resource value: 0x7f0b007e
-			public const int chronometer = 2131427454;
+			// aapt resource value: 0x7f0b0082
+			public const int chronometer = 2131427458;
 			
 			// aapt resource value: 0x7f0b002a
 			public const int collapseActionView = 2131427370;
 			
-			// aapt resource value: 0x7f0b006b
-			public const int conditionsListView = 2131427435;
+			// aapt resource value: 0x7f0b006e
+			public const int conditionsListView = 2131427438;
 			
 			// aapt resource value: 0x7f0b003f
 			public const int contentPanel = 2131427391;
@@ -2178,17 +2184,17 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b0035
 			public const int default_activity_button = 2131427381;
 			
-			// aapt resource value: 0x7f0b0085
-			public const int delete = 2131427461;
+			// aapt resource value: 0x7f0b0089
+			public const int delete = 2131427465;
 			
 			// aapt resource value: 0x7f0b001a
 			public const int disableHome = 2131427354;
 			
-			// aapt resource value: 0x7f0b006f
-			public const int done = 2131427439;
+			// aapt resource value: 0x7f0b0072
+			public const int done = 2131427442;
 			
-			// aapt resource value: 0x7f0b005f
-			public const int editText1 = 2131427423;
+			// aapt resource value: 0x7f0b0066
+			public const int editText1 = 2131427430;
 			
 			// aapt resource value: 0x7f0b0051
 			public const int edit_query = 2131427409;
@@ -2196,8 +2202,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b0027
 			public const int end = 2131427367;
 			
-			// aapt resource value: 0x7f0b0083
-			public const int end_padder = 2131427459;
+			// aapt resource value: 0x7f0b0087
+			public const int end_padder = 2131427463;
 			
 			// aapt resource value: 0x7f0b0033
 			public const int expand_activities_button = 2131427379;
@@ -2205,8 +2211,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b0046
 			public const int expanded_menu = 2131427398;
 			
-			// aapt resource value: 0x7f0b0062
-			public const int fab = 2131427426;
+			// aapt resource value: 0x7f0b0063
+			public const int fab = 2131427427;
 			
 			// aapt resource value: 0x7f0b0004
 			public const int home = 2131427332;
@@ -2229,29 +2235,29 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b0034
 			public const int image = 2131427380;
 			
-			// aapt resource value: 0x7f0b0071
-			public const int imageView1 = 2131427441;
+			// aapt resource value: 0x7f0b0075
+			public const int imageView1 = 2131427445;
 			
-			// aapt resource value: 0x7f0b0072
-			public const int imageView2 = 2131427442;
+			// aapt resource value: 0x7f0b0076
+			public const int imageView2 = 2131427446;
 			
-			// aapt resource value: 0x7f0b0082
-			public const int info = 2131427458;
+			// aapt resource value: 0x7f0b0086
+			public const int info = 2131427462;
 			
 			// aapt resource value: 0x7f0b0017
 			public const int light = 2131427351;
 			
-			// aapt resource value: 0x7f0b007c
-			public const int line1 = 2131427452;
-			
 			// aapt resource value: 0x7f0b0080
-			public const int line3 = 2131427456;
+			public const int line1 = 2131427456;
 			
-			// aapt resource value: 0x7f0b0070
-			public const int linearLayout1 = 2131427440;
+			// aapt resource value: 0x7f0b0084
+			public const int line3 = 2131427460;
 			
-			// aapt resource value: 0x7f0b0065
-			public const int linearLayout2 = 2131427429;
+			// aapt resource value: 0x7f0b0074
+			public const int linearLayout1 = 2131427444;
+			
+			// aapt resource value: 0x7f0b0067
+			public const int linearLayout2 = 2131427431;
 			
 			// aapt resource value: 0x7f0b0018
 			public const int listMode = 2131427352;
@@ -2262,8 +2268,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b005e
 			public const int map = 2131427422;
 			
-			// aapt resource value: 0x7f0b007a
-			public const int media_actions = 2131427450;
+			// aapt resource value: 0x7f0b007e
+			public const int media_actions = 2131427454;
 			
 			// aapt resource value: 0x7f0b0028
 			public const int middle = 2131427368;
@@ -2292,11 +2298,23 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b0006
 			public const int progress_horizontal = 2131427334;
 			
-			// aapt resource value: 0x7f0b006e
-			public const int promptList = 2131427438;
+			// aapt resource value: 0x7f0b0071
+			public const int promptList = 2131427441;
 			
 			// aapt resource value: 0x7f0b0049
 			public const int radio = 2131427401;
+			
+			// aapt resource value: 0x7f0b0060
+			public const int radioButton1 = 2131427424;
+			
+			// aapt resource value: 0x7f0b0061
+			public const int radioButton2 = 2131427425;
+			
+			// aapt resource value: 0x7f0b0062
+			public const int radioButton3 = 2131427426;
+			
+			// aapt resource value: 0x7f0b005f
+			public const int radioGroup1 = 2131427423;
 			
 			// aapt resource value: 0x7f0b000e
 			public const int satellite = 2131427342;
@@ -2343,17 +2361,17 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b005c
 			public const int search_voice_btn = 2131427420;
 			
-			// aapt resource value: 0x7f0b0060
-			public const int seekBar1 = 2131427424;
+			// aapt resource value: 0x7f0b0073
+			public const int seekBar1 = 2131427443;
 			
-			// aapt resource value: 0x7f0b006a
-			public const int selectTriggerBtn = 2131427434;
+			// aapt resource value: 0x7f0b006d
+			public const int selectTriggerBtn = 2131427437;
 			
 			// aapt resource value: 0x7f0b005d
 			public const int select_dialog_listview = 2131427421;
 			
-			// aapt resource value: 0x7f0b0084
-			public const int share = 2131427460;
+			// aapt resource value: 0x7f0b0088
+			public const int share = 2131427464;
 			
 			// aapt resource value: 0x7f0b0048
 			public const int shortcut = 2131427400;
@@ -2367,8 +2385,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b001e
 			public const int showTitle = 2131427358;
 			
-			// aapt resource value: 0x7f0b0068
-			public const int space1 = 2131427432;
+			// aapt resource value: 0x7f0b006b
+			public const int space1 = 2131427435;
 			
 			// aapt resource value: 0x7f0b003a
 			public const int spacer = 2131427386;
@@ -2388,8 +2406,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b0013
 			public const int standard = 2131427347;
 			
-			// aapt resource value: 0x7f0b0079
-			public const int status_bar_latest_event_content = 2131427449;
+			// aapt resource value: 0x7f0b007d
+			public const int status_bar_latest_event_content = 2131427453;
 			
 			// aapt resource value: 0x7f0b005a
 			public const int submit_area = 2131427418;
@@ -2400,29 +2418,29 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b000f
 			public const int terrain = 2131427343;
 			
-			// aapt resource value: 0x7f0b0081
-			public const int text = 2131427457;
+			// aapt resource value: 0x7f0b0085
+			public const int text = 2131427461;
 			
-			// aapt resource value: 0x7f0b007f
-			public const int text2 = 2131427455;
+			// aapt resource value: 0x7f0b0083
+			public const int text2 = 2131427459;
 			
 			// aapt resource value: 0x7f0b0042
 			public const int textSpacerNoButtons = 2131427394;
 			
-			// aapt resource value: 0x7f0b006d
-			public const int textView = 2131427437;
+			// aapt resource value: 0x7f0b0070
+			public const int textView = 2131427440;
 			
-			// aapt resource value: 0x7f0b0064
-			public const int textView1 = 2131427428;
+			// aapt resource value: 0x7f0b0065
+			public const int textView1 = 2131427429;
 			
-			// aapt resource value: 0x7f0b0074
-			public const int textView2 = 2131427444;
+			// aapt resource value: 0x7f0b0078
+			public const int textView2 = 2131427448;
 			
-			// aapt resource value: 0x7f0b0075
-			public const int textView3 = 2131427445;
+			// aapt resource value: 0x7f0b0079
+			public const int textView3 = 2131427449;
 			
-			// aapt resource value: 0x7f0b007d
-			public const int time = 2131427453;
+			// aapt resource value: 0x7f0b0081
+			public const int time = 2131427457;
 			
 			// aapt resource value: 0x7f0b0038
 			public const int title = 2131427384;
@@ -2430,17 +2448,17 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b003d
 			public const int title_template = 2131427389;
 			
-			// aapt resource value: 0x7f0b0076
-			public const int toggleButton1 = 2131427446;
+			// aapt resource value: 0x7f0b007a
+			public const int toggleButton1 = 2131427450;
 			
-			// aapt resource value: 0x7f0b0063
-			public const int toolbar = 2131427427;
+			// aapt resource value: 0x7f0b0064
+			public const int toolbar = 2131427428;
 			
 			// aapt resource value: 0x7f0b003c
 			public const int topPanel = 2131427388;
 			
-			// aapt resource value: 0x7f0b0069
-			public const int triggersListView = 2131427433;
+			// aapt resource value: 0x7f0b006c
+			public const int triggersListView = 2131427436;
 			
 			// aapt resource value: 0x7f0b0008
 			public const int up = 2131427336;
@@ -2448,8 +2466,8 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f0b001f
 			public const int useLogo = 2131427359;
 			
-			// aapt resource value: 0x7f0b0073
-			public const int view1 = 2131427443;
+			// aapt resource value: 0x7f0b0077
+			public const int view1 = 2131427447;
 			
 			// aapt resource value: 0x7f0b0014
 			public const int wide = 2131427348;

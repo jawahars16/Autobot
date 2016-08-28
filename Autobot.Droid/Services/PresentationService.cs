@@ -16,6 +16,8 @@ using Android.Support.V4.App;
 using Android.App;
 using Android.OS;
 using System.Linq;
+using Autobot.Viewmodel;
+using Autobot.ViewModel;
 
 namespace Autobot.Droid.Services
 {
@@ -100,7 +102,7 @@ namespace Autobot.Droid.Services
         public async Task<Time> PromptTime()
         {
             var taskCompletionSource = new TaskCompletionSource<Time>();
-            
+
             IEnumerable<ISelectable> options = new List<ISelectable>
             {
                Time.Morning,
@@ -115,8 +117,8 @@ namespace Autobot.Droid.Services
             {
                 ISelectable option = await Prompt.Make(activity, options).ShowAsync();
                 Time time = option as Time;
-                
-                if(time == Time.Custom)
+
+                if (time == Time.Custom)
                 {
                     DateTime now = DateTime.Now;
                     TimePickerDialog dialog = new TimePickerDialog(activity, (s, e) =>
@@ -130,7 +132,7 @@ namespace Autobot.Droid.Services
                 {
                     taskCompletionSource.SetResult(time);
                 }
-                
+
             }
 
             return await taskCompletionSource.Task;
@@ -158,7 +160,26 @@ namespace Autobot.Droid.Services
 
             return null;
         }
-        
+
+        public async Task<NavigationItem> RequestNavigation()
+        {
+            IEnumerable<NavigationItem> options = new List<NavigationItem>
+            {
+                new NavigationItem("My Rules", -1, typeof(HomeViewModel)),
+                new NavigationItem("Geofence", -1, typeof(GeofenceViewModel))
+            };
+
+
+            var activity = Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
+            if (activity != null)
+            {
+                NavigationItem item = (NavigationItem)await Prompt.Make(activity, options).ShowAsync();
+                return item;
+            }
+
+            return null;
+        }
+
         public void ShowDialog<T>()
         {
             string viewModelName = typeof(T).AssemblyQualifiedName;

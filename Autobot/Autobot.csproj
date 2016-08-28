@@ -50,6 +50,7 @@
     <Compile Include="Model\CustomTime.cs" />
     <Compile Include="Model\Date.cs" />
     <Compile Include="Model\Geofence.cs" />
+    <Compile Include="Model\NavigationItem.cs" />
     <Compile Include="Model\Recurrence.cs" />
     <Compile Include="Model\Time.cs" />
     <Compile Include="Model\WeekDay.cs" />
@@ -65,7 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ISchedulerService.cs" />
     <Compile Include="ViewModel\GeofenceDetailViewModel.cs" />
-    <Compile Include="ViewModel\GeofenceListViewModel.cs" />
+    <Compile Include="ViewModel\GeofenceViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\NewScheduleViewModel.cs" />
     <Compile Include="ViewModel\RuleDetailViewModel.cs" />

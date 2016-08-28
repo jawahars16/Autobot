@@ -23,6 +23,7 @@ namespace Autobot.Services
         Time GetDefaultTime();
 
         Date GetDefaultDate();
-        
+
+        Task<NavigationItem> RequestNavigation();
     }
 }

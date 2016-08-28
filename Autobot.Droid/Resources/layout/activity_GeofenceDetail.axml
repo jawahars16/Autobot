@@ -1,30 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:minWidth="25px"
-              android:minHeight="25px"
-              android:padding="10dp">
-  <com.google.android.gms.maps.MapView
-    android:id="@+id/map"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="300dp"/>
-  <EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/editText1"
-    android:layout_marginTop="10dp"
-    android:hint="Title (e.g.: Home, Work, etc.)" />
-  <SeekBar
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/seekBar1"
-    android:layout_marginTop="10dp" />
-  <Button
-    android:text="Save"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/button1"
-    android:layout_marginTop="5dp" />
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <fragment
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.google.android.gms.maps.SupportMapFragment" />
+        <RadioGroup
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioGroup1"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            android:divider="@color/black"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal|bottom"
+            android:background="@drawable/border"
+            android:layout_margin="10dp">
+            <RadioButton
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:button="@null"
+                android:textColor="@drawable/radio_button_selector"
+                android:text="100m"
+                android:id="@+id/radioButton1"
+                android:layout_margin="10dp"
+                android:gravity="center" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/black" />
+            <RadioButton
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:textColor="@drawable/radio_button_selector"
+                android:text="500 m"
+                android:button="@null"
+                android:id="@+id/radioButton2"
+                android:layout_margin="10dp"
+                android:gravity="center" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/black" />
+            <RadioButton
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:textColor="@drawable/radio_button_selector"
+                android:text="1 km"
+                android:button="@null"
+                android:id="@+id/radioButton3"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:layout_gravity="center_vertical" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/black" />
+            <RadioButton
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:textColor="@drawable/radio_button_selector"
+                android:text="5 km"
+                android:button="@null"
+                android:id="@+id/radioButton3"
+                android:layout_margin="10dp"
+                android:gravity="center" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/black" />
+            <RadioButton
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:textColor="@drawable/radio_button_selector"
+                android:text="10 km"
+                android:button="@null"
+                android:id="@+id/radioButton3"
+                android:layout_margin="10dp"
+                android:gravity="center" />
+        </RadioGroup>
+    </FrameLayout>
 </LinearLayout>

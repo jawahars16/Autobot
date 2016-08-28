@@ -15,7 +15,7 @@ using MvvmCross.Droid.Support.V4;
 namespace Autobot.Droid.Views
 {
     [Activity]
-    public class GeofenceListView : MvxFragmentActivity
+    public class GeofenceView : MvxFragmentActivity
     {
         protected override void OnCreate(Bundle bundle)
         {

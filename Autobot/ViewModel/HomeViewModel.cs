@@ -3,19 +3,31 @@ using Autobot.Model;
 using Autobot.ViewModel;
 using MvvmCross.Core.ViewModels;
 using System.Collections.ObjectModel;
+using System;
+using Autobot.Services;
 
 namespace Autobot.Viewmodel
 {
     public class HomeViewModel : MvxViewModel
     {
         private ObservableCollection<Rule> _Rules;
+        private readonly IPresentationService presentationService;
 
-        public HomeViewModel()
+        public HomeViewModel(IPresentationService presentationService)
         {
+            this.presentationService = presentationService;
             RuleDetailCommand = new MvxCommand<Rule>(rule => OnRuleDetail(rule));
+            MenuCommand = new MvxCommand(OnMenu);
+        }
+
+        private async void OnMenu()
+        {
+            var item = await presentationService.RequestNavigation();
+            ShowViewModel(item.Target);
         }
 
         public IMvxCommand RuleDetailCommand { get; set; }
+        public IMvxCommand MenuCommand { get; set; }
 
         public ObservableCollection<Rule> Rules
         {
