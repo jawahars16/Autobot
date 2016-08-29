@@ -192,5 +192,11 @@ namespace Autobot.Droid.Services
             var activity = Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity as MvxFragmentActivity;
             dialogFragment.Show(activity.SupportFragmentManager, "");
         }
+
+        public async Task<string> PromptText(string title, string description)
+        {
+            var activity = Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
+            return await Prompt.Make(activity).ShowAsync(title, description);
+        }
     }
 }

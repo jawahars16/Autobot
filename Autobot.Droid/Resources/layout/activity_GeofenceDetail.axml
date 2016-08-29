@@ -14,12 +14,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             class="com.google.android.gms.maps.SupportMapFragment" />
+        <android.support.v7.widget.Toolbar
+            android:minHeight="?android:attr/actionBarSize"
+            android:background="?android:attr/colorPrimary"
+            android:minWidth="25px"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            local:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar" />
         <RadioGroup
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/radioGroup1"
+            android:id="@+id/availableUnits"
             android:orientation="horizontal"
             android:showDividers="middle"
             android:divider="@color/black"

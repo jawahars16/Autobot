@@ -61,6 +61,7 @@
     <Compile Include="Model\Action.cs" />
     <Compile Include="Model\Trigger.cs" />
     <Compile Include="Model\Rule.cs" />
+    <Compile Include="Services\ILocationService.cs" />
     <Compile Include="Services\IPresentationService.cs" />
     <Compile Include="Platform\IReflection.cs" />
     <Compile Include="Platform\ISelectable.cs" />

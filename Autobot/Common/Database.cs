@@ -53,8 +53,14 @@ namespace Autobot.Common
                 connection.CreateTableAsync<Model.Action>(),
                 connection.CreateTableAsync<Condition>(),
                 connection.CreateTableAsync<Trigger>(),
-                connection.CreateTableAsync<Rule>()
+                connection.CreateTableAsync<Rule>(),
+                connection.CreateTableAsync<Geofence>()
             );
+        }
+
+        public async Task<List<Geofence>> GetGeofenceList()
+        {
+            return await connection.Table<Geofence>().ToListAsync();
         }
 
         public async Task UpdateAsync(object entity)

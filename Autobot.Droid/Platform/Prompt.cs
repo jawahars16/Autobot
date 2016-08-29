@@ -1,4 +1,5 @@
 using Android.App;
+using Android.Views;
 using Android.Widget;
 using Autobot.Droid.Fragments;
 using Autobot.Platform;
@@ -26,12 +27,30 @@ namespace Autobot.Droid.Platform
             return prompt;
         }
 
+        public static Prompt Make(Activity context)
+        {
+            var prompt = new Prompt();
+            prompt.context = context;
+            return prompt;
+        }
+
+        public Task<string> ShowAsync(string title, string description)
+        {
+            var source = new TaskCompletionSource<string>();
+            var dialog = new PromptTextDialogFragment(title, description);
+            dialog.Done += (s, e) =>
+             {
+                 source.SetResult(dialog.Result);
+             };
+            dialog.Show(context.FragmentManager, "");
+            return source.Task;
+        }
+
         public Task<ISelectable> ShowAsync(bool list = true)
         {
             var source = new TaskCompletionSource<ISelectable>();
             var dialog = new PromptListDialogFragment(list, ChoiceMode.Single);
             dialog.Source = items;
-            dialog.Title = title;
             dialog.Click = (item) =>
             {
                 source.SetResult(item);

@@ -25,5 +25,7 @@ namespace Autobot.Services
         Date GetDefaultDate();
 
         Task<NavigationItem> RequestNavigation();
+
+        Task<string> PromptText(string title, string description);
     }
 }

@@ -95,14 +95,14 @@
             android:layout_height="match_parent"
             android:id="@+id/space1"
             android:layout_weight="1" />
-      <android.support.v7.widget.SwitchCompat
-          android:layout_width="wrap_content"
+        <android.support.v7.widget.SwitchCompat
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/toggleButton1"
             local:MvxBind="Checked IsEnabled"
             android:layout_gravity="right"
-          android:focusable="false"
-android:focusableInTouchMode="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:layout_marginRight="5dp" />
     </LinearLayout>
 </LinearLayout>

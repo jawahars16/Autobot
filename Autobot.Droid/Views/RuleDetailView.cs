@@ -41,10 +41,7 @@ namespace Autobot.Droid.Views
         protected override void OnStart()
         {
             base.OnStart();
-
-            //triggersListView.Initialize();
-            //triggersListView.Expand(triggersListView.Adapter.Count);
-
+            
             actionsListView.Initialize();
             actionsListView.Expand(actionsListView.Adapter.Count);
 

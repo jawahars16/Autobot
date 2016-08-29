@@ -18,8 +18,8 @@ namespace Autobot.Droid.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            double _value = (double)value;
-            double _parameter = double.Parse(parameter.ToString());
+            int _value = (int)value;
+            int _parameter = int.Parse(parameter.ToString());
 
             return _value == _parameter;
         }
@@ -27,7 +27,7 @@ namespace Autobot.Droid.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             bool _value = (bool)value;
-            double _parameter = double.Parse(parameter.ToString());
+            int _parameter = int.Parse(parameter.ToString());
 
             if (_value)
             {

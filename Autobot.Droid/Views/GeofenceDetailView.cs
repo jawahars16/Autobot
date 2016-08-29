@@ -8,7 +8,6 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
-using Android.Widget;
 using MvvmCross.Droid.Support.V4;
 using Autobot.ViewModel;
 using Android.Gms.Maps;
@@ -19,16 +18,56 @@ using Android.Gms.Maps.Model;
 using Android.Graphics;
 using Android.Views.Animations;
 using Android.Animation;
+using Autobot.Model;
+using MvvmCross.Droid.Support.V7.AppCompat;
+using Android.Support.V7.Widget;
+using Android.Widget;
 
 namespace Autobot.Droid.Views
 {
     [Activity(ParentActivity = typeof(GeofenceView))]
-    public class GeofenceDetailView : MvxFragmentActivity, IOnMapReadyCallback
+    public class GeofenceDetailView : MvxAppCompatActivity, IOnMapReadyCallback
     {
+        [InjectView(Resource.Id.toolbar)]
+        private Android.Support.V7.Widget.Toolbar toolbar;
+
+        private IMenu menu;
         private Marker marker;
         private Circle circle;
         private LatLng defaultLocation = new LatLng(13.112317, 80.155083);
         private GoogleMap map;
+
+        public GeofenceDetailViewModel ThisViewModel
+        {
+            get
+            {
+                return this.ViewModel as GeofenceDetailViewModel;
+            }
+        }
+
+        private void RefreshMap(Geofence geofence)
+        {
+            if (map == null)
+            {
+                return;
+            }
+
+            if (circle != null)
+            {
+                circle.Remove();
+            }
+
+            var location = new LatLng(geofence.Latitude, geofence.Longitude);
+            SetMarker(location);
+            MoveCamera(location, geofence.Radius);
+            AddGeofence(location, geofence.Radius);
+        }
+
+        [InjectOnCheckedChange(Resource.Id.availableUnits)]
+        private void OnCheckedChange(object sender, RadioGroup.CheckedChangeEventArgs e)
+        {
+            RefreshMap(ThisViewModel.Geofence);
+        }
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -37,27 +76,47 @@ namespace Autobot.Droid.Views
             Cheeseknife.Inject(this);
             SupportMapFragment mapFragment = (SupportMapFragment)SupportFragmentManager.FindFragmentById(Resource.Id.map);
             mapFragment.GetMapAsync(this);
+            SetSupportActionBar(toolbar);
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            this.menu = menu;
+            MenuInflater.Inflate(Resource.Menu.geofence_menu, menu);
+            return true;
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.done:
+                    ThisViewModel.SaveCommand.Execute();
+                    break;
+                case Resource.Id.delete:
+                    ThisViewModel.DeleteCommand.Execute();
+                    break;
+            }
+
+            return base.OnOptionsItemSelected(item);
         }
 
         public void OnMapReady(GoogleMap googleMap)
         {
             map = googleMap;
-            SetMarker(defaultLocation);
-            MoveCamera(defaultLocation);
-            AddGeofence(defaultLocation, 500);
             map.MapClick += OnMapClick;
+            RefreshMap(ThisViewModel.Geofence);
         }
 
         private void OnMapClick(object sender, GoogleMap.MapClickEventArgs e)
         {
-            if(circle != null)
-            {
-                circle.Remove();
-            }
-            marker.Position = e.Point;
-            AddGeofence(e.Point, 500);
+            ThisViewModel.Geofence.Latitude = e.Point.Latitude;
+            ThisViewModel.Geofence.Longitude = e.Point.Longitude;
+
+            RefreshMap(ThisViewModel.Geofence);
         }
 
+        #region Helper Methods
         public void AddGeofence(LatLng location, int radius)
         {
             CircleOptions options = new CircleOptions();
@@ -70,7 +129,6 @@ namespace Autobot.Droid.Views
                 .InvokeRadius(radius);
 
             circle = map.AddCircle(options);
-            MoveCamera(location, GetZoomLevel(circle));
 
             ValueAnimator vAnimator = new ValueAnimator();
             vAnimator.RepeatCount = 0;
@@ -86,60 +144,24 @@ namespace Autobot.Droid.Views
             vAnimator.Start();
         }
 
-        public void AnimateMarker(LatLng toPosition, bool hideMarker)
-        {
-            Handler handler = new Handler();
-            long start = SystemClock.ElapsedRealtime();
-
-            Projection proj = map.Projection;
-            Point startPoint = proj.ToScreenLocation(marker.Position);
-            LatLng startLatLng = proj.FromScreenLocation(startPoint);
-
-            long duration = 500;
-            var interpolator = new LinearInterpolator();
-            Action action = null;
-
-            action = ()=>
-            {
-                long elapsed = SystemClock.ElapsedRealtime() - start;
-                float t = interpolator.GetInterpolation((float)elapsed
-                        / duration);
-                double lng = t * toPosition.Longitude + (1 - t)
-                        * startLatLng.Longitude;
-                double lat = t * toPosition.Latitude + (1 - t)
-                        * startLatLng.Longitude;
-                marker.Position = new LatLng(lat, lng);
-                if (t < 1.0)
-                {
-                    // Post again 16ms later.
-                    handler.PostDelayed(action, 16);
-                }
-                else
-                {
-                    if (hideMarker)
-                    {
-                        marker.Visible = false;
-                    }
-                    else
-                    {
-                        marker.Visible = true;
-                    }
-                }
-            };
-
-            handler.Post(action);
-        }
-
         private void SetMarker(LatLng position)
         {
-            MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.SetPosition(position);
-            markerOptions.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.pin));
-            marker = map.AddMarker(markerOptions);
+            if (marker == null)
+            {
+                MarkerOptions markerOptions = new MarkerOptions();
+                markerOptions.SetPosition(position);
+                markerOptions.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.pin));
+                marker = map.AddMarker(markerOptions);
+            }
+            else
+            {
+                marker.Position = position;
+            }
         }
 
-        private void MoveCamera(LatLng location, float zoom = 15)
+        private void MoveCamera(LatLng location, int radius)
         {
+            float zoom = GetZoomLevel(radius);
             CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
             builder.Target(location);
             builder.Zoom(zoom);
@@ -148,30 +170,11 @@ namespace Autobot.Droid.Views
             map.AnimateCamera(cameraUpdate);
         }
 
-        private int AddGeofence(LatLng location, double radius)
+        private float GetZoomLevel(int radius)
         {
-            CircleOptions options = new CircleOptions();
-            options
-                .InvokeRadius(radius)
-                .InvokeCenter(location)
-                .InvokeFillColor(Color.ParseColor("#80FFFFFF"))
-                .InvokeStrokeColor(Color.ParseColor("#0079CA"))
-                .InvokeStrokeWidth(5);
-            Circle circle = map.AddCircle(options);
-            circle.Visible = true;
-            return GetZoomLevel(circle);
+            double scale = radius / 500.0;
+            return (float)(16 - Math.Log(1.5) / Math.Log(2f));
         }
-
-        private int GetZoomLevel(Circle circle)
-        {
-            if (circle != null)
-            {
-                double radius = circle.Radius;
-                double scale = radius / 500;
-                return (int)(16 - Math.Log(1.5) / Math.Log(2));
-            }
-            return 0;
-        }
-
+        #endregion
     }
 }
