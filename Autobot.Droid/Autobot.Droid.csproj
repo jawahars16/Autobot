@@ -177,7 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\ImageValueConverter.cs" />
+    <Compile Include="Converters\MeterValueConverter.cs" />
     <Compile Include="Converters\NotNullValueConverter.cs" />
+    <Compile Include="Converters\RadioButtonValueConverter.cs" />
     <Compile Include="Fragments\BindableFragment.cs" />
     <Compile Include="Infrastructure\Receiver\AlarmReceiver.cs" />
     <Compile Include="Infrastructure\Receiver\BluetoothReceiver.cs" />
@@ -267,6 +269,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\li_MultiSelctableItem.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\li_radiobutton.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

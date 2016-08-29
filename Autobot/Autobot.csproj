@@ -46,6 +46,7 @@
     <Compile Include="Common\Database.cs" />
     <Compile Include="Common\Extensions.cs" />
     <Compile Include="Infrastructure\Triggers\TimeTrigger.cs" />
+    <Compile Include="Model\AvailableUnit.cs" />
     <Compile Include="Model\Condition.cs" />
     <Compile Include="Model\CustomTime.cs" />
     <Compile Include="Model\Date.cs" />
