@@ -93,7 +93,6 @@ namespace Autobot.Droid.Services
                 {
                     taskCompletionSource.SetResult(date);
                 }
-
             }
 
             return await taskCompletionSource.Task;

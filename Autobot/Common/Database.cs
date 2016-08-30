@@ -45,6 +45,11 @@ namespace Autobot.Common
             return await connection.Table<Rule>().ToListAsync();
         }
 
+        public async Task<Geofence> GetGeofence(string id)
+        {
+            return await connection.Table<Geofence>().Where(g => g.Id == id).FirstOrDefaultAsync();
+        }
+
         public async Task InitializeAsync(string dbPath)
         {
             connection = new SQLiteAsyncConnection(dbPath);

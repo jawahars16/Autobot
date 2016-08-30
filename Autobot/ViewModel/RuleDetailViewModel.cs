@@ -18,15 +18,19 @@ namespace Autobot.ViewModel
         private readonly IAutobotService autobotService;
         private readonly IPresentationService presentationService;
         private readonly ISchedulerService schedulerService;
+        private readonly ILocationService locationService;
 
         public RuleDetailViewModel(
             IAutobotService autobotService, 
             IPresentationService presentationService,
-            ISchedulerService schedulerService)
+            ISchedulerService schedulerService,
+            ILocationService locationService)
         {
             this.autobotService = autobotService;
             this.presentationService = presentationService;
             this.schedulerService = schedulerService;
+            this.locationService = locationService;
+
             SetTriggerCommand = new MvxCommand(OnSetTrigger);
             AddConditionCommand = new MvxCommand(OnAddCondition);
             AddActionCommand = new MvxCommand(OnAddAction);
@@ -175,15 +179,20 @@ namespace Autobot.ViewModel
                 return;
             }
 
+            //if (Rule.Trigger.IsTimeTrigger)
+            //{
+            //    schedulerService.Schedule(Rule.Id.GetHashCode(), Rule.Tag, Rule.Trigger.TriggerDelay);
+            //}
+
+            if (locationService.IsLocationTrigger(Rule.Trigger))
+            {
+                bool added = await locationService.AddGeofence(Rule);
+            }
+
             Rule.Id = Guid.NewGuid().ToString();
 
             await Rule.SaveAsync();
             Close(this);
-
-            if (Rule.Trigger.IsTimeTrigger)
-            {
-                schedulerService.Schedule(Rule.Id.GetHashCode(), Rule.Tag, Rule.Trigger.TriggerDelay);
-            }
         }
 
         private async void OnSetTrigger()
@@ -205,6 +214,7 @@ namespace Autobot.ViewModel
             }
 
             await HandleTimeTrigger(trigger);
+            await locationService.HandleLocationTrigger(trigger);
 
             Rule.Trigger = trigger;
         }

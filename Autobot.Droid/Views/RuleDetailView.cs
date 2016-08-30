@@ -7,11 +7,12 @@ using Autobot.ViewModel;
 using Com.Lilarcor.Cheeseknife;
 using Android.Support.V7.Widget;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using Autobot.Droid.Platform;
 
 namespace Autobot.Droid.Views
 {
     [Activity]
-    public class RuleDetailView : MvxAppCompatActivity
+    public class RuleDetailView : AutobotActivity
     {
         private IMenu menu;
 

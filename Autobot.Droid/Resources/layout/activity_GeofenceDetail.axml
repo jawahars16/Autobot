@@ -42,8 +42,8 @@
                 android:checked="true"
                 android:button="@null"
                 android:textColor="@drawable/radio_button_selector"
-                android:text="100 m"
-                local:MvxBind="Checked RadioButton(Geofence.Radius, 100);"
+                android:text="50 m"
+                local:MvxBind="Checked RadioButton(Geofence.Radius, 50);"
                 android:id="@+id/radioButton1"
                 android:layout_margin="10dp"
                 android:gravity="center" />
@@ -55,9 +55,9 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:textColor="@drawable/radio_button_selector"
-                android:text="500 m"
+                android:text="100 m"
                 android:button="@null"
-                local:MvxBind="Checked RadioButton(Geofence.Radius, 500)"
+                local:MvxBind="Checked RadioButton(Geofence.Radius, 100)"
                 android:id="@+id/radioButton2"
                 android:layout_margin="10dp"
                 android:gravity="center" />
@@ -68,9 +68,9 @@
             <RadioButton
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                local:MvxBind="Checked RadioButton(Geofence.Radius, 1000)"
+                local:MvxBind="Checked RadioButton(Geofence.Radius, 300)"
                 android:textColor="@drawable/radio_button_selector"
-                android:text="1 km"
+                android:text="300 m"
                 android:button="@null"
                 android:id="@+id/radioButton3"
                 android:layout_margin="5dp"
@@ -84,24 +84,10 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:textColor="@drawable/radio_button_selector"
-                android:text="5 km"
+                android:text="500 m"
                 android:button="@null"
-                local:MvxBind="Checked RadioButton(Geofence.Radius, 5000)"
+                local:MvxBind="Checked RadioButton(Geofence.Radius, 500)"
                 android:id="@+id/radioButton4"
-                android:layout_margin="10dp"
-                android:gravity="center" />
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/black" />
-            <RadioButton
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                local:MvxBind="Checked RadioButton(Geofence.Radius, 10000)"
-                android:textColor="@drawable/radio_button_selector"
-                android:text="10 km"
-                android:button="@null"
-                android:id="@+id/radioButton5"
                 android:layout_margin="10dp"
                 android:gravity="center" />
         </RadioGroup>

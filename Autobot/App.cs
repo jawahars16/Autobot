@@ -7,10 +7,10 @@ namespace Autobot
     {
         public override void Initialize()
         {
-            //CreatableTypes()
-            //    .EndingWith("Service")
-            //    .AsInterfaces()
-            //    .RegisterAsLazySingleton();
+            //    CreatableTypes()
+            //        .EndingWith("Service")
+            //        .AsInterfaces()
+            //        .RegisterAsLazySingleton();
 
             RegisterAppStart<HomeViewModel>();
         }

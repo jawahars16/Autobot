@@ -40,7 +40,14 @@ namespace Autobot.ViewModel
 
         private void OnGeofenceDetail(Geofence geofence)
         {
-            ShowViewModel<GeofenceDetailViewModel>();
+            if (geofence == null)
+            {
+                ShowViewModel<GeofenceDetailViewModel>();
+            }
+            else
+            {
+                ShowViewModel<GeofenceDetailViewModel>(new { Id = geofence?.Id });
+            }
         }
     }
 }

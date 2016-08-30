@@ -83,21 +83,21 @@ namespace Autobot.Model
 
         public async Task SaveAsync(Rule rule)
         {
-            if (Tag == TimeTrigger.Default.Custom)
-            {
-                TriggerDelay = (long)TriggerTime.TotalMilliseconds;
-                TriggerInterval = (long)TriggerTime.TotalMilliseconds;
-            }
-            else if (Tag == TimeTrigger.Default.EveryWeek)
-            {
+            //if (Tag == TimeTrigger.Default.Custom)
+            //{
+            //    TriggerDelay = (long)TriggerTime.TotalMilliseconds;
+            //    TriggerInterval = (long)TriggerTime.TotalMilliseconds;
+            //    Tag = $"{Constants.TIME_TRIGGER}_{Tag}_{TriggerTime.ToString()}";
+            //}
+            //else if (Tag == TimeTrigger.Default.EveryWeek)
+            //{
 
-            }
-            else if (Tag == TimeTrigger.Default.EveryDay)
-            {
+            //}
+            //else if (Tag == TimeTrigger.Default.EveryDay)
+            //{
 
-            }
+            //}
 
-            Tag = $"{Constants.TIME_TRIGGER}_{Tag}_{TriggerTime.ToString()}";
             Id = Guid.NewGuid().ToString();
             Rule = rule.Id;
 

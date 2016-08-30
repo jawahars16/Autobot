@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:local="http://schemas.android.com/apk/res-auto"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
-  <LinearLayout
+    xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <android.support.v7.widget.Toolbar
-      android:minHeight="?android:attr/actionBarSize"
-      android:background="?android:attr/colorPrimary"
-      android:minWidth="25px"
-      android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-      local:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/toolbar" />
-    <MvxListView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_weight="1"
-      local:MvxItemTemplate="@layout/li_geofence"
-      local:MvxBind="ItemsSource GeofenceList"/>
-  </LinearLayout>
-  <com.refractored.fab.FloatingActionButton
-    android:id="@+id/fab"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="bottom|right"
-    android:layout_margin="16dp"
-    local:MvxBind="Click GeofenceDetailCommand"
-    local:fab_colorNormal="#007ACC"
-    local:fab_colorPressed="#68217A"
-    local:fab_colorRipple="#CCCEDB" />
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <android.support.v7.widget.Toolbar
+            android:minHeight="?android:attr/actionBarSize"
+            android:background="?android:attr/colorPrimary"
+            android:minWidth="25px"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            local:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar" />
+        <MvxListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            local:MvxItemTemplate="@layout/li_geofence"
+            local:MvxBind="ItemsSource GeofenceList; ItemClick GeofenceDetailCommand" />
+    </LinearLayout>
+    <com.refractored.fab.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        local:MvxBind="Click GeofenceDetailCommand"
+        local:fab_colorNormal="#007ACC"
+        local:fab_colorPressed="#68217A"
+        local:fab_colorRipple="#CCCEDB" />
 </FrameLayout>

@@ -1,4 +1,5 @@
-﻿using Autobot.Model;
+﻿using Autobot.Common;
+using Autobot.Model;
 using Autobot.Services;
 using Autobot.Viewmodel;
 using MvvmCross.Core.ViewModels;
@@ -15,22 +16,39 @@ namespace Autobot.ViewModel
     public class GeofenceDetailViewModel : MvxViewModel
     {
         private readonly IPresentationService presentationService;
+        private readonly ILocationService locationService;
 
         public Geofence Geofence { get; set; }
         public IMvxCommand SaveCommand { get; set; }
         public IMvxCommand DeleteCommand { get; set; }
 
-        public GeofenceDetailViewModel(IPresentationService presentationService)
+        public GeofenceDetailViewModel(IPresentationService presentationService, ILocationService locationService)
         {
             this.presentationService = presentationService;
-            Geofence = new Geofence(13.112317, 80.155083, 500);
+            this.locationService = locationService;
+
             SaveCommand = new MvxCommand(OnSave);
             DeleteCommand = new MvxCommand(OnDelete);
+        }
+
+        protected async override void InitFromBundle(IMvxBundle parameters)
+        {
+            base.InitFromBundle(parameters);
+            if (parameters.Data.ContainsKey("Id"))
+            {
+                string id = parameters.Data["Id"];
+                Geofence = await Database.Default.GetGeofence(id);
+            }
+            else
+            {
+                Geofence = new Geofence(13.112317, 80.155083, 100);
+            }
         }
 
         private async void OnDelete()
         {
             await Geofence.DeleteAsync();
+            bool removed = await locationService.RemoveGeofence(Geofence.Id);
         }
 
         private async void OnSave()

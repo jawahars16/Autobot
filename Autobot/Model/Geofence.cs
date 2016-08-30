@@ -34,9 +34,16 @@ namespace Autobot.Model
 
         public async Task SaveAsync()
         {
-            Id = $"{Latitude}_{Longitude}_{Radius}";
-            Description = $"{Latitude}, {Longitude}";
-            await Database.Default.SaveAsync(this);
+            if (Id == null)
+            {
+                Id = $"{Latitude}_{Longitude}_{Radius}";
+                Description = $"{Latitude}, {Longitude}";
+                await Database.Default.SaveAsync(this);
+            }
+            else
+            {
+                await Database.Default.UpdateAsync(this);
+            }
         }
 
         public async Task DeleteAsync()

@@ -9,7 +9,9 @@
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
 	<uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-  <uses-permission android:name="com.autobot.permission.MAPS_RECEIVE" />
+	<uses-permission android:name="com.autobot.permission.MAPS_RECEIVE" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<application android:label="Autobot" android:icon="@drawable/Icon">
 		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyBHRb3lcQVEO-S8KHZM7a0nyddv6GQIZ3g" />
 		<uses-library android:name="com.google.android.maps" />

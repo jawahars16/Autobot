@@ -5,6 +5,8 @@ using Autobot.Droid.Platform;
 using Autobot.Droid.Services;
 using Autobot.Platform;
 using Autobot.Services;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Droid.Platform;
 using System;
 using System.IO;
 
@@ -29,6 +31,14 @@ namespace Autobot.Droid
             var path = Path.Combine(documentspath, filename);
 
             await Database.Default.InitializeAsync(path);
+        }
+
+        public static AutobotActivity CurrentActivity
+        {
+            get
+            {
+                return Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity as AutobotActivity;
+            }
         }
     }
 }
