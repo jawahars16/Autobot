@@ -20,6 +20,7 @@ namespace Autobot.Droid
             Mvx.RegisterSingleton<ISchedulerService>(new SchedulerService());
             Mvx.RegisterSingleton<IPresentationService>(new PresentationService());
             Mvx.RegisterSingleton<ILocationService>(new LocationService());
+            Mvx.RegisterSingleton<INotificationService>(new NotificationService());
         }
 
         protected override IMvxApplication CreateApp()
