@@ -191,6 +191,7 @@
     <Compile Include="Fragments\BindableFragment.cs" />
     <Compile Include="Fragments\PromptTextDialogFragment.cs" />
     <Compile Include="Infrastructure\Receiver\AlarmReceiver.cs" />
+    <Compile Include="Infrastructure\Receiver\AutobotReceiver.cs" />
     <Compile Include="Infrastructure\Receiver\BluetoothReceiver.cs" />
     <Compile Include="Infrastructure\Receiver\LocationReceiver.cs" />
     <Compile Include="Infrastructure\Triggers\DroidTimeTrigger.cs" />

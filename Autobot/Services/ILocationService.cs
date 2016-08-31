@@ -1,4 +1,5 @@
-﻿using Autobot.Model;
+﻿using Autobot.Common;
+using Autobot.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace Autobot.Services
 {
     public interface ILocationService
     {
-        Task<bool> AddGeofence(Rule rule);
+        Task<Response> AddGeofence(Rule rule);
 
-        Task<bool> RemoveGeofence(Rule rule);
+        Task<Response> RemoveGeofence(Rule rule);
 
         Task<Trigger> HandleLocationTrigger(Trigger trigger);
 

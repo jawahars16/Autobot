@@ -2854,6 +2854,9 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f06002a
 			public const int add_new_rule = 2131099690;
 			
+			// aapt resource value: 0x7f06002b
+			public const int alert_positive_button = 2131099691;
+			
 			// aapt resource value: 0x7f060029
 			public const int app_name = 2131099689;
 			
@@ -2917,11 +2920,29 @@ namespace Autobot.Droid
 			// aapt resource value: 0x7f060013
 			public const int common_signin_button_text_long = 2131099667;
 			
+			// aapt resource value: 0x7f06002d
+			public const int geofence_not_available = 2131099693;
+			
+			// aapt resource value: 0x7f06002e
+			public const int geofence_too_many_geofences = 2131099694;
+			
+			// aapt resource value: 0x7f06002f
+			public const int geofence_too_many_pending_intents = 2131099695;
+			
+			// aapt resource value: 0x7f060031
+			public const int geofence_transition_invalid_type = 2131099697;
+			
 			// aapt resource value: 0x7f060028
 			public const int hello = 2131099688;
 			
+			// aapt resource value: 0x7f06002c
+			public const int not_connected = 2131099692;
+			
 			// aapt resource value: 0x7f060027
 			public const int status_bar_notification_info_overflow = 2131099687;
+			
+			// aapt resource value: 0x7f060030
+			public const int unknown_geofence_error = 2131099696;
 			
 			static String()
 			{

@@ -38,17 +38,17 @@ namespace Autobot.Droid.Services
 
         private GoogleApiClient client;
 
-        private Task<bool> BuildClientAsync()
+        private Task<Response> BuildClientAsync()
         {
-            var source = new TaskCompletionSource<bool>();
+            var source = new TaskCompletionSource<Response>();
             client = new GoogleApiClient.Builder(Application.Context)
                 .AddConnectionCallbacks(() =>
                 {
-                    source.SetResult(true);
+                    source.SetResult(Response.Success);
                 })
                 .AddOnConnectionFailedListener((o) =>
                 {
-                    source.SetResult(false);
+                    source.SetResult(Response.Failure($"{o.ErrorCode} - {o.ErrorMessage}"));
                 })
                 .AddApi(LocationServices.API)
                 .Build();
@@ -91,60 +91,86 @@ namespace Autobot.Droid.Services
             return rule.Trigger.Tag.Split(GEOFENCE_KEY_DELIMITER[0])[1];
         }
 
-        public async Task<bool> AddGeofence(Model.Rule rule)
+        public async Task<Response> AddGeofence(Model.Rule rule)
         {
-            bool clientStatus = await BuildClientAsync();
+            var response = await BuildClientAsync();
 
-            if (clientStatus)
+            if (response.IsSuccess)
             {
                 string geofenceId = GetGeofenceId(rule);
                 Model.Geofence geofence = await Database.Default.GetGeofence(geofenceId);
 
                 var request = GetGeofencingRequest(geofence.Id, geofence.Latitude, geofence.Longitude, geofence.Radius);
-                var intent = await GetPendingIntentAsync(geofence.Id);
+                var intent = await GetPendingIntentAsync(rule);
 
                 bool permitted = await CheckPermission();
-                bool result = false;
 
+                Statuses status = null;
                 if (permitted)
                 {
-                    Statuses status = await LocationServices.GeofencingApi.AddGeofencesAsync(
+                    status = await LocationServices.GeofencingApi.AddGeofencesAsync(
                         client,
                         request,
                         intent);
-                    result = status.IsSuccess;
+                }
+                else
+                {
+                    return Response.Failure("Permission not granted !!!");
                 }
 
                 client.Disconnect();
-                return result;
+                if (status.IsSuccess)
+                {
+                    return Response.Success;
+                }
+                else
+                {
+                    return Response.Failure(GeofenceErrorMessages.GetErrorString(Application.Context, status.StatusCode));
+                }
             }
 
-            return false;
+            return response;
         }
 
-        public async Task<bool> RemoveGeofence(Model.Rule rule)
+        public async Task<Response> RemoveGeofence(Model.Rule rule)
         {
-            bool clientStatus = await BuildClientAsync();
+            var response = await BuildClientAsync();
 
-            if (clientStatus)
+            if (response.IsSuccess)
             {
-                var intent = await GetPendingIntentAsync(GetGeofenceId(rule));
+                var intent = await GetPendingIntentAsync(rule);
                 Statuses status = await LocationServices.GeofencingApi.RemoveGeofencesAsync(
                     client,
                     intent);
 
                 client.Disconnect();
-                return status.IsSuccess;
+                if (status.IsSuccess)
+                {
+                    return Response.Success;
+                }
+                else
+                {
+                    return Response.Failure(GeofenceErrorMessages.GetErrorString(Application.Context, status.StatusCode));
+                }
             }
 
-            return clientStatus;
+            return response;
         }
 
-        private async Task<PendingIntent> GetPendingIntentAsync(string key)
+        private async Task<PendingIntent> GetPendingIntentAsync(Model.Rule rule)
         {
             var intent = new Intent(GEOFENCE);
-            var rules = await Database.Default.GetRulesByGeofence(key);
-            intent.PutStringArrayListExtra(GEOFENCE_RULES, rules.Select(rule => rule.Tag).ToList());
+            var rules = new List<Model.Rule>();
+            rules.Add(rule);
+
+            string key = GetGeofenceId(rule);
+            var existingRules = await Database.Default.GetRulesByGeofence(key);
+            if (existingRules != null && existingRules.Any())
+            {
+                rules.AddRange(existingRules);
+            }
+
+            intent.PutStringArrayListExtra(GEOFENCE_RULES, rules.Select(r => r.Tag).ToList());
             return PendingIntent.GetBroadcast(Application.Context, 0, intent, PendingIntentFlags.UpdateCurrent);
         }
 
@@ -194,6 +220,25 @@ namespace Autobot.Droid.Services
             }
 
             return trigger;
+        }
+    }
+
+    public static class GeofenceErrorMessages
+    {
+        public static string GetErrorString(Context context, int errorCode)
+        {
+            var mResources = context.Resources;
+            switch (errorCode)
+            {
+                case GeofenceStatusCodes.GeofenceNotAvailable:
+                    return mResources.GetString(Resource.String.geofence_not_available);
+                case GeofenceStatusCodes.GeofenceTooManyGeofences:
+                    return mResources.GetString(Resource.String.geofence_too_many_geofences);
+                case GeofenceStatusCodes.GeofenceTooManyPendingIntents:
+                    return mResources.GetString(Resource.String.geofence_too_many_pending_intents);
+                default:
+                    return mResources.GetString(Resource.String.unknown_geofence_error);
+            }
         }
     }
 }

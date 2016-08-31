@@ -45,6 +45,7 @@
     <Compile Include="Common\Container.cs" />
     <Compile Include="Common\Database.cs" />
     <Compile Include="Common\Extensions.cs" />
+    <Compile Include="Common\Response.cs" />
     <Compile Include="Infrastructure\Triggers\TimeTrigger.cs" />
     <Compile Include="Model\AvailableUnit.cs" />
     <Compile Include="Model\Condition.cs" />

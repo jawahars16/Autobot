@@ -35,6 +35,24 @@ namespace Autobot.Droid.Services
             return await Prompt.Make(activity, source).ShowAsync(true);
         }
 
+        public async Task<bool> ShowErrorAsync(string title, string message)
+        {
+            var activity = Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
+
+            var taskCompletionSource = new TaskCompletionSource<bool>();
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            builder
+                .SetTitle(title)
+                .SetMessage(message)
+                .SetIcon(Android.Resource.Drawable.StatNotifyError)
+                .SetPositiveButton(Resource.String.alert_positive_button, (s, e)=>
+                {
+                    taskCompletionSource.SetResult(true);
+                })
+                .Show();
+            return await taskCompletionSource.Task;
+        }
+
         public Date GetDefaultDate()
         {
             return Date.Today;

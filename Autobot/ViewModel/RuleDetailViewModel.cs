@@ -191,14 +191,21 @@ namespace Autobot.ViewModel
             //}
 
             Rule.Id = Guid.NewGuid().ToString();
-            await Rule.SaveAsync();
 
             if (locationService.IsLocationTrigger(Rule.Trigger))
             {
-                bool added = await locationService.AddGeofence(Rule);
+                var response = await locationService.AddGeofence(Rule);
+                if (response.IsSuccess)
+                {
+                    await Rule.SaveAsync();
+                    Close(this);
+                }
+                else
+                {
+                    await presentationService.ShowErrorAsync("Oops !!!", response.ErrorMessage);
+                }
             }
 
-            Close(this);
         }
 
         private async void OnSetTrigger()

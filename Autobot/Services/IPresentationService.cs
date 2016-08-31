@@ -27,5 +27,7 @@ namespace Autobot.Services
         Task<NavigationItem> RequestNavigation();
 
         Task<string> PromptText(string title, string description);
+
+        Task<bool> ShowErrorAsync(string title, string message);
     }
 }

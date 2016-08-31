@@ -22,23 +22,32 @@ namespace Autobot.Droid.Infrastructure.Receiver
     {
         public async override void OnReceive(Context context, Intent intent)
         {
-            var ids = intent.GetStringArrayListExtra(LocationService.GEOFENCE_RULES);
-            GeofencingEvent geofencingEvent = GeofencingEvent.FromIntent(intent);
+            try {
+                var ids = intent.GetStringArrayListExtra(LocationService.GEOFENCE_RULES);
+                GeofencingEvent geofencingEvent = GeofencingEvent.FromIntent(intent);
 
-            if (geofencingEvent.HasError)
-            {
-                int erroCode = geofencingEvent.ErrorCode;
-                return;
+                if (geofencingEvent.HasError)
+                {
+                    int erroCode = geofencingEvent.ErrorCode;
+                    var errorMessage = GeofenceErrorMessages.GetErrorString(Application.Context, erroCode);
+                    App.Report(App.RULE_FAILED, errorMessage);
+                    return;
+                }
+
+                // Get the transition type.
+                int geofenceTransition = geofencingEvent.GeofenceTransition;
+
+                var rules = await Database.Default.GetRulesAsync(ids.ToArray());
+                if (geofenceTransition == Geofence.GeofenceTransitionEnter)
+                {
+                    var validRules = rules.Where(rule => rule.Tag.Contains(LocationService.ARRIVING));
+                    await Task.WhenAll(validRules.Select(rule => rule.Run()));
+                    App.Report(App.RULE_SUCCESS, $"{validRules.Count()} rules executed successfully");
+                }
             }
-
-            // Get the transition type.
-            int geofenceTransition = geofencingEvent.GeofenceTransition;
-
-            var rules = await Database.Default.GetRulesAsync(ids.ToArray());
-            if (geofenceTransition == Geofence.GeofenceTransitionEnter)
+            catch(Exception e)
             {
-                var validRules = rules.Where(rule => rule.Tag.Contains(LocationService.ARRIVING));
-                await Task.WhenAll(validRules.Select(rule => rule.Run()));
+                App.Report(App.RULE_FAILED, e.Message);
             }
         }
     }
