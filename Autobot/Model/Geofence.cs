@@ -1,6 +1,7 @@
 ﻿using Autobot.Common;
 using Autobot.Platform;
 using PropertyChanged;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace Autobot.Model
 
         }
 
+        [PrimaryKey]
         public string Id { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }

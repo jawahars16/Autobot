@@ -47,8 +47,11 @@ namespace Autobot.ViewModel
 
         private async void OnDelete()
         {
-            await Geofence.DeleteAsync();
-            bool removed = await locationService.RemoveGeofence(Geofence.Id);
+            var rules = await Database.Default.GetRulesByGeofence(Geofence.Id);
+            if (!rules.Any())
+            {
+                await Geofence.DeleteAsync();
+            }
         }
 
         private async void OnSave()

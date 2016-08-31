@@ -32,7 +32,7 @@ namespace Autobot.Droid.Services
         public const string GEOFENCE = "com.autobot.GEOFENCE";
         public const string ARRIVING = "ARRIVING";
         public const string LEAVING = "LEAVING";
-        public const string GEOFENCE_KEY = "GEOFENCE_KEY";
+        public const string GEOFENCE_RULES = "GEOFENCE_RULES";
         public const string GEOFENCE_KEY_DELIMITER = "#";
         public const int REQUEST_CODE = 0;
 
@@ -59,8 +59,8 @@ namespace Autobot.Droid.Services
         public Task<bool> CheckPermission()
         {
             var source = new TaskCompletionSource<bool>();
-
-            if(Application.Context.CheckSelfPermission(Manifest.Permission.AccessFineLocation) == Android.Content.PM.Permission.Granted)
+            
+            if(Android.Support.V4.Content.ContextCompat.CheckSelfPermission(Application.Context, Manifest.Permission.AccessFineLocation) == Android.Content.PM.Permission.Granted)
             {
                 return Task.FromResult(true);
             }
@@ -101,7 +101,7 @@ namespace Autobot.Droid.Services
                 Model.Geofence geofence = await Database.Default.GetGeofence(geofenceId);
 
                 var request = GetGeofencingRequest(geofence.Id, geofence.Latitude, geofence.Longitude, geofence.Radius);
-                var intent = GetPendingIntent(geofence.Id);
+                var intent = await GetPendingIntentAsync(geofence.Id);
 
                 bool permitted = await CheckPermission();
                 bool result = false;
@@ -122,30 +122,30 @@ namespace Autobot.Droid.Services
             return false;
         }
 
-        public async Task<bool> RemoveGeofence(string geofenceId)
+        public async Task<bool> RemoveGeofence(Model.Rule rule)
         {
             bool clientStatus = await BuildClientAsync();
 
             if (clientStatus)
             {
-                var intent = GetPendingIntent(geofenceId);
+                var intent = await GetPendingIntentAsync(GetGeofenceId(rule));
                 Statuses status = await LocationServices.GeofencingApi.RemoveGeofencesAsync(
                     client,
                     intent);
 
                 client.Disconnect();
-
                 return status.IsSuccess;
             }
 
             return clientStatus;
         }
 
-        private PendingIntent GetPendingIntent(string key)
+        private async Task<PendingIntent> GetPendingIntentAsync(string key)
         {
             var intent = new Intent(GEOFENCE);
-            intent.PutExtra(GEOFENCE_KEY, key);
-            return PendingIntent.GetService(Application.Context, 0, intent, PendingIntentFlags.UpdateCurrent);
+            var rules = await Database.Default.GetRulesByGeofence(key);
+            intent.PutStringArrayListExtra(GEOFENCE_RULES, rules.Select(rule => rule.Tag).ToList());
+            return PendingIntent.GetBroadcast(Application.Context, 0, intent, PendingIntentFlags.UpdateCurrent);
         }
 
         private GeofencingRequest GetGeofencingRequest(string key, double latitude, double longitude, int radius)
@@ -157,7 +157,7 @@ namespace Autobot.Droid.Services
                                 longitude,
                                 radius
                             )
-                            .SetExpirationDuration(36000 * 60)
+                            .SetExpirationDuration(Geofence.NeverExpire)
                             .SetTransitionTypes(Geofence.GeofenceTransitionEnter | Geofence.GeofenceTransitionExit)
                             .Build();
 

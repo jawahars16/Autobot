@@ -24,7 +24,7 @@ namespace Autobot.Droid.Services
 
             // Build the notification:
             Notification notification = builder.Build();
-            notification.Priority = (int)Notification.PriorityHigh;
+            notification.Priority = (int)NotificationPriority.High;
 
             // Get the notification manager:
             NotificationManager notificationManager = Application.Context.GetSystemService(Context.NotificationService) as NotificationManager;

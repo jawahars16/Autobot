@@ -11,7 +11,7 @@ namespace Autobot.Services
     {
         Task<bool> AddGeofence(Rule rule);
 
-        Task<bool> RemoveGeofence(string geofenceId);
+        Task<bool> RemoveGeofence(Rule rule);
 
         Task<Trigger> HandleLocationTrigger(Trigger trigger);
 

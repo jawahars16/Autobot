@@ -41,10 +41,16 @@ namespace Autobot.ViewModel
         private async void OnDelete()
         {
             await Rule.Delete();
-            if (Rule.Trigger.IsTimeTrigger)
+            //if (Rule.Trigger.IsTimeTrigger)
+            //{
+            //    schedulerService.Cancel(Rule.Id.GetHashCode(), Rule.Tag);
+            //}
+
+            if (locationService.IsLocationTrigger(Rule.Trigger))
             {
-                schedulerService.Cancel(Rule.Id.GetHashCode(), Rule.Tag);
+                await locationService.RemoveGeofence(Rule);
             }
+
             Close(this);
         }
 
@@ -184,14 +190,14 @@ namespace Autobot.ViewModel
             //    schedulerService.Schedule(Rule.Id.GetHashCode(), Rule.Tag, Rule.Trigger.TriggerDelay);
             //}
 
+            Rule.Id = Guid.NewGuid().ToString();
+            await Rule.SaveAsync();
+
             if (locationService.IsLocationTrigger(Rule.Trigger))
             {
                 bool added = await locationService.AddGeofence(Rule);
             }
 
-            Rule.Id = Guid.NewGuid().ToString();
-
-            await Rule.SaveAsync();
             Close(this);
         }
 

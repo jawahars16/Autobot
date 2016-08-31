@@ -37,7 +37,10 @@ namespace Autobot.Common
 
         public async Task<List<Rule>> GetRulesAsync(params string[] ids)
         {
-            return await connection.Table<Rule>().Where(rule => ids.Any(id => id == rule.Id)).ToListAsync();
+            string id = string.Join(",", ids);
+            string quoted = id.Replace(",","','");
+            string query = $"SELECT * FROM Rule WHERE Tag IN ('{quoted}')";
+            return await connection.QueryAsync<Rule>(query);
         }
 
         public async Task<List<Rule>> GetRulesAsync()
@@ -92,6 +95,11 @@ namespace Autobot.Common
         public async Task SaveAsync(object entity)
         {
             await connection.InsertAsync(entity);
+        }
+
+        public async Task<List<Rule>> GetRulesByGeofence(string id)
+        {
+            return await connection.Table<Rule>().Where(rule => rule.Tag.Contains(id)).ToListAsync();
         }
     }
 }
